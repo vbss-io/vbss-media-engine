@@ -78,7 +78,7 @@ content-engine/
   fonts/     fontes woff2 locais (SIL OFL) com licenças e SHA-256
   tokens.json marcas: cores, fontes, logo, tom (vem com uma marca fictícia)
 voicestudio/  instalador e wrapper da voz local VoiceStudio; voices/ nasce vazia
-examples/     ola-mundo (vídeo), cartao (imagem), narracao (texto de voz)
+examples/     hello-world (vídeo), card (imagem), narration (texto de voz)
 ```
 
 Documentação de contrato, por motor:
