@@ -12,10 +12,10 @@ REPO_DIR = ENGINE_DIR.parent
 if str(ENGINE_DIR) not in sys.path:
     sys.path.insert(0, str(ENGINE_DIR))
 
-from comum import ambiente as _ambiente
-from comum import navegador as navegador_fixado
-from comum.chrome import AVISO_SISTEMA, descrever_navegador, e_navegador_fixo, file_version, find_chrome, isolamento_env, versao_navegador
-from comum.saida import falhar, linha, titulo
+from common import ambiente as _ambiente
+from common import navegador as navegador_fixado
+from common.chrome import AVISO_SISTEMA, descrever_navegador, e_navegador_fixo, file_version, find_chrome, isolamento_env, versao_navegador
+from common.saida import falhar, linha, titulo
 
 SANDBOX_DIR = VIDEO_DIR / ".sandbox"
 CACHE_DIR = VIDEO_DIR / ".cache"

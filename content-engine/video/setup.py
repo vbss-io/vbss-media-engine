@@ -5,7 +5,7 @@ import zipfile
 sys.dont_write_bytecode = True
 
 import _comum as c
-from comum.download import baixar, sha256
+from common.download import baixar, sha256
 
 NODE_MIN = (22, 0, 0)
 

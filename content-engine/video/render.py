@@ -9,8 +9,8 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 
 import _comum as c
-from comum import arquivos, midias
-from comum.urls import urls_externas_na_pasta
+from common import arquivos, midias
+from common.urls import urls_externas_na_pasta
 
 PARENTS_TO_CHECK = 5
 

@@ -7,9 +7,9 @@ import sys
 sys.dont_write_bytecode = True
 
 import _comum as c
-import provedores
-from comum import ambiente as _ambiente
-from provedores import kokoro
+import providers
+from common import ambiente as _ambiente
+from providers import kokoro
 
 resultados = []
 
@@ -131,19 +131,19 @@ def checar_kokoro(ativo):
 
 def checar_voicestudio(ativo):
     c.titulo("Voz local VoiceStudio (voicestudio/, offline)")
-    prov, erro = provedores.tentar_carregar("voicestudio")
+    prov, erro = providers.tentar_carregar("voicestudio")
     if prov is None:
         item("voicestudio: adaptador carrega", False, erro[:200])
         return
     ok, motivo = prov.disponivel()
     item("VoiceStudio pronto" + (" (provedor ativo)" if ativo else ""), ok, motivo, aviso=not ativo)
-    info("vozes guardadas em voicestudio/vozes", ", ".join(v["id"] for v in prov.VOZES) or "nenhuma")
+    info("vozes guardadas em voicestudio/voices", ", ".join(v["id"] for v in prov.VOZES) or "nenhuma")
 
 
 def checar_nuvem(ativo=None):
     c.titulo("Vozes na nuvem (chave no content-engine/audio/.env ou no ambiente; valor nunca e mostrado)")
     for nome in ("azure", "azure_openai", "google"):
-        prov, erro = provedores.tentar_carregar(nome)
+        prov, erro = providers.tentar_carregar(nome)
         if prov is None:
             item(f"{nome}: adaptador carrega", False, erro[:200])
             continue
@@ -158,7 +158,7 @@ def checar_gitignore():
     c.titulo("Repositorio")
     gi = c.REPO_DIR / ".gitignore"
     texto = gi.read_text(encoding="utf-8") if gi.is_file() else ""
-    precisa = ["content-engine/audio/.venv/", "content-engine/audio/.cache/", "content-engine/audio/.modelos/", "content-engine/audio/.work/"]
+    precisa = ["content-engine/audio/.venv/", "content-engine/audio/.cache/", "content-engine/audio/.models/", "content-engine/audio/.work/"]
     faltam = [p for p in precisa if p not in texto]
     item(".gitignore ignora venv, caches, modelos e area de trabalho do audio", not faltam, "faltam: " + ", ".join(faltam) if faltam else str(gi))
     item("sfx/ curado fica no git (nao ignorado)", "content-engine/audio/sfx" not in texto, "ok")

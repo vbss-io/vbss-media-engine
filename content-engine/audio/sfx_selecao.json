@@ -59,7 +59,7 @@
       ]
     },
     {
-      "categoria": "clique",
+      "categoria": "click",
       "nome": "clique-mouse",
       "pacote": "kenney-ui-audio",
       "membro": "Audio/mouseclick1.ogg",
@@ -69,7 +69,7 @@
       ]
     },
     {
-      "categoria": "clique",
+      "categoria": "click",
       "nome": "clique-seco",
       "pacote": "kenney-ui-audio",
       "membro": "Audio/click3.ogg",
@@ -79,7 +79,7 @@
       ]
     },
     {
-      "categoria": "clique",
+      "categoria": "click",
       "nome": "clique-interface",
       "pacote": "kenney-interface-sounds",
       "membro": "Audio/click_001.ogg",
@@ -89,7 +89,7 @@
       ]
     },
     {
-      "categoria": "clique",
+      "categoria": "click",
       "nome": "clique-botao-8bit",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Buttons/sfx_sounds_button3.wav",
@@ -139,7 +139,7 @@
       ]
     },
     {
-      "categoria": "sucesso",
+      "categoria": "success",
       "nome": "sucesso-confirmacao",
       "pacote": "kenney-interface-sounds",
       "membro": "Audio/confirmation_002.ogg",
@@ -149,7 +149,7 @@
       ]
     },
     {
-      "categoria": "sucesso",
+      "categoria": "success",
       "nome": "sucesso-confirmacao-curta",
       "pacote": "kenney-interface-sounds",
       "membro": "Audio/confirmation_001.ogg",
@@ -159,7 +159,7 @@
       ]
     },
     {
-      "categoria": "sucesso",
+      "categoria": "success",
       "nome": "sucesso-powerup-8bit",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Positive Sounds/sfx_sounds_powerup2.wav",
@@ -169,7 +169,7 @@
       ]
     },
     {
-      "categoria": "sucesso",
+      "categoria": "success",
       "nome": "sucesso-fanfarra-8bit",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Fanfares/sfx_sounds_fanfare1.wav",
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "categoria": "sucesso",
+      "categoria": "success",
       "nome": "sucesso-tres-tons",
       "pacote": "kenney-digital-audio",
       "membro": "Audio/threeTone1.ogg",
@@ -189,7 +189,7 @@
       ]
     },
     {
-      "categoria": "moeda-8bit",
+      "categoria": "coin-8bit",
       "nome": "moeda-8bit-simples",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Coins/sfx_coin_single1.wav",
@@ -199,7 +199,7 @@
       ]
     },
     {
-      "categoria": "moeda-8bit",
+      "categoria": "coin-8bit",
       "nome": "moeda-8bit-curta",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Coins/sfx_coin_single6.wav",
@@ -209,7 +209,7 @@
       ]
     },
     {
-      "categoria": "moeda-8bit",
+      "categoria": "coin-8bit",
       "nome": "moeda-8bit-dupla",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Coins/sfx_coin_double2.wav",
@@ -219,7 +219,7 @@
       ]
     },
     {
-      "categoria": "moeda-8bit",
+      "categoria": "coin-8bit",
       "nome": "moeda-8bit-chuva",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Coins/sfx_coin_cluster5.wav",
@@ -229,7 +229,7 @@
       ]
     },
     {
-      "categoria": "contador",
+      "categoria": "counter",
       "nome": "contador-tique",
       "pacote": "kenney-interface-sounds",
       "membro": "Audio/tick_004.ogg",
@@ -239,7 +239,7 @@
       ]
     },
     {
-      "categoria": "contador",
+      "categoria": "counter",
       "nome": "contador-blip-8bit",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Menu Sounds/sfx_menu_move5.wav",
@@ -249,7 +249,7 @@
       ]
     },
     {
-      "categoria": "contador",
+      "categoria": "counter",
       "nome": "contador-rolagem",
       "pacote": "kenney-interface-sounds",
       "membro": "Audio/scroll_002.ogg",
@@ -259,7 +259,7 @@
       ]
     },
     {
-      "categoria": "impacto",
+      "categoria": "impact",
       "nome": "impacto-soco",
       "pacote": "kenney-impact-sounds",
       "membro": "Audio/impactPunch_heavy_000.ogg",
@@ -269,7 +269,7 @@
       ]
     },
     {
-      "categoria": "impacto",
+      "categoria": "impact",
       "nome": "impacto-macio",
       "pacote": "kenney-impact-sounds",
       "membro": "Audio/impactSoft_heavy_000.ogg",
@@ -279,7 +279,7 @@
       ]
     },
     {
-      "categoria": "impacto",
+      "categoria": "impact",
       "nome": "impacto-metal",
       "pacote": "kenney-impact-sounds",
       "membro": "Audio/impactMetal_heavy_001.ogg",
@@ -289,7 +289,7 @@
       ]
     },
     {
-      "categoria": "impacto",
+      "categoria": "impact",
       "nome": "impacto-explosao-8bit",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/Explosions/Shortest/sfx_exp_shortest_soft6.wav",
@@ -299,7 +299,7 @@
       ]
     },
     {
-      "categoria": "digitacao",
+      "categoria": "typing",
       "nome": "digitacao-tecla",
       "pacote": "oga-keyboard-1",
       "membro": "Single Keys/keypress-006.wav",
@@ -309,7 +309,7 @@
       ]
     },
     {
-      "categoria": "digitacao",
+      "categoria": "typing",
       "nome": "digitacao-tecla-leve",
       "pacote": "oga-keyboard-1",
       "membro": "Single Keys/keypress-004.wav",
@@ -319,7 +319,7 @@
       ]
     },
     {
-      "categoria": "digitacao",
+      "categoria": "typing",
       "nome": "digitacao-sequencia",
       "pacote": "oga-keyboard-1",
       "membro": "Generated Typing/generated-006_faster.wav",
@@ -333,7 +333,7 @@
       }
     },
     {
-      "categoria": "notificacao",
+      "categoria": "notification",
       "nome": "notificacao-sino",
       "pacote": "oga-100-cc0-sfx",
       "membro": "bell_02.ogg",
@@ -343,7 +343,7 @@
       ]
     },
     {
-      "categoria": "notificacao",
+      "categoria": "notification",
       "nome": "notificacao-vidro",
       "pacote": "kenney-interface-sounds",
       "membro": "Audio/glass_001.ogg",
@@ -353,7 +353,7 @@
       ]
     },
     {
-      "categoria": "notificacao",
+      "categoria": "notification",
       "nome": "notificacao-pergunta",
       "pacote": "kenney-interface-sounds",
       "membro": "Audio/question_001.ogg",
@@ -363,7 +363,7 @@
       ]
     },
     {
-      "categoria": "erro",
+      "categoria": "error",
       "nome": "erro-interface",
       "pacote": "kenney-interface-sounds",
       "membro": "Audio/error_006.ogg",
@@ -373,7 +373,7 @@
       ]
     },
     {
-      "categoria": "erro",
+      "categoria": "error",
       "nome": "erro-8bit",
       "pacote": "oga-512-8bit",
       "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Negative Sounds/sfx_sounds_error5.wav",

@@ -12,7 +12,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 
 import _comum as c
-import provedores
+import providers
 
 CONFIG = c.AUDIO_DIR / "voz_config.json"
 COLUNAS_VOZ = ("voz", "narracao", "narração", "fala")
@@ -98,12 +98,12 @@ def pos_processar(bruto, destino, cfg):
 def escolher(a, cfg):
     nome = a.provedor or cfg["provedor"]
     try:
-        prov = provedores.carregar(nome)
+        prov = providers.carregar(nome)
         if a.modelo is not None:
-            aceitas = provedores.variantes_de(nome)
+            aceitas = providers.variantes_de(nome)
             if a.modelo not in aceitas:
                 c.falhar(f"--modelo {a.modelo} nao existe no provedor {nome}" + (f" (use {', '.join(aceitas)})" if aceitas else " (ele nao tem variantes de modelo)"))
-    except (provedores.ProvedorIndisponivel, ValueError) as err:
+    except (providers.ProvedorIndisponivel, ValueError) as err:
         veio_do_env = not a.provedor and cfg.get("origem", {}).get("provedor") == ".env"
         c.falhar(str(err) + (f" - confira {c.ENV_PROVEDOR} no content-engine/audio/.env" if veio_do_env else ""))
     voz = a.voz or cfg["vozes_padrao"].get(nome) or prov.VOZ_PADRAO
@@ -112,8 +112,8 @@ def escolher(a, cfg):
 
 
 def listar_vozes(cfg):
-    for nome in provedores.DISPONIVEIS:
-        prov, erro = provedores.tentar_carregar(nome)
+    for nome in providers.DISPONIVEIS:
+        prov, erro = providers.tentar_carregar(nome)
         if prov is None:
             c.titulo(f"{nome} - indisponivel: {erro}")
             continue
@@ -160,8 +160,8 @@ def listar_vozes(cfg):
         if instaladas:
             print(f"   {resumo}")
         try:
-            variantes = provedores.variantes_de(nome)
-        except provedores.ProvedorIndisponivel as err:
+            variantes = providers.variantes_de(nome)
+        except providers.ProvedorIndisponivel as err:
             print(f"   ({err})")
             variantes = ()
         if variantes:
@@ -241,7 +241,7 @@ def gerar(a, cfg):
     if not ok:
         c.falhar(f"provedor {nome} indisponivel: {motivo}")
     opcoes = {"estilo": a.estilo, "tom": a.tom, "altura": a.altura}
-    _, rejeitadas = provedores.filtrar_opcoes(prov, opcoes)
+    _, rejeitadas = providers.filtrar_opcoes(prov, opcoes)
     if rejeitadas:
         c.falhar(f"o provedor {nome} nao aceita {', '.join('--' + x for x in rejeitadas)}" + (f" (aceita: {', '.join('--' + x for x in prov.OPCOES_ACEITAS if x != 'estilos')})" if getattr(prov, "OPCOES_ACEITAS", ()) else " (ele nao tem opcoes de interpretacao)"))
     estilos = [e for _, _, e in falas]
@@ -260,7 +260,7 @@ def gerar(a, cfg):
     c.titulo(f"Voz: {nome} ({'local' if prov.LOCAL else 'nuvem'}), voz {voz}, velocidade {vel}, {len(falas)} fala(s)")
     t0 = time.perf_counter()
     try:
-        res = provedores.sintetizar(prov, [t for _, t, _ in falas], voz, bruto, velocidade=vel, variante=a.modelo, opcoes=opcoes)
+        res = providers.sintetizar(prov, [t for _, t, _ in falas], voz, bruto, velocidade=vel, variante=a.modelo, opcoes=opcoes)
     except RuntimeError as err:
         c.falhar(str(err))
     gasto = time.perf_counter() - t0
@@ -306,11 +306,11 @@ def gerar(a, cfg):
 
 def main():
     c.carregar_env_voz()
-    p = argparse.ArgumentParser(description="Gera narracao (um WAV por batida + voz.json) pelo provedor escolhido (" + ", ".join(provedores.DISPONIVEIS) + "). Chave de nuvem no content-engine/audio/.env (ignorado pelo git) ou em variavel de ambiente.")
+    p = argparse.ArgumentParser(description="Gera narracao (um WAV por batida + voz.json) pelo provedor escolhido (" + ", ".join(providers.DISPONIVEIS) + "). Chave de nuvem no content-engine/audio/.env (ignorado pelo git) ou em variavel de ambiente.")
     p.add_argument("entrada", nargs="?", help="voz.txt (uma fala por linha) ou roteiro.md com coluna 'Voz'")
     p.add_argument("--texto", help="uma fala direta, no lugar do arquivo")
     p.add_argument("--saida", help="pasta onde ficam voz-01.wav, voz-02.wav... e voz.json")
-    p.add_argument("--provedor", choices=provedores.DISPONIVEIS, help="padrao: VOZ_PROVEDOR no content-engine/audio/.env ou voz_config.json")
+    p.add_argument("--provedor", choices=providers.DISPONIVEIS, help="padrao: VOZ_PROVEDOR no content-engine/audio/.env ou voz_config.json")
     p.add_argument("--voz", help="id da voz (veja --listar-vozes; padrao: VOZ_<PROVEDOR> no .env, como VOZ_AZURE, ou voz_config.json)")
     p.add_argument("--velocidade", type=float, help="1.0 = normal; 1.1 = 10%% mais rapido")
     p.add_argument("--modelo", help="variante do modelo, so para provedor que tem variantes (veja --listar-vozes; padrao definido pelo provedor)")

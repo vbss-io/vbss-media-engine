@@ -10,11 +10,11 @@ sys.dont_write_bytecode = True
 
 import _comum as c
 import catalogo_audio
-import provedores
+import providers
 import voz
 
 LISTA_PADRAO = c.AUDIO_DIR / "comparacao_vozes.json"
-ENTRADA_PADRAO = c.REPO_DIR / "exemplos" / "narracao" / "voz.txt"
+ENTRADA_PADRAO = c.REPO_DIR / "examples" / "narration" / "voz.txt"
 SAIDA_PADRAO = c.WORK_DIR / "vozes-comparacao"
 TITULO_PADRAO = "Comparação de vozes"
 NOMES_PROVEDOR = {"kokoro": "Kokoro local", "azure": "Azure Speech", "azure_openai": "Azure OpenAI gpt-audio", "google": "Google TTS"}
@@ -60,8 +60,8 @@ def validar_lista(dados):
         for campo in ("id", "rotulo", "provedor", "voz"):
             if not e.get(campo):
                 c.falhar(f"entrada sem '{campo}' na lista de vozes: {e}")
-        if e["provedor"] not in provedores.DISPONIVEIS:
-            c.falhar(f"entrada {e['id']}: provedor '{e['provedor']}' desconhecido (use {', '.join(provedores.DISPONIVEIS)})")
+        if e["provedor"] not in providers.DISPONIVEIS:
+            c.falhar(f"entrada {e['id']}: provedor '{e['provedor']}' desconhecido (use {', '.join(providers.DISPONIVEIS)})")
         if e["id"] in vistos:
             c.falhar(f"id repetido na lista de vozes: {e['id']}")
         vistos.add(e["id"])
@@ -71,7 +71,7 @@ def validar_lista(dados):
 def avaliar(entrada, cache):
     nome = entrada["provedor"]
     if nome not in cache:
-        cache[nome] = provedores.tentar_carregar(nome)
+        cache[nome] = providers.tentar_carregar(nome)
     prov, erro = cache[nome]
     if prov is None:
         return None, f"adaptador nao carregou: {erro}"
@@ -84,12 +84,12 @@ def avaliar(entrada, cache):
 
 def gerar_uma(prov, entrada, frase, pasta_falas, bruto, numero, cfg, velocidade):
     opcoes = {"estilo": entrada.get("estilo"), "tom": entrada.get("tom"), "altura": entrada.get("altura")}
-    _, rejeitadas = provedores.filtrar_opcoes(prov, opcoes)
+    _, rejeitadas = providers.filtrar_opcoes(prov, opcoes)
     if rejeitadas:
         raise RuntimeError(f"o provedor {entrada['provedor']} nao aceita {', '.join(rejeitadas)}")
     pasta_bruta = bruto / f"{numero:02d}-{slug(entrada['id'])}"
     pasta_bruta.mkdir(parents=True, exist_ok=True)
-    res = provedores.sintetizar(prov, [frase], entrada["voz"], pasta_bruta, velocidade=entrada.get("velocidade", velocidade), variante=entrada.get("modelo"), opcoes=opcoes)
+    res = providers.sintetizar(prov, [frase], entrada["voz"], pasta_bruta, velocidade=entrada.get("velocidade", velocidade), variante=entrada.get("modelo"), opcoes=opcoes)
     item = res["itens"][0]
     destino = pasta_falas / f"{numero:02d}-{slug(entrada['id'])}.wav"
     destino.parent.mkdir(parents=True, exist_ok=True)

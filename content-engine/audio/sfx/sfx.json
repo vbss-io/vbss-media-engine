@@ -104,8 +104,8 @@
       }
     },
     {
-      "arquivo": "clique/clique-mouse.wav",
-      "categoria": "clique",
+      "arquivo": "click/clique-mouse.wav",
+      "categoria": "click",
       "nome": "clique-mouse",
       "duracao": 0.05,
       "lufs_momentaneo_max": -27.9,
@@ -123,8 +123,8 @@
       }
     },
     {
-      "arquivo": "clique/clique-seco.wav",
-      "categoria": "clique",
+      "arquivo": "click/clique-seco.wav",
+      "categoria": "click",
       "nome": "clique-seco",
       "duracao": 0.033,
       "lufs_momentaneo_max": -32.2,
@@ -142,8 +142,8 @@
       }
     },
     {
-      "arquivo": "clique/clique-interface.wav",
-      "categoria": "clique",
+      "arquivo": "click/clique-interface.wav",
+      "categoria": "click",
       "nome": "clique-interface",
       "duracao": 0.014,
       "lufs_momentaneo_max": -31.6,
@@ -161,8 +161,8 @@
       }
     },
     {
-      "arquivo": "clique/clique-botao-8bit.wav",
-      "categoria": "clique",
+      "arquivo": "click/clique-botao-8bit.wav",
+      "categoria": "click",
       "nome": "clique-botao-8bit",
       "duracao": 0.155,
       "lufs_momentaneo_max": -16.0,
@@ -256,8 +256,8 @@
       }
     },
     {
-      "arquivo": "sucesso/sucesso-confirmacao.wav",
-      "categoria": "sucesso",
+      "arquivo": "success/sucesso-confirmacao.wav",
+      "categoria": "success",
       "nome": "sucesso-confirmacao",
       "duracao": 0.512,
       "lufs_momentaneo_max": -16.0,
@@ -275,8 +275,8 @@
       }
     },
     {
-      "arquivo": "sucesso/sucesso-confirmacao-curta.wav",
-      "categoria": "sucesso",
+      "arquivo": "success/sucesso-confirmacao-curta.wav",
+      "categoria": "success",
       "nome": "sucesso-confirmacao-curta",
       "duracao": 0.284,
       "lufs_momentaneo_max": -16.0,
@@ -294,8 +294,8 @@
       }
     },
     {
-      "arquivo": "sucesso/sucesso-powerup-8bit.wav",
-      "categoria": "sucesso",
+      "arquivo": "success/sucesso-powerup-8bit.wav",
+      "categoria": "success",
       "nome": "sucesso-powerup-8bit",
       "duracao": 0.743,
       "lufs_momentaneo_max": -16.0,
@@ -313,8 +313,8 @@
       }
     },
     {
-      "arquivo": "sucesso/sucesso-fanfarra-8bit.wav",
-      "categoria": "sucesso",
+      "arquivo": "success/sucesso-fanfarra-8bit.wav",
+      "categoria": "success",
       "nome": "sucesso-fanfarra-8bit",
       "duracao": 0.516,
       "lufs_momentaneo_max": -16.0,
@@ -332,8 +332,8 @@
       }
     },
     {
-      "arquivo": "sucesso/sucesso-tres-tons.wav",
-      "categoria": "sucesso",
+      "arquivo": "success/sucesso-tres-tons.wav",
+      "categoria": "success",
       "nome": "sucesso-tres-tons",
       "duracao": 0.49,
       "lufs_momentaneo_max": -16.0,
@@ -351,8 +351,8 @@
       }
     },
     {
-      "arquivo": "moeda-8bit/moeda-8bit-simples.wav",
-      "categoria": "moeda-8bit",
+      "arquivo": "coin-8bit/moeda-8bit-simples.wav",
+      "categoria": "coin-8bit",
       "nome": "moeda-8bit-simples",
       "duracao": 0.416,
       "lufs_momentaneo_max": -16.0,
@@ -370,8 +370,8 @@
       }
     },
     {
-      "arquivo": "moeda-8bit/moeda-8bit-curta.wav",
-      "categoria": "moeda-8bit",
+      "arquivo": "coin-8bit/moeda-8bit-curta.wav",
+      "categoria": "coin-8bit",
       "nome": "moeda-8bit-curta",
       "duracao": 0.458,
       "lufs_momentaneo_max": -16.0,
@@ -389,8 +389,8 @@
       }
     },
     {
-      "arquivo": "moeda-8bit/moeda-8bit-dupla.wav",
-      "categoria": "moeda-8bit",
+      "arquivo": "coin-8bit/moeda-8bit-dupla.wav",
+      "categoria": "coin-8bit",
       "nome": "moeda-8bit-dupla",
       "duracao": 0.325,
       "lufs_momentaneo_max": -16.0,
@@ -408,8 +408,8 @@
       }
     },
     {
-      "arquivo": "moeda-8bit/moeda-8bit-chuva.wav",
-      "categoria": "moeda-8bit",
+      "arquivo": "coin-8bit/moeda-8bit-chuva.wav",
+      "categoria": "coin-8bit",
       "nome": "moeda-8bit-chuva",
       "duracao": 0.68,
       "lufs_momentaneo_max": -16.0,
@@ -427,8 +427,8 @@
       }
     },
     {
-      "arquivo": "contador/contador-tique.wav",
-      "categoria": "contador",
+      "arquivo": "counter/contador-tique.wav",
+      "categoria": "counter",
       "nome": "contador-tique",
       "duracao": 0.055,
       "lufs_momentaneo_max": -21.7,
@@ -446,8 +446,8 @@
       }
     },
     {
-      "arquivo": "contador/contador-blip-8bit.wav",
-      "categoria": "contador",
+      "arquivo": "counter/contador-blip-8bit.wav",
+      "categoria": "counter",
       "nome": "contador-blip-8bit",
       "duracao": 0.046,
       "lufs_momentaneo_max": -16.0,
@@ -465,8 +465,8 @@
       }
     },
     {
-      "arquivo": "contador/contador-rolagem.wav",
-      "categoria": "contador",
+      "arquivo": "counter/contador-rolagem.wav",
+      "categoria": "counter",
       "nome": "contador-rolagem",
       "duracao": 1.0,
       "lufs_momentaneo_max": -22.8,
@@ -484,8 +484,8 @@
       }
     },
     {
-      "arquivo": "impacto/impacto-soco.wav",
-      "categoria": "impacto",
+      "arquivo": "impact/impacto-soco.wav",
+      "categoria": "impact",
       "nome": "impacto-soco",
       "duracao": 0.44,
       "lufs_momentaneo_max": -18.3,
@@ -503,8 +503,8 @@
       }
     },
     {
-      "arquivo": "impacto/impacto-macio.wav",
-      "categoria": "impacto",
+      "arquivo": "impact/impacto-macio.wav",
+      "categoria": "impact",
       "nome": "impacto-macio",
       "duracao": 0.501,
       "lufs_momentaneo_max": -18.9,
@@ -522,8 +522,8 @@
       }
     },
     {
-      "arquivo": "impacto/impacto-metal.wav",
-      "categoria": "impacto",
+      "arquivo": "impact/impacto-metal.wav",
+      "categoria": "impact",
       "nome": "impacto-metal",
       "duracao": 0.356,
       "lufs_momentaneo_max": -26.7,
@@ -541,8 +541,8 @@
       }
     },
     {
-      "arquivo": "impacto/impacto-explosao-8bit.wav",
-      "categoria": "impacto",
+      "arquivo": "impact/impacto-explosao-8bit.wav",
+      "categoria": "impact",
       "nome": "impacto-explosao-8bit",
       "duracao": 0.237,
       "lufs_momentaneo_max": -16.0,
@@ -560,8 +560,8 @@
       }
     },
     {
-      "arquivo": "digitacao/digitacao-tecla.wav",
-      "categoria": "digitacao",
+      "arquivo": "typing/digitacao-tecla.wav",
+      "categoria": "typing",
       "nome": "digitacao-tecla",
       "duracao": 0.155,
       "lufs_momentaneo_max": -23.9,
@@ -579,8 +579,8 @@
       }
     },
     {
-      "arquivo": "digitacao/digitacao-tecla-leve.wav",
-      "categoria": "digitacao",
+      "arquivo": "typing/digitacao-tecla-leve.wav",
+      "categoria": "typing",
       "nome": "digitacao-tecla-leve",
       "duracao": 0.154,
       "lufs_momentaneo_max": -26.0,
@@ -598,8 +598,8 @@
       }
     },
     {
-      "arquivo": "digitacao/digitacao-sequencia.wav",
-      "categoria": "digitacao",
+      "arquivo": "typing/digitacao-sequencia.wav",
+      "categoria": "typing",
       "nome": "digitacao-sequencia",
       "duracao": 1.903,
       "lufs_momentaneo_max": -19.6,
@@ -621,8 +621,8 @@
       }
     },
     {
-      "arquivo": "notificacao/notificacao-sino.wav",
-      "categoria": "notificacao",
+      "arquivo": "notification/notificacao-sino.wav",
+      "categoria": "notification",
       "nome": "notificacao-sino",
       "duracao": 0.361,
       "lufs_momentaneo_max": -21.2,
@@ -640,8 +640,8 @@
       }
     },
     {
-      "arquivo": "notificacao/notificacao-vidro.wav",
-      "categoria": "notificacao",
+      "arquivo": "notification/notificacao-vidro.wav",
+      "categoria": "notification",
       "nome": "notificacao-vidro",
       "duracao": 0.227,
       "lufs_momentaneo_max": -19.5,
@@ -659,8 +659,8 @@
       }
     },
     {
-      "arquivo": "notificacao/notificacao-pergunta.wav",
-      "categoria": "notificacao",
+      "arquivo": "notification/notificacao-pergunta.wav",
+      "categoria": "notification",
       "nome": "notificacao-pergunta",
       "duracao": 0.476,
       "lufs_momentaneo_max": -16.0,
@@ -678,8 +678,8 @@
       }
     },
     {
-      "arquivo": "erro/erro-interface.wav",
-      "categoria": "erro",
+      "arquivo": "error/erro-interface.wav",
+      "categoria": "error",
       "nome": "erro-interface",
       "duracao": 0.205,
       "lufs_momentaneo_max": -18.6,
@@ -697,8 +697,8 @@
       }
     },
     {
-      "arquivo": "erro/erro-8bit.wav",
-      "categoria": "erro",
+      "arquivo": "error/erro-8bit.wav",
+      "categoria": "error",
       "nome": "erro-8bit",
       "duracao": 0.325,
       "lufs_momentaneo_max": -16.0,

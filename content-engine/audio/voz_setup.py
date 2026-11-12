@@ -12,7 +12,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 
 import _comum as c
-from comum import ambiente as _ambiente
+from common import ambiente as _ambiente
 
 KOKORO_DIR = c.AUDIO_DIR / "kokoro"
 REQUISITOS = KOKORO_DIR / "requirements.txt"

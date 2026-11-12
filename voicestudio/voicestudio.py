@@ -364,7 +364,7 @@ def para_wav(origem, destino):
     return float(info or 0)
 
 
-VOZES_DIR = BASE / "vozes"
+VOZES_DIR = BASE / "voices"
 VOZES_JSON = VOZES_DIR / "vozes.json"
 SEED = 7
 FRASE_PADRAO = "Oi! Hoje eu vou te mostrar um jeito simples de organizar as suas tarefas da semana e acompanhar o que já foi feito. Bora começar?"
@@ -467,7 +467,7 @@ def cmd_clonar(args):
             guardar_voz(args.nome, referencia, args.texto, f"clone de {origem.name}")
         else:
             criar_perfil(args.nome, referencia, args.texto)
-    print(f"voz '{args.nome}' criada a partir de {segundos:.1f}s de referencia" + (" e guardada em voicestudio/vozes (vai pro git)" if args.guardar else " (so neste PC)"))
+    print(f"voz '{args.nome}' criada a partir de {segundos:.1f}s de referencia" + (" e guardada em voicestudio/voices (vai pro git)" if args.guardar else " (so neste PC)"))
     print(f'teste: python voicestudio/voicestudio.py falar "Ola, este e um teste de voz." --voz {args.nome}')
     return 0
 
@@ -507,7 +507,7 @@ def cmd_voz(args):
             guardar_voz(args.salvar, amostra, args.frase, f"design: {args.genero}, {args.idade}, tom {args.tom}{', sussurro' if args.sussurro else ''}, seed {args.seed}")
     print(f"amostra: {amostra}")
     if args.salvar:
-        print(f"voz '{args.salvar}' guardada em voicestudio/vozes. Para virar a voz da casa: VOZ_VOICESTUDIO={args.salvar} no content-engine/audio/.env")
+        print(f"voz '{args.salvar}' guardada em voicestudio/voices. Para virar a voz da casa: VOZ_VOICESTUDIO={args.salvar} no content-engine/audio/.env")
     else:
         print("gostou? rode o mesmo comando com --salvar <nome>. Nao gostou? mude --tom, --idade ou --seed (cada seed e uma pessoa diferente)")
         tocar(amostra)
@@ -703,7 +703,7 @@ def main():
     p.add_argument("--audio", required=True, help="gravacao de 3 a 20s (wav, m4a, mp3)")
     p.add_argument("--texto", required=True, help="exatamente o que foi falado na gravacao")
     p.add_argument("--nome", required=True, help="nome da voz, usado depois em --voz")
-    p.add_argument("--guardar", action="store_true", help="guarda em voicestudio/vozes (vai pro git e os outros PCs recriam)")
+    p.add_argument("--guardar", action="store_true", help="guarda em voicestudio/voices (vai pro git e os outros PCs recriam)")
     p.set_defaults(func=cmd_clonar)
     p = sub.add_parser("voz", help="monta uma voz por atributos, ouve e salva com nome")
     p.add_argument("--genero", choices=list(GENEROS), default="feminina")

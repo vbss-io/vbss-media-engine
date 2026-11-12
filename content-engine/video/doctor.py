@@ -6,7 +6,7 @@ import sys
 sys.dont_write_bytecode = True
 
 import _comum as c
-from comum import arquivos, midias
+from common import arquivos, midias
 
 WAV_MINIMO = b"RIFF\x00\x00\x00\x00WAVEfmt "
 PNG_MINIMO = b"\x89PNG\r\n\x1a\n" + bytes(8)
@@ -289,7 +289,7 @@ def checar_gitignore():
     c.titulo("Repositorio")
     gi = c.REPO_DIR / ".gitignore"
     texto = gi.read_text(encoding="utf-8") if gi.is_file() else ""
-    precisa = ["content-engine/video/.sandbox/", "content-engine/video/.cache/", "content-engine/video/bin/", "content-engine/video/engines/*/node_modules/", "content-engine/navegador/"]
+    precisa = ["content-engine/video/.sandbox/", "content-engine/video/.cache/", "content-engine/video/bin/", "content-engine/video/engines/*/node_modules/", "content-engine/browser/"]
     faltam = [p for p in precisa if p not in texto]
     item(".gitignore ignora sandbox, cache, binarios, node_modules e navegador fixo", not faltam, "faltam: " + ", ".join(faltam) if faltam else str(gi))
 

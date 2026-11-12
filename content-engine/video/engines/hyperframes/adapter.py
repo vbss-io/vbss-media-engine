@@ -2,7 +2,7 @@ import json
 import shutil
 from pathlib import Path
 
-from comum import fontes as fontes_comuns
+from common import fontes as fontes_comuns
 
 NOME = "hyperframes"
 VERSAO_CLI = "0.8.141"
@@ -13,7 +13,7 @@ NET_GUARD = DIR / "net-guard.cjs"
 NET_GUARD_SELFTEST = DIR / "net-guard-selftest.cjs"
 FILE_GUARD = DIR / "file-guard.cjs"
 FILE_GUARD_SELFTEST = DIR / "file-guard-selftest.cjs"
-GUIA = DIR / "guia" / "README.md"
+GUIA = DIR / "guide" / "README.md"
 
 SUBCOMANDOS_PERMITIDOS = frozenset({"render"})
 QUALIDADES = {"rascunho": "draft", "padrao": "looks", "final": "delivery"}

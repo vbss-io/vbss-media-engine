@@ -6,8 +6,8 @@ A licença do código próprio deste repo (scripts Python, guardas `.cjs`, kit d
 
 O que acompanha o repo:
 
-- **Guia de autoria do HyperFrames** (`content-engine/video/engines/hyperframes/guia/`): adaptação modificada da documentação de skills do HyperFrames, Copyright 2026 HeyGen, Inc., Apache License 2.0. Aviso em `guia/NOTICE.md`, texto em `guia/LICENSE-APACHE-2.0.txt`.
-- **Fontes** (`content-engine/fontes/`): Inter, Montserrat e Press Start 2P, SIL Open Font License 1.1. Textos em `LICENCA-inter.txt`, `LICENCA-montserrat.txt` e `LICENCA-press-start-2p.txt`.
+- **Guia de autoria do HyperFrames** (`content-engine/video/engines/hyperframes/guide/`): adaptação modificada da documentação de skills do HyperFrames, Copyright 2026 HeyGen, Inc., Apache License 2.0. Aviso em `guide/NOTICE.md`, texto em `guide/LICENSE-APACHE-2.0.txt`.
+- **Fontes** (`content-engine/fonts/`): Inter, Montserrat e Press Start 2P, SIL Open Font License 1.1. Textos em `LICENCA-inter.txt`, `LICENCA-montserrat.txt` e `LICENCA-press-start-2p.txt`.
 - **Efeitos sonoros** (`content-engine/audio/sfx/`): CC0 1.0 Universal. Origem de cada pacote em `sfx/LICENCAS.md`.
 
 O que é baixado na instalação (não acompanha o repo):

@@ -13,7 +13,7 @@ REPO_DIR = ENGINE_DIR.parent
 if str(ENGINE_DIR) not in sys.path:
     sys.path.insert(0, str(ENGINE_DIR))
 
-from comum.saida import falhar, linha, titulo
+from common.saida import falhar, linha, titulo
 
 SFX_DIR = AUDIO_DIR / "sfx"
 SFX_MANIFESTO = SFX_DIR / "sfx.json"
@@ -21,7 +21,7 @@ SFX_FONTES = AUDIO_DIR / "sfx_fontes.json"
 SFX_SELECAO = AUDIO_DIR / "sfx_selecao.json"
 CACHE_DIR = AUDIO_DIR / ".cache"
 VENV_DIR = AUDIO_DIR / ".venv"
-MODELOS_DIR = AUDIO_DIR / ".modelos"
+MODELOS_DIR = AUDIO_DIR / ".models"
 WORK_DIR = AUDIO_DIR / ".work"
 VIDEO_DIR = ENGINE_DIR / "video"
 BIN_DIR = VIDEO_DIR / "bin"
