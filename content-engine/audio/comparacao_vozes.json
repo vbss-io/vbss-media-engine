@@ -1,0 +1,120 @@
+{
+  "titulo": "Comparação de vozes",
+  "velocidade": 1.0,
+  "vozes": [
+    {
+      "id": "kokoro-pf-dora",
+      "rotulo": "Kokoro pf_dora (base robótica)",
+      "provedor": "kokoro",
+      "voz": "pf_dora",
+      "modelo": "fp16",
+      "topo": "Kokoro local · ponto de partida"
+    },
+    {
+      "id": "azure-francisca-neural",
+      "rotulo": "Francisca Neural",
+      "provedor": "azure",
+      "voz": "pt-BR-FranciscaNeural",
+      "topo": "Azure Speech · Neural"
+    },
+    {
+      "id": "azure-thalita-dragonhd",
+      "rotulo": "Thalita Dragon HD",
+      "provedor": "azure",
+      "voz": "pt-BR-Thalita:DragonHDLatestNeural",
+      "topo": "Azure Speech · Dragon HD"
+    },
+    {
+      "id": "azure-macerio-dragonhd",
+      "rotulo": "Macerio Dragon HD",
+      "provedor": "azure",
+      "voz": "pt-BR-Macerio:DragonHDLatestNeural",
+      "topo": "Azure Speech · Dragon HD"
+    },
+    {
+      "id": "azure-luana-mai",
+      "rotulo": "Luana MAI 2.1",
+      "provedor": "azure",
+      "voz": "pt-BR-Luana:MAI-Voice-2.1",
+      "topo": "Azure Speech · MAI-Voice 2.1"
+    },
+    {
+      "id": "azure-luana-mai-excited",
+      "rotulo": "Luana MAI 2.1 animada",
+      "provedor": "azure",
+      "voz": "pt-BR-Luana:MAI-Voice-2.1",
+      "estilo": "excited",
+      "topo": "Azure Speech · MAI-Voice 2.1"
+    },
+    {
+      "id": "azure-caio-mai",
+      "rotulo": "Caio MAI 2.1",
+      "provedor": "azure",
+      "voz": "pt-BR-Caio:MAI-Voice-2.1",
+      "topo": "Azure Speech · MAI-Voice 2.1"
+    },
+    {
+      "id": "azure-caio-mai-excited",
+      "rotulo": "Caio MAI 2.1 animado",
+      "provedor": "azure",
+      "voz": "pt-BR-Caio:MAI-Voice-2.1",
+      "estilo": "excited",
+      "topo": "Azure Speech · MAI-Voice 2.1"
+    },
+    {
+      "id": "azure-pedro-mai",
+      "rotulo": "Pedro MAI 2.1",
+      "provedor": "azure",
+      "voz": "pt-BR-Pedro:MAI-Voice-2.1",
+      "topo": "Azure Speech · MAI-Voice 2.1"
+    },
+    {
+      "id": "azure-pedro-mai-excited",
+      "rotulo": "Pedro MAI 2.1 animado",
+      "provedor": "azure",
+      "voz": "pt-BR-Pedro:MAI-Voice-2.1",
+      "estilo": "excited",
+      "topo": "Azure Speech · MAI-Voice 2.1"
+    },
+    {
+      "id": "azure-rafael-mai",
+      "rotulo": "Rafael MAI 2.1",
+      "provedor": "azure",
+      "voz": "pt-BR-Rafael:MAI-Voice-2.1",
+      "topo": "Azure Speech · MAI-Voice 2.1"
+    },
+    {
+      "id": "azure-rafael-mai-excited",
+      "rotulo": "Rafael MAI 2.1 animado",
+      "provedor": "azure",
+      "voz": "pt-BR-Rafael:MAI-Voice-2.1",
+      "estilo": "excited",
+      "topo": "Azure Speech · MAI-Voice 2.1"
+    },
+    {
+      "id": "azure-luana-mai-flash",
+      "rotulo": "Luana MAI 2.1 Flash",
+      "provedor": "azure",
+      "voz": "pt-BR-Luana:MAI-Voice-2.1-Flash",
+      "topo": "Azure Speech · MAI-Voice 2.1 Flash"
+    },
+    {
+      "id": "gpt-audio-15-marin",
+      "rotulo": "gpt-audio 1.5 marin",
+      "provedor": "azure_openai",
+      "voz": "marin",
+      "modelo": "gpt-audio-1.5",
+      "tom": "animado, de locutor de Reels",
+      "topo": "Azure OpenAI · gpt-audio-1.5"
+    },
+    {
+      "id": "gpt-audio-15-cedar",
+      "rotulo": "gpt-audio 1.5 cedar",
+      "provedor": "azure_openai",
+      "voz": "cedar",
+      "modelo": "gpt-audio-1.5",
+      "tom": "animado, de locutor de Reels",
+      "topo": "Azure OpenAI · gpt-audio-1.5"
+    }
+  ]
+}

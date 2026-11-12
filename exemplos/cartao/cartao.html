@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Cartão de exemplo</title>
+<style>
+  @font-face{font-family:"Inter";font-style:normal;font-weight:600;src:url("/_motor/fonts/inter-600.woff2") format("woff2")}
+  @font-face{font-family:"Inter";font-style:normal;font-weight:600;src:url("/_motor/fonts/inter-ext-600.woff2") format("woff2");unicode-range:U+0100-02BA}
+  @font-face{font-family:"Montserrat";font-style:normal;font-weight:800;src:url("/_motor/fonts/montserrat-800.woff2") format("woff2")}
+  @font-face{font-family:"Montserrat";font-style:normal;font-weight:800;src:url("/_motor/fonts/montserrat-ext-800.woff2") format("woff2");unicode-range:U+0100-02BA}
+
+  :root{--azul:#2F6FED;--azul-claro:#7FA8FF;--amarelo:#FFB703;--verde:#2EC4B6;--fundo:#0F172A;--painel:#1E293B;--texto:#F8FAFC}
+  *{box-sizing:border-box}
+  html,body{margin:0;width:100%;height:100%}
+  body{background:var(--fundo);color:var(--texto);font-family:"Inter",sans-serif;font-weight:600;overflow:hidden}
+  .quadro{position:relative;width:100vw;height:100vh;padding:8vw;display:flex;flex-direction:column;justify-content:space-between;background:radial-gradient(ellipse 90vw 70vh at 80% 10%,#1D3A8A 0%,var(--fundo) 70%)}
+  .topo{display:flex;align-items:center;gap:2.4vw;font-size:2.8vw;letter-spacing:.14em;text-transform:uppercase;color:var(--azul-claro)}
+  .topo img{width:7vw;height:7vw}
+  h1{margin:0;font-family:"Montserrat",sans-serif;font-weight:800;font-size:9.4vw;line-height:1.04}
+  h1 em{font-style:normal;color:var(--amarelo)}
+  p{margin:3.4vw 0 0;font-size:3.7vw;line-height:1.4;color:rgba(248,250,252,.82);max-width:74vw}
+  .destaque{display:flex;align-items:baseline;gap:2.6vw;padding:3.4vw 4vw;background:var(--painel);border-left:1.2vw solid var(--verde)}
+  .destaque b{font-family:"Montserrat",sans-serif;font-weight:800;font-size:8.4vw;color:var(--verde)}
+  .destaque span{font-size:3.1vw;color:rgba(248,250,252,.78)}
+</style>
+</head>
+<body>
+<div class="quadro">
+  <div class="topo"><img src="/assets/logo-exemplo.svg" alt="Marca Exemplo">Marca Exemplo</div>
+  <div>
+    <h1>HTML vira <em>imagem</em>, sem sair da máquina</h1>
+    <p>Fontes e arquivos locais, navegador fixo e nenhum pedido para a internet.</p>
+  </div>
+  <div class="destaque"><b>0</b><span>pedidos para fora durante o render</span></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,16 @@
+{
+  "nome": "chrome-headless-shell",
+  "versao": "152.0.7977.30",
+  "plataforma": "win64",
+  "motivo_versao": "a mesma versao que o HyperFrames 0.8.141 fixa no proprio codigo (CHROME_VERSION em packages/cli/src/browser/manager.ts)",
+  "indice": "https://googlechromelabs.github.io/chrome-for-testing/known-good-versions-with-downloads.json",
+  "url": "https://storage.googleapis.com/chrome-for-testing-public/152.0.7977.30/win64/chrome-headless-shell-win64.zip",
+  "arquivo": "chrome-headless-shell-win64-152.0.7977.30.zip",
+  "sha256": "5d7df999a6e4a65a1b16b25b61064f7337b8aa8ee2ed1b4e07bfdd24f6e4275e",
+  "bytes": 119527247,
+  "pasta": "chrome-headless-shell-win64",
+  "executavel": "chrome-headless-shell-win64/chrome-headless-shell.exe",
+  "executavel_sha256": "909fa4a0d2866f5b5b6cabd0a3b3545edeaf84db361148dbc8e992e25e61e7e6",
+  "executavel_bytes": 209170944,
+  "nota_sha256": "O Chrome for Testing nao publica SHA-256. SHA-256 registrado no primeiro download (09/10/2026); o MD5 do arquivo (3a1c9321a297bf0363a44de06b87c567) bateu com o x-goog-hash e o ETag que o Google Cloud Storage devolveu, e o tamanho com o Content-Length."
+}

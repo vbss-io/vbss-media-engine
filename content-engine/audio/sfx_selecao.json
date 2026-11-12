@@ -1,0 +1,480 @@
+{
+  "formato": {
+    "taxa": 48000,
+    "canais": 1,
+    "codec": "pcm_s16le",
+    "alvo_lufs_momentaneo_max": -16.0,
+    "teto_pico_dbtp": -1.0,
+    "limiar_silencio_db": -50
+  },
+  "itens": [
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-rapido",
+      "pacote": "oga-swishes",
+      "membro": "swishes/swish-4.wav",
+      "uso": "corte seco entre batidas, entrada rápida de texto lateral",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-rapido-agudo",
+      "pacote": "oga-swishes",
+      "membro": "swishes/swish-9.wav",
+      "uso": "troca de batida curta, elemento que cruza a tela",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-sobe",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/maximize_005.ogg",
+      "uso": "cresce até o corte: colocar terminando no início da batida nova",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-desce",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/minimize_005.ogg",
+      "uso": "saída de cena, elemento que encolhe ou sai",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-portal-8bit",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/Movement/Portals and Transitions/sfx_movement_portal5.wav",
+      "uso": "transição com cara de videogame entre batidas",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "clique",
+      "nome": "clique-mouse",
+      "pacote": "kenney-ui-audio",
+      "membro": "Audio/mouseclick1.ogg",
+      "uso": "cursor clicando num botão ou campo do print",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "clique",
+      "nome": "clique-seco",
+      "pacote": "kenney-ui-audio",
+      "membro": "Audio/click3.ogg",
+      "uso": "clique discreto em cada linha de texto que entra",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "clique",
+      "nome": "clique-interface",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/click_001.ogg",
+      "uso": "botão do produto sendo apertado",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "clique",
+      "nome": "clique-botao-8bit",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Buttons/sfx_sounds_button3.wav",
+      "uso": "botão apertado em peça com tema retrô ou game",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "pop",
+      "nome": "pop-gota",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/drop_002.ogg",
+      "uso": "etiqueta, selo ou card que salta na tela",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "pop",
+      "nome": "pop-gota-grave",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/drop_004.ogg",
+      "uso": "elemento maior que assenta (título, moldura)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "pop",
+      "nome": "pop-bolha",
+      "pacote": "oga-100-cc0-sfx",
+      "membro": "plop_02.ogg",
+      "uso": "ícone ou emoji que aparece, tom leve",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "pop",
+      "nome": "pop-blip-8bit",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Simple Bleeps/sfx_sounds_Blip5.wav",
+      "uso": "texto ou item que entra em peça retrô",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "sucesso",
+      "nome": "sucesso-confirmacao",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/confirmation_002.ogg",
+      "uso": "resultado pronto, tarefa concluída",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "sucesso",
+      "nome": "sucesso-confirmacao-curta",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/confirmation_001.ogg",
+      "uso": "check discreto, item marcado",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "sucesso",
+      "nome": "sucesso-powerup-8bit",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Positive Sounds/sfx_sounds_powerup2.wav",
+      "uso": "conquista, nível, desbloqueio",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "sucesso",
+      "nome": "sucesso-fanfarra-8bit",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Fanfares/sfx_sounds_fanfare1.wav",
+      "uso": "revelação do resultado (valor, prêmio)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "sucesso",
+      "nome": "sucesso-tres-tons",
+      "pacote": "kenney-digital-audio",
+      "membro": "Audio/threeTone1.ogg",
+      "uso": "resultado digital, geração concluída",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "moeda-8bit",
+      "nome": "moeda-8bit-simples",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Coins/sfx_coin_single1.wav",
+      "uso": "um valor que aparece na tela",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "moeda-8bit",
+      "nome": "moeda-8bit-curta",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Coins/sfx_coin_single6.wav",
+      "uso": "preço ou número pequeno destacado",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "moeda-8bit",
+      "nome": "moeda-8bit-dupla",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Coins/sfx_coin_double2.wav",
+      "uso": "faixa de preço (dois valores)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "moeda-8bit",
+      "nome": "moeda-8bit-chuva",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Coins/sfx_coin_cluster5.wav",
+      "uso": "número que termina de contar, ganho grande",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "contador",
+      "nome": "contador-tique",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/tick_004.ogg",
+      "uso": "um tique por passo da contagem (repetir a cada 0,08 s)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "contador",
+      "nome": "contador-blip-8bit",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Menu Sounds/sfx_menu_move5.wav",
+      "uso": "contagem com cara de game, cursor de menu",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "contador",
+      "nome": "contador-rolagem",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/scroll_002.ogg",
+      "uso": "número rolando ou lista passando (1 s)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impacto",
+      "nome": "impacto-soco",
+      "pacote": "kenney-impact-sounds",
+      "membro": "Audio/impactPunch_heavy_000.ogg",
+      "uso": "título pesado que bate na tela, gancho forte",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impacto",
+      "nome": "impacto-macio",
+      "pacote": "kenney-impact-sounds",
+      "membro": "Audio/impactSoft_heavy_000.ogg",
+      "uso": "bloco que assenta com peso, sem agressividade",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impacto",
+      "nome": "impacto-metal",
+      "pacote": "kenney-impact-sounds",
+      "membro": "Audio/impactMetal_heavy_001.ogg",
+      "uso": "ferramenta, obra, bancada",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impacto",
+      "nome": "impacto-explosao-8bit",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/Explosions/Shortest/sfx_exp_shortest_soft6.wav",
+      "uso": "revelação surpresa em peça retrô",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "digitacao",
+      "nome": "digitacao-tecla",
+      "pacote": "oga-keyboard-1",
+      "membro": "Single Keys/keypress-006.wav",
+      "uso": "uma tecla por letra que aparece (repetir)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "digitacao",
+      "nome": "digitacao-tecla-leve",
+      "pacote": "oga-keyboard-1",
+      "membro": "Single Keys/keypress-004.wav",
+      "uso": "alternar com digitacao-tecla para não soar repetido",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "digitacao",
+      "nome": "digitacao-sequencia",
+      "pacote": "oga-keyboard-1",
+      "membro": "Generated Typing/generated-006_faster.wav",
+      "uso": "busca ou prompt sendo digitado (2 s; usar data-duration para encurtar)",
+      "produtos": [
+        "todos"
+      ],
+      "corte": {
+        "inicio": 0.0,
+        "fim": 2.0
+      }
+    },
+    {
+      "categoria": "notificacao",
+      "nome": "notificacao-sino",
+      "pacote": "oga-100-cc0-sfx",
+      "membro": "bell_02.ogg",
+      "uso": "alerta, aviso, chegada de mensagem",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "notificacao",
+      "nome": "notificacao-vidro",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/glass_001.ogg",
+      "uso": "destaque discreto, dica que aparece",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "notificacao",
+      "nome": "notificacao-pergunta",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/question_001.ogg",
+      "uso": "pergunta do gancho, lacuna aberta (R$ ???)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "erro",
+      "nome": "erro-interface",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/error_006.ogg",
+      "uso": "o jeito errado, o antes, o problema",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "erro",
+      "nome": "erro-8bit",
+      "pacote": "oga-512-8bit",
+      "membro": "The Essential Retro Video Game Sound Effects Collection [512 sounds] By Juhani Junkala/General Sounds/Negative Sounds/sfx_sounds_error5.wav",
+      "uso": "erro ou perda em peça retrô",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "glitch",
+      "nome": "glitch-estalo",
+      "pacote": "kenney-interface-sounds",
+      "membro": "Audio/glitch_002.ogg",
+      "uso": "corte com falha digital, troca brusca",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "glitch",
+      "nome": "glitch-fase",
+      "pacote": "kenney-digital-audio",
+      "membro": "Audio/phaseJump3.ogg",
+      "uso": "imagem que se transforma, antes e depois",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "glitch",
+      "nome": "glitch-ruido-digital",
+      "pacote": "kenney-sci-fi-sounds",
+      "membro": "Audio/computerNoise_000.ogg",
+      "uso": "IA processando, tela carregando (0,8 s)",
+      "produtos": [
+        "todos"
+      ],
+      "corte": {
+        "inicio": 0.0,
+        "fim": 0.8
+      }
+    },
+    {
+      "categoria": "jingle",
+      "nome": "jingle-8bit-fecho",
+      "pacote": "kenney-music-jingles",
+      "membro": "Audio/8-Bit jingles/jingles_NES00.ogg",
+      "uso": "fecho com logo em peça retrô",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "jingle",
+      "nome": "jingle-8bit-curto",
+      "pacote": "kenney-music-jingles",
+      "membro": "Audio/8-Bit jingles/jingles_NES13.ogg",
+      "uso": "fecho curto, pedido final",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "jingle",
+      "nome": "jingle-pizzicato",
+      "pacote": "kenney-music-jingles",
+      "membro": "Audio/Pizzicato jingles/jingles_PIZZI03.ogg",
+      "uso": "fecho leve e simpático",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "jingle",
+      "nome": "jingle-steel",
+      "pacote": "kenney-music-jingles",
+      "membro": "Audio/Steel jingles/jingles_STEEL01.ogg",
+      "uso": "fecho caloroso, tom de produto pronto",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "jingle",
+      "nome": "jingle-sax",
+      "pacote": "kenney-music-jingles",
+      "membro": "Audio/Sax jingles/jingles_SAX07.ogg",
+      "uso": "fecho com humor",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "jingle",
+      "nome": "jingle-hit",
+      "pacote": "kenney-music-jingles",
+      "membro": "Audio/Hit jingles/jingles_HIT15.ogg",
+      "uso": "fecho moderno e seco",
+      "produtos": [
+        "todos"
+      ]
+    }
+  ]
+}

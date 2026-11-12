@@ -1,0 +1,140 @@
+{
+  "licenca": "SIL Open Font License 1.1 (ver LICENCA-*.txt)",
+  "pacotes": {
+    "@fontsource/inter": "5.3.0",
+    "@fontsource/press-start-2p": "5.3.0",
+    "@fontsource/montserrat": "5.3.0 (npm pack, integrity sha512-iQPDtZOnmM5ih4JBGaMSXisRap0ixb9bAUw2hDtY7EjVfaqiiNlKtVuJl9XclxUwtwMMHNcWXfQR6zI9x05+Tg==)"
+  },
+  "unicode_range": {
+    "latin": "U+0000-00FF,U+0131,U+0152-0153,U+02BB-02BC,U+02C6,U+02DA,U+02DC,U+0304,U+0308,U+0329,U+2000-206F,U+20AC,U+2122,U+2191,U+2193,U+2212,U+2215,U+FEFF,U+FFFD",
+    "latin-ext": "U+0100-02BA,U+02BD-02C5,U+02C7-02CC,U+02CE-02D7,U+02DD-02FF,U+0304,U+0308,U+0329,U+1D00-1DBF,U+1E00-1E9F,U+1EF2-1EFF,U+2020,U+20A0-20AB,U+20AD-20C0,U+2113,U+2C60-2C7F,U+A720-A7FF"
+  },
+  "arquivos": {
+    "inter-400.woff2": {
+      "familia": "Inter",
+      "peso": 400,
+      "subconjunto": "latin",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-400-normal.woff2",
+      "sha256": "8909904ab6c872eb994093482a88a28eca2cd95912d7b6fecd72103b0dc07edc"
+    },
+    "inter-ext-400.woff2": {
+      "familia": "Inter",
+      "peso": 400,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-ext-400-normal.woff2",
+      "sha256": "6744a7f509ebc6ab220a6cd4ea77e898adf014f03d88dcda5d45d8a9feefb4e9"
+    },
+    "inter-500.woff2": {
+      "familia": "Inter",
+      "peso": 500,
+      "subconjunto": "latin",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-500-normal.woff2",
+      "sha256": "f3779f1efccc4bdcdf9c0a02ab95bf6bd092ed09c48c08cedc725889edd1d19f"
+    },
+    "inter-ext-500.woff2": {
+      "familia": "Inter",
+      "peso": 500,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-ext-500-normal.woff2",
+      "sha256": "2c6fbc42d315528beb06c1096df45487bf4186c4b78b8111d12c9c951f8acca2"
+    },
+    "inter-600.woff2": {
+      "familia": "Inter",
+      "peso": 600,
+      "subconjunto": "latin",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-600-normal.woff2",
+      "sha256": "f9a06e79cd3a2a20951c0f0e28f66dd0e6d3fda73911d640a2125c8fcb78f21a"
+    },
+    "inter-ext-600.woff2": {
+      "familia": "Inter",
+      "peso": 600,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-ext-600-normal.woff2",
+      "sha256": "e4bdf67b0cd15ca9e184509275be95db942195d3cc2b17f6a0452f2adf75d0bf"
+    },
+    "inter-700.woff2": {
+      "familia": "Inter",
+      "peso": 700,
+      "subconjunto": "latin",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-700-normal.woff2",
+      "sha256": "6f56409fd3d64bb85f7d070bce20749db2d66b6d63cec586cc22d1c761be2491"
+    },
+    "inter-ext-700.woff2": {
+      "familia": "Inter",
+      "peso": 700,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-ext-700-normal.woff2",
+      "sha256": "143f9504f1377012aa3e39c90c4354ef429cb0494b9ac0e1437f1a81e5412236"
+    },
+    "inter-800.woff2": {
+      "familia": "Inter",
+      "peso": 800,
+      "subconjunto": "latin",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-800-normal.woff2",
+      "sha256": "a7d0a50f15d389cad679238466bdb5fc9787aa0715719064ce25abaff042820d"
+    },
+    "inter-ext-800.woff2": {
+      "familia": "Inter",
+      "peso": 800,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-ext-800-normal.woff2",
+      "sha256": "eade55593308b9e4916dd7f47826929ce3e40cad85a2b338d56e5fd1e7bf8e5e"
+    },
+    "inter-900.woff2": {
+      "familia": "Inter",
+      "peso": 900,
+      "subconjunto": "latin",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-900-normal.woff2",
+      "sha256": "d5c0ed7b8b5dde97d48b97947d740bbd8ad3ba9f2c5cc6b8280f16acba2d828e"
+    },
+    "inter-ext-900.woff2": {
+      "familia": "Inter",
+      "peso": 900,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/inter@5.3.0/files/inter-latin-ext-900-normal.woff2",
+      "sha256": "de536299a1eeca46fe494787380486ec890627e0d50e1be18ef6001cbd1e5105"
+    },
+    "press-start-2p-400.woff2": {
+      "familia": "Press Start 2P",
+      "peso": 400,
+      "subconjunto": "latin",
+      "origem": "@fontsource/press-start-2p@5.3.0/files/press-start-2p-latin-400-normal.woff2",
+      "sha256": "afec86997fdaf54af1f59358fa2c1e2a0f1d04146edad18e5cd141d0384a7548"
+    },
+    "press-start-2p-ext-400.woff2": {
+      "familia": "Press Start 2P",
+      "peso": 400,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/press-start-2p@5.3.0/files/press-start-2p-latin-ext-400-normal.woff2",
+      "sha256": "3c7df3a15e173b8fa04ec9191171e72c314ddbac1b395e2b2e2092bb4f47cc8c"
+    },
+    "montserrat-600.woff2": {
+      "familia": "Montserrat",
+      "peso": 600,
+      "subconjunto": "latin",
+      "origem": "@fontsource/montserrat@5.3.0/files/montserrat-latin-600-normal.woff2",
+      "sha256": "d857325c360f7128b347ca924c1974967aaa886ba47dad22e4042d6c38b26a83"
+    },
+    "montserrat-ext-600.woff2": {
+      "familia": "Montserrat",
+      "peso": 600,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/montserrat@5.3.0/files/montserrat-latin-ext-600-normal.woff2",
+      "sha256": "1d8a4af6a50cc4f7561e8484d5bff39acda90016b8e8cbb5cee69c253bb02750"
+    },
+    "montserrat-800.woff2": {
+      "familia": "Montserrat",
+      "peso": 800,
+      "subconjunto": "latin",
+      "origem": "@fontsource/montserrat@5.3.0/files/montserrat-latin-800-normal.woff2",
+      "sha256": "ba826fb84c2e961578adf3a08b5778b87905d4443445d1d56d84f9f157d5ea4b"
+    },
+    "montserrat-ext-800.woff2": {
+      "familia": "Montserrat",
+      "peso": 800,
+      "subconjunto": "latin-ext",
+      "origem": "@fontsource/montserrat@5.3.0/files/montserrat-latin-ext-800-normal.woff2",
+      "sha256": "59f6ebeb71a14c64edc538eba78a010c1c9ef680a66a559ec3cf4b0d12db1a8b"
+    }
+  }
+}

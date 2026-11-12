@@ -1,0 +1,5 @@
+# Uma fala por linha; linha com # e comentario. Uso:
+# python content-engine/audio/voz.py exemplos/narracao/voz.txt --saida <pasta>
+Olá! Este é um vídeo feito de HTML e renderizado na sua máquina.
+Escreva a composição, coloque os efeitos e renderize sem rede.
+[animado] Pronto: o vídeo sai com som e sem nada ir para fora.

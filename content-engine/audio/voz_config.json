@@ -1,0 +1,14 @@
+{
+  "provedor": "kokoro",
+  "velocidade": 1.0,
+  "vozes_padrao": {
+    "voicestudio": "",
+    "kokoro": "pf_dora",
+    "azure": "pt-BR-Thalita:DragonHDLatestNeural",
+    "azure_openai": "marin",
+    "google": "pt-BR-Chirp3-HD-Kore"
+  },
+  "alvo_lufs": -16.0,
+  "teto_pico_dbtp": -1.5,
+  "taxa_saida": 48000
+}

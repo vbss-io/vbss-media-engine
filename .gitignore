@@ -1,0 +1,15 @@
+content-engine/video/.sandbox/
+content-engine/video/.cache/
+content-engine/video/bin/
+content-engine/video/engines/*/node_modules/
+content-engine/imagem/.sandbox/
+content-engine/navegador/
+content-engine/audio/.venv/
+content-engine/audio/.cache/
+content-engine/audio/.modelos/
+content-engine/audio/.work/
+__pycache__/
+content-engine/audio/.env
+voicestudio/repo/
+voicestudio/.local/
+saida/

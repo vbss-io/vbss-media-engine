@@ -1,0 +1,12 @@
+{
+  "volume_efeitos": 0.8,
+  "deixas": [
+    {"t": 0.2, "efeito": "pop/pop-gota", "volume": 0.8},
+    {"t": 2.3, "efeito": "whoosh/whoosh-sobe", "volume": 0.6},
+    {"t": 3.2, "efeito": "pop/pop-gota", "volume": 0.7},
+    {"t": 3.6, "efeito": "pop/pop-gota", "volume": 0.7},
+    {"t": 4.0, "efeito": "pop/pop-gota", "volume": 0.7},
+    {"t": 5.1, "efeito": "whoosh/whoosh-sobe", "volume": 0.6},
+    {"t": 5.9, "efeito": "jingle/jingle-hit", "volume": 0.8}
+  ]
+}
