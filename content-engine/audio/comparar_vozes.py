@@ -15,7 +15,7 @@ import voz
 
 LISTA_PADRAO = c.AUDIO_DIR / "comparacao_vozes.json"
 ENTRADA_PADRAO = c.REPO_DIR / "examples" / "narration" / "voz.txt"
-SAIDA_PADRAO = c.WORK_DIR / "vozes-comparacao"
+SAIDA_PADRAO = c.ENGINE_DIR / ".work" / "vozes-comparacao"
 TITULO_PADRAO = "Comparação de vozes"
 NOMES_PROVEDOR = {"kokoro": "Kokoro local", "azure": "Azure Speech", "azure_openai": "Azure OpenAI gpt-audio", "google": "Google TTS"}
 

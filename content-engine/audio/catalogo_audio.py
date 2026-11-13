@@ -15,7 +15,7 @@ SOBRA = 0.55
 MINIMO = 1.3
 SEM_AUDIO = 2.4
 SAIDA_PADRAO = c.SFX_DIR / "catalogo.mp4"
-PASTA_PADRAO = c.WORK_DIR / "catalogo"
+PASTA_PADRAO = c.ENGINE_DIR / ".work" / "catalogo"
 
 ESTILO = """
   @font-face{font-family:"Inter";src:url("_motor/fonts/inter-600.woff2") format("woff2");font-weight:600;font-style:normal}
