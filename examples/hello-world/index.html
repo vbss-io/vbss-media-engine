@@ -5,6 +5,7 @@
 <title>Olá, mundo - composição de exemplo</title>
 <script src="_motor/gsap.min.js"></script>
 <script src="_motor/kit/motion.js"></script>
+<script src="legenda.js"></script>
 <style>
   @font-face{font-family:"Inter";src:url("_motor/fonts/inter-600.woff2") format("woff2");font-weight:600;font-style:normal}
   @font-face{font-family:"Inter";src:url("_motor/fonts/inter-ext-600.woff2") format("woff2");font-weight:600;font-style:normal;unicode-range:U+0100-02BA}
@@ -15,6 +16,7 @@
   body{margin:0;background:var(--fundo);color:var(--texto);font-family:"Inter",sans-serif;font-weight:600}
   #root{position:relative;width:100%;height:100%;overflow:hidden;background:var(--fundo)}
   .clip{position:absolute;inset:0}
+  #s-legenda{z-index:8 !important}
   .titulo{font-family:"Montserrat",sans-serif;font-weight:800}
 
   #fundo{position:absolute;inset:0;background:radial-gradient(ellipse 1000px 1300px at 50% 40%,#1D3A8A 0%,#0F172A 62%,#0A1020 100%)}
@@ -28,13 +30,13 @@
   #a-risco{position:absolute;left:90px;top:1010px;width:420px;height:14px;background:var(--verde)}
   #a-sub{position:absolute;left:90px;right:90px;top:1070px;font-size:54px;line-height:1.35;color:rgba(248,250,252,.84)}
 
-  #b-titulo{position:absolute;left:90px;right:90px;top:330px;font-size:88px;line-height:1.1}
+  #b-titulo{position:absolute;left:90px;right:90px;top:250px;font-size:88px;line-height:1.1}
   .cartao{position:absolute;left:90px;width:900px;height:250px;box-sizing:border-box;padding:44px 48px;background:var(--painel);border-left:14px solid var(--azul)}
   .cartao b{display:block;font-family:"Montserrat",sans-serif;font-weight:800;font-size:60px}
   .cartao span{display:block;margin-top:14px;font-size:38px;color:rgba(248,250,252,.78)}
-  #c1{top:640px}
-  #c2{top:930px;border-left-color:var(--verde)}
-  #c3{top:1220px;border-left-color:var(--amarelo)}
+  #c1{top:500px}
+  #c2{top:780px;border-left-color:var(--verde)}
+  #c3{top:1060px;border-left-color:var(--amarelo)}
 
   #f-logo{position:absolute;left:390px;top:620px;width:300px;height:300px}
   #f-nome{position:absolute;left:90px;right:90px;top:990px;text-align:center;font-size:104px}
@@ -44,37 +46,40 @@
 </style>
 </head>
 <body>
-<div id="root" data-composition-id="ola-mundo" data-start="0" data-width="1080" data-height="1920" data-duration="8">
-  <audio id="trilha-musica" src="assets/musica/base.wav" data-start="0" data-duration="7.98" data-track-index="9" data-volume="1.0" data-trilha="1"></audio>
-  <audio id="trilha-01" src="assets/sfx/impacto-cine-macio.wav" data-start="0.2" data-duration="0.942" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-02" src="assets/sfx/transicao-cine-suave.wav" data-start="2.54" data-duration="0.75" data-track-index="11" data-volume="0.8" data-trilha="1"></audio>
-  <audio id="trilha-03" src="assets/sfx/pop-cine-redondo.wav" data-start="3.2" data-duration="0.351" data-track-index="12" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-04" src="assets/sfx/pop-cine-redondo.wav" data-start="3.6" data-duration="0.351" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-05" src="assets/sfx/pop-cine-redondo.wav" data-start="4.0" data-duration="0.351" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-06" src="assets/sfx/whoosh-cine-medio.wav" data-start="5.34" data-duration="0.75" data-track-index="11" data-volume="0.8" data-trilha="1"></audio>
-  <audio id="trilha-07" src="assets/sfx/impacto-cine-macio.wav" data-start="5.9" data-duration="0.942" data-track-index="12" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-08" src="assets/sfx/brilho-cine-curto.wav" data-start="5.9" data-duration="1.139" data-track-index="13" data-volume="0.8" data-trilha="1"></audio>
-  <section id="s-fundo" class="clip" data-start="0" data-duration="8" data-track-index="0">
+<div id="root" data-composition-id="ola-mundo" data-start="0" data-width="1080" data-height="1920" data-duration="13.5">
+  <audio id="trilha-musica" src="assets/musica/base.wav" data-start="0" data-duration="13.48" data-track-index="9" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-01" src="assets/voz/voz-01.wav" data-start="0.3" data-duration="4.415" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-02" src="assets/sfx/impacto-cine-macio.wav" data-start="0.3" data-duration="0.942" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-03" src="assets/sfx/transicao-cine-suave.wav" data-start="4.74" data-duration="0.75" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-04" src="assets/voz/voz-02.wav" data-start="5.25" data-duration="3.952" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-05" src="assets/sfx/pop-cine-redondo.wav" data-start="5.43" data-duration="0.351" data-track-index="12" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-06" src="assets/sfx/pop-cine-redondo.wav" data-start="6.61" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-07" src="assets/sfx/pop-cine-redondo.wav" data-start="8.53" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-08" src="assets/sfx/whoosh-cine-medio.wav" data-start="9.34" data-duration="0.75" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-09" src="assets/voz/voz-03.wav" data-start="9.95" data-duration="2.139" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-10" src="assets/sfx/impacto-cine-macio.wav" data-start="9.95" data-duration="0.942" data-track-index="12" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-11" src="assets/sfx/brilho-cine-curto.wav" data-start="9.95" data-duration="1.139" data-track-index="13" data-volume="0.6" data-trilha="1"></audio>
+  <section id="s-fundo" class="clip" data-start="0" data-duration="13.5" data-track-index="0">
     <div id="fundo"></div>
     <div class="halo" id="h1"></div>
     <div class="halo" id="h2"></div>
   </section>
 
-  <section id="s-abre" class="clip" data-start="0" data-duration="2.8" data-track-index="1">
+  <section id="s-abre" class="clip" data-start="0" data-duration="5" data-track-index="1">
     <div id="a-kicker">Marca Exemplo</div>
     <div class="titulo" id="a-titulo">Olá, <em>mundo</em></div>
     <div id="a-risco"></div>
     <div id="a-sub">Um vídeo feito de HTML, renderizado na sua máquina.</div>
   </section>
 
-  <section id="s-meio" class="clip" data-start="2.8" data-duration="2.8" data-track-index="2">
+  <section id="s-meio" class="clip" data-start="5" data-duration="4.6" data-track-index="2">
     <div class="titulo" id="b-titulo">Como funciona</div>
     <div class="cartao" id="c1"><b>1. Escreva</b><span>HTML, CSS e uma timeline</span></div>
-    <div class="cartao" id="c2"><b>2. Sonorize</b><span>efeitos locais pela trilha</span></div>
+    <div class="cartao" id="c2"><b>2. Sonorize</b><span>voz, música e efeitos locais</span></div>
     <div class="cartao" id="c3"><b>3. Renderize</b><span>sem rede, só arquivos da pasta</span></div>
   </section>
 
-  <section id="s-fim" class="clip" data-start="5.6" data-duration="2.4" data-track-index="3">
+  <section id="s-fim" class="clip" data-start="9.6" data-duration="3.9" data-track-index="3">
     <svg id="f-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120">
       <rect width="120" height="120" rx="26" fill="#2F6FED"/>
       <path d="M34 84V36h14l12 26 12-26h14v48H74V58L64 80h-8L46 58v26z" fill="#F8FAFC"/>
@@ -84,34 +89,41 @@
     <div id="f-sub">renderizado 100% local</div>
     <div id="f-cores"><div style="background:#2F6FED"></div><div style="background:#2EC4B6"></div><div style="background:#FFB703"></div></div>
   </section>
+  <section id="s-legenda" class="clip" data-start="0" data-duration="13.5" data-track-index="4">
+    <div id="legenda"></div>
+  </section>
 </div>
 <script>
   const tl = gsap.timeline({ paused: true });
   const K = MotionKit.criar(tl);
-  const T = { meio: 2.8, fim: 5.6, total: 8 };
+  const T = { meio: 5, fim: 9.6, total: 13.5 };
 
-  K.respira("#h1", 0, T.total, { x: 70, y: 50, periodo: 4 });
-  K.respira("#h2", 0, T.total, { x: 50, y: 70, periodo: 4 });
+  K.respira("#h1", 0, T.total, { x: 70, y: 50, periodo: 4.5 });
+  K.respira("#h2", 0, T.total, { x: 50, y: 70, periodo: 4.5 });
+  K.legenda("#legenda", window.__legenda, { ativa: "#FFB703", acento: "#2EC4B6" });
 
   K.sobe("#a-kicker", 0.1, { y: 24, d: 0.3 });
-  K.bate(K.palavras("#a-titulo"), 0.2, { de: 1.5, stagger: 0.14 });
-  K.marca("#a-risco", 0.7);
-  K.sobe(K.palavras("#a-sub"), 0.9, { stagger: 0.05, y: 28, d: 0.32 });
-  K.sai(["#a-kicker", "#a-titulo", "#a-risco", "#a-sub"], 2.4, { stagger: 0.04 });
+  K.bate(K.palavras("#a-titulo"), 0.3, { de: 1.5, stagger: 0.18 });
+  K.marca("#a-risco", 0.9);
+  K.sobe(K.palavras("#a-sub"), 1.04, { stagger: 0.07, y: 28, d: 0.32 });
+  tl.to("#a-titulo", { scale: 1.03, transformOrigin: "0% 50%", duration: 3.4, ease: "none" }, 1.0);
+  K.sai(["#a-kicker", "#a-titulo", "#a-risco", "#a-sub"], 4.62, { stagger: 0.04 });
 
   K.sobe("#b-titulo", T.meio + 0.05, { d: 0.3 });
-  K.sobe("#c1", 3.2, { y: 60 });
-  K.sobe("#c2", 3.6, { y: 60 });
-  K.sobe("#c3", 4.0, { y: 60 });
-  K.toque("#c3", 4.6);
-  K.sai(["#b-titulo", "#c1", "#c2", "#c3"], 5.2, { stagger: 0.04 });
+  K.sobe("#c1", 5.43, { y: 60 });
+  K.sobe("#c2", 6.61, { y: 60 });
+  K.sobe("#c3", 8.53, { y: 60 });
+  K.toque("#c1", 5.95);
+  K.toque("#c2", 7.5);
+  K.toque("#c3", 8.95);
+  K.sai(["#b-titulo", "#c1", "#c2", "#c3"], 9.24, { stagger: 0.04 });
 
-  K.bate("#f-logo", T.fim + 0.3, { de: 1.4, d: 0.42 });
-  K.sobe("#f-nome", T.fim + 0.55, { y: 30 });
-  K.sobe("#f-sub", T.fim + 0.8, { y: 20 });
+  K.bate("#f-logo", 9.95, { de: 1.4, d: 0.42 });
+  K.sobe("#f-nome", 10.2, { y: 30 });
+  K.sobe("#f-sub", 10.79, { y: 20 });
   gsap.set("#f-cores div", { scaleY: 0, transformOrigin: "50% 100%" });
-  tl.to("#f-cores div", { scaleY: 1, duration: 0.3, stagger: 0.1, ease: K.EASE.snap }, T.fim + 1.0);
-  tl.to("#f-logo", { scale: 1.04, duration: 1.0, ease: K.EASE.respira }, T.fim + 1.2);
+  tl.to("#f-cores div", { scaleY: 1, duration: 0.3, stagger: 0.1, ease: K.EASE.snap }, 11.45);
+  tl.to("#f-logo", { scale: 1.05, duration: 1.6, ease: K.EASE.respira }, 11.7);
 
   window.__timelines["ola-mundo"] = tl;
 </script>

@@ -1,0 +1,3 @@
+Olá, mundo. Este vídeo é feito de HTML e renderizado na sua máquina.
+Você escreve a página, coloca voz, música e efeitos, e renderiza.
+Tudo local, sem depender da nuvem.

@@ -39,7 +39,7 @@ python content-engine/audio/doctor.py
 
 ## Quickstart (5 minutos)
 
-Vídeo de exemplo (1080x1920, 8 s, com efeitos sonoros e música de fundo, sem voz):
+Vídeo de exemplo (1080x1920, 13,5 s, com narração na voz local Kokoro, legenda palavra a palavra, música de fundo e efeitos sonoros). A narração e a legenda já vêm geradas na pasta do exemplo, então dá para renderizar sem instalar a voz:
 
 ```bash
 python content-engine/audio/trilha.py examples/hello-world examples/hello-world/trilha.json
