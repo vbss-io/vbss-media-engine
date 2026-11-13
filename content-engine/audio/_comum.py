@@ -19,6 +19,9 @@ SFX_DIR = AUDIO_DIR / "sfx"
 SFX_MANIFESTO = SFX_DIR / "sfx.json"
 SFX_FONTES = AUDIO_DIR / "sfx_fontes.json"
 SFX_SELECAO = AUDIO_DIR / "sfx_selecao.json"
+MUSICA_DIR = AUDIO_DIR / "music"
+MUSICA_MANIFESTO = MUSICA_DIR / "musica.json"
+MUSICA_FONTES = AUDIO_DIR / "musica_fontes.json"
 CACHE_DIR = AUDIO_DIR / ".cache"
 VENV_DIR = AUDIO_DIR / ".venv"
 MODELOS_DIR = AUDIO_DIR / ".models"
@@ -81,6 +84,7 @@ TAXA_SFX = 48000
 ALVO_SFX_LUFS_MOMENTANEO = -16.0
 TETO_PICO_DBTP = -1.0
 ALVO_VOZ_LUFS = -16.0
+ALVO_MUSICA_LUFS = -16.0
 
 
 def ffmpeg_path():

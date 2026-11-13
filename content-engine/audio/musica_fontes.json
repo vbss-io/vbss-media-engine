@@ -1,0 +1,207 @@
+{
+  "licenca_padrao": "CC0 1.0 Universal (dominio publico)",
+  "formato": {
+    "extensao": "m4a",
+    "codec": "aac",
+    "taxa_bits": "160k",
+    "taxa": 48000,
+    "canais": 2,
+    "alvo_lufs_integrado": -16.0,
+    "teto_pico_dbtp": -1.5
+  },
+  "fontes": {
+    "oga-chiptune-adventures": {
+      "nome": "4 Chiptunes (Adventure)",
+      "autor": "Juhani Junkala (SubspaceAudio)",
+      "pagina": "https://opengameart.org/content/4-chiptunes-adventure",
+      "url": "https://opengameart.org/sites/default/files/Juhani%20Junkala%20%5BChiptune%20Adventures%5D%20OGG.zip",
+      "sha256": "9c9547e184a6daef0cddf9eff5b8c42b357a9a0d2c8f2b5a01aa95154b85edef",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    },
+    "oga-midnight-drive": {
+      "nome": "Midnight Drive",
+      "autor": "congusbongus",
+      "pagina": "https://opengameart.org/content/midnight-drive",
+      "url": "https://opengameart.org/sites/default/files/midnight_drive.ogg",
+      "sha256": "0cec2b4468bd7e6ebc9ad0de21cdba7ada6260680d1c9e05bc8f5c733cf3e23f",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    },
+    "oga-space-city": {
+      "nome": "Space City",
+      "autor": "MintoDog",
+      "pagina": "https://opengameart.org/content/space-city",
+      "url": "https://opengameart.org/sites/default/files/space_city_bpm115_0.ogg",
+      "sha256": "6ecb8408cd84b1031425e8f1b941d7a89ab8a850cea2833ac2e005f76544d7a7",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    },
+    "oga-chill-lofi-loop": {
+      "nome": "Chill lofi inspired [loop edit]",
+      "autor": "omfgdude (edição em loop de qubodup)",
+      "pagina": "https://opengameart.org/content/chill-lofi-inspired-loop-edit",
+      "pagina_original": "https://opengameart.org/content/chill-lofi-inspired",
+      "url": "https://opengameart.org/sites/default/files/chilllofir-loop.ogg",
+      "sha256": "ccaa02bb60310146f1fa3b1c70be0a5a57f0674b9c4944a22b85b0c03e932cdb",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    },
+    "oga-lofi-hip-hop-loop": {
+      "nome": "Lofi Hip Hop Loop",
+      "autor": "omfgdude",
+      "pagina": "https://opengameart.org/content/lofi-hip-hop-loop",
+      "url": "https://opengameart.org/sites/default/files/LofiLoop_2.ogg",
+      "sha256": "e57ba821d4db8d66783ca984a2778ec68d1439e862239ec36407344ef3bd1eab",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    },
+    "oga-optomistic-day": {
+      "nome": "Optomistic Day Mastered (Loopable)",
+      "autor": "Pro Sensory",
+      "pagina": "https://opengameart.org/content/optomistic-day-mastered-loopable",
+      "url": "https://opengameart.org/sites/default/files/optomistic_day_masteredloopable_2.mp3",
+      "sha256": "69d9682e39a9f5f13e7dfccf0c981d292f6430590f6c7d7fac09048b84680939",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    },
+    "oga-contemplation": {
+      "nome": "Contemplation",
+      "autor": "Joth",
+      "pagina": "https://opengameart.org/content/contemplation-0",
+      "url": "https://opengameart.org/sites/default/files/Contemplation.mp3",
+      "sha256": "283962d3a975c93613c46cda30c9f0816176ae3e2899f961591a49e2d41b4bf3",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    },
+    "oga-calm-loop": {
+      "nome": "Calm Loop",
+      "autor": "wipics",
+      "pagina": "https://opengameart.org/content/calm-loop",
+      "url": "https://opengameart.org/sites/default/files/Relaxing_0.mp3",
+      "sha256": "1d7e386c079d4add6b3b1592054846e4977035f26844466e409467c6dc7bdbde",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    },
+    "oga-happy-clappy-loop": {
+      "nome": "Happy Clappy Loop",
+      "autor": "OwlishMedia",
+      "pagina": "https://opengameart.org/content/happy-clappy-loop",
+      "url": "https://opengameart.org/sites/default/files/HappyClappyLoop.wav",
+      "sha256": "1ca66b4e4d41e14a4ccfcc3b758e061cf283b9d5e332c4ea8e00f94f4deb6554",
+      "licenca": "CC0",
+      "conferida_em": "2026-11-12"
+    }
+  },
+  "faixas": [
+    {
+      "id": "chiptune-selecao",
+      "fonte": "oga-chiptune-adventures",
+      "membro": "Juhani Junkala [Chiptune Adventures] 4. Stage Select.ogg",
+      "laco": true,
+      "pulso": true,
+      "clima": "chiptune discreta",
+      "uso": "fundo 8-bit calmo para explicação ou passo a passo com tema de jogo; laço curto e sem emenda",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "synthwave-noturna",
+      "fonte": "oga-midnight-drive",
+      "corte": {"inicio": 17.97, "fim": 71.802},
+      "fade_entrada": 0.02,
+      "fade_saida": 0.05,
+      "laco": true,
+      "pulso": true,
+      "clima": "synthwave",
+      "uso": "fundo retrô com batida constante; bom para vitrine de coleção e antes/depois",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "synthwave-cidade",
+      "fonte": "oga-space-city",
+      "corte": {"inicio": 0.0, "fim": 58.435},
+      "fade_saida": 0.05,
+      "laco": true,
+      "pulso": true,
+      "clima": "synthwave",
+      "uso": "fundo de sintetizador com cara de cidade futurista; serve para produto de tecnologia e para jogo retrô",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "lofi-tranquila",
+      "fonte": "oga-chill-lofi-loop",
+      "corte": {"inicio": 0.0, "fim": 48.608},
+      "fade_saida": 0.05,
+      "laco": true,
+      "pulso": true,
+      "clima": "lo-fi",
+      "uso": "fundo lento e macio para narração longa, bastidor e tutorial",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "lofi-batida",
+      "fonte": "oga-lofi-hip-hop-loop",
+      "corte": {"inicio": 0.0, "fim": 56.0},
+      "fade_saida": 0.05,
+      "laco": true,
+      "pulso": true,
+      "clima": "lo-fi",
+      "uso": "fundo lo-fi com batida de hip hop, um pouco mais presente; passo a passo e lista",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "eletronica-otimista",
+      "fonte": "oga-optomistic-day",
+      "corte": {"inicio": 0.0, "fim": 59.077},
+      "fade_saida": 0.05,
+      "laco": true,
+      "pulso": true,
+      "clima": "eletrônico leve",
+      "uso": "fundo eletrônico claro e positivo para novidade de produto e demonstração de recurso",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "ambiente-contemplacao",
+      "fonte": "oga-contemplation",
+      "corte": {"inicio": 0.2, "fim": 60.2},
+      "fade_entrada": 1.0,
+      "fade_saida": 2.0,
+      "laco": false,
+      "pulso": false,
+      "clima": "ambiente calmo",
+      "uso": "cama de ambiente sem melodia nem batida marcada; para peça em que só a voz importa",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "ambiente-calma",
+      "fonte": "oga-calm-loop",
+      "corte": {"inicio": 0.01, "fim": 19.21},
+      "fade_entrada": 0.01,
+      "fade_saida": 0.03,
+      "laco": true,
+      "pulso": true,
+      "clima": "ambiente calmo",
+      "uso": "laço curto e relaxado para peça tranquila de até uns 40 s (repete a cada 19 s)",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "chiptune-aventura",
+      "fonte": "oga-chiptune-adventures",
+      "membro": "Juhani Junkala [Chiptune Adventures] 1. Stage 1.ogg",
+      "laco": true,
+      "pulso": true,
+      "clima": "animada",
+      "uso": "chiptune de fase de plataforma, alegre e grudento; para peça animada de jogo, meme e contagem",
+      "produtos": ["todos"]
+    },
+    {
+      "id": "animada-palmas",
+      "fonte": "oga-happy-clappy-loop",
+      "laco": true,
+      "pulso": true,
+      "clima": "animada",
+      "uso": "laço curto e alegre para peça leve e divertida (repete a cada 17 s)",
+      "produtos": ["todos"]
+    }
+  ]
+}

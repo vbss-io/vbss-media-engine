@@ -1,0 +1,146 @@
+<style>
+  html,body{margin:0;height:100%;overflow:hidden}
+  #previa-palco{position:fixed;left:0;top:0;transform-origin:0 0;overflow:hidden}
+  #previa-barra{position:fixed;left:0;right:0;bottom:0;height:52px;z-index:2147483647;display:flex;align-items:center;gap:12px;padding:0 14px;box-sizing:border-box;background:#101014;color:#E8E8EE;font:13px/1 system-ui,sans-serif;border-top:1px solid #2A2A33}
+  #previa-barra button,#previa-barra select{height:32px;padding:0 12px;border:1px solid #3A3A46;border-radius:6px;background:#1C1C24;color:inherit;font:inherit;cursor:pointer}
+  #previa-barra button{min-width:76px}
+  #previa-barra input[type=range]{flex:1;min-width:80px;accent-color:#FFD84D}
+  #previa-tempo{min-width:120px;text-align:right;font-variant-numeric:tabular-nums}
+  #previa-aviso{color:#FFD84D;white-space:nowrap}
+  @media (max-width:720px){#previa-aviso{display:none}}
+</style>
+<script>
+(function () {
+  const cfg = window.__previa || {};
+  const raiz = document.querySelector("[data-composition-id]");
+  if (!raiz) return;
+  const id = raiz.getAttribute("data-composition-id");
+  const largura = parseFloat(raiz.dataset.width) || 1080;
+  const altura = parseFloat(raiz.dataset.height) || 1920;
+  const ALTURA_DA_BARRA = 52;
+  const linha = () => (window.__timelines || {})[id];
+  const duracao = () => parseFloat(raiz.dataset.duration) || (linha() ? linha().duration() : 0);
+
+  const palco = document.createElement("div");
+  palco.id = "previa-palco";
+  raiz.parentNode.insertBefore(palco, raiz);
+  palco.appendChild(raiz);
+  palco.style.width = largura + "px";
+  palco.style.height = altura + "px";
+  raiz.style.width = largura + "px";
+  raiz.style.height = altura + "px";
+
+  const barra = document.createElement("div");
+  barra.id = "previa-barra";
+  barra.innerHTML =
+    '<button id="previa-tocar" type="button">Tocar</button>' +
+    '<input id="previa-posicao" type="range" min="0" step="0.01" value="0">' +
+    '<span id="previa-tempo"></span>' +
+    '<select id="previa-velocidade"><option value="0.25">0.25x</option><option value="0.5">0.5x</option><option value="1" selected>1x</option><option value="1.5">1.5x</option><option value="2">2x</option></select>' +
+    '<span id="previa-aviso">PREVIA - a prova final e o render</span>';
+  document.body.appendChild(barra);
+  const botao = barra.querySelector("#previa-tocar");
+  const posicao = barra.querySelector("#previa-posicao");
+  const tempo = barra.querySelector("#previa-tempo");
+  const velocidade = barra.querySelector("#previa-velocidade");
+
+  const cenas = Array.from(raiz.querySelectorAll("[data-start]")).filter((el) => el !== raiz && !/^(AUDIO|VIDEO)$/.test(el.tagName));
+  const audios = Array.from(raiz.querySelectorAll("audio[data-start]"));
+
+  let t = Math.max(0, parseFloat(new URLSearchParams(location.search).get("t")) || cfg.t || 0);
+  let tocando = false;
+  let taxa = 1;
+  let ultimo = 0;
+
+  function ajustar() {
+    const escala = Math.min(window.innerWidth / largura, (window.innerHeight - ALTURA_DA_BARRA) / altura);
+    palco.style.transform = "scale(" + escala + ")";
+    palco.style.left = Math.max(0, (window.innerWidth - largura * escala) / 2) + "px";
+  }
+
+  function sincronizarAudio() {
+    audios.forEach((a) => {
+      const inicio = parseFloat(a.dataset.start) || 0;
+      const dura = parseFloat(a.dataset.duration);
+      const local = t - inicio;
+      const dentro = tocando && local >= 0 && (isNaN(dura) || local < dura);
+      if (!dentro) {
+        if (!a.paused) a.pause();
+        return;
+      }
+      const volume = parseFloat(a.dataset.volume);
+      a.volume = Math.max(0, Math.min(1, isNaN(volume) ? 1 : volume));
+      a.playbackRate = taxa;
+      if (a.paused || Math.abs(a.currentTime - local) > 0.2) {
+        try { a.currentTime = local; } catch (erro) { return; }
+      }
+      if (a.paused) a.play().catch(() => {});
+    });
+  }
+
+  function aplicar() {
+    const total = duracao();
+    t = Math.max(0, Math.min(t, total));
+    const tl = linha();
+    if (tl) {
+      tl.pause();
+      tl.time(Math.min(t, tl.duration()));
+    }
+    cenas.forEach((el) => {
+      const inicio = parseFloat(el.dataset.start) || 0;
+      const dura = parseFloat(el.dataset.duration);
+      const visivel = t >= inicio && (isNaN(dura) || t < inicio + dura || (t >= total && inicio + dura >= total));
+      el.style.visibility = visivel ? "" : "hidden";
+    });
+    posicao.max = total.toFixed(2);
+    posicao.value = t.toFixed(2);
+    tempo.textContent = t.toFixed(2) + " / " + total.toFixed(2) + " s";
+    botao.textContent = tocando ? "Pausar" : "Tocar";
+    sincronizarAudio();
+  }
+
+  function alternar() {
+    if (!tocando && t >= duracao() - 0.01) t = 0;
+    tocando = !tocando;
+    ultimo = performance.now();
+    aplicar();
+  }
+
+  function quadro(agora) {
+    if (tocando) {
+      t += ((agora - ultimo) / 1000) * taxa;
+      ultimo = agora;
+      if (t >= duracao()) {
+        t = duracao();
+        tocando = false;
+      }
+      aplicar();
+    }
+    requestAnimationFrame(quadro);
+  }
+
+  botao.addEventListener("click", alternar);
+  posicao.addEventListener("input", () => {
+    t = parseFloat(posicao.value) || 0;
+    ultimo = performance.now();
+    aplicar();
+  });
+  velocidade.addEventListener("change", () => {
+    taxa = parseFloat(velocidade.value) || 1;
+    aplicar();
+  });
+  window.addEventListener("keydown", (e) => {
+    if (e.target === velocidade) return;
+    if (e.code === "Space") { e.preventDefault(); alternar(); }
+    if (e.code === "ArrowLeft") { t -= e.shiftKey ? 1 : 1 / 30; aplicar(); }
+    if (e.code === "ArrowRight") { t += e.shiftKey ? 1 : 1 / 30; aplicar(); }
+  });
+  window.addEventListener("resize", ajustar);
+
+  ajustar();
+  aplicar();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(aplicar);
+  requestAnimationFrame(quadro);
+  window.__previa_controle = { ir: (s) => { t = s; aplicar(); }, tempo: () => t, alternar };
+})();
+</script>

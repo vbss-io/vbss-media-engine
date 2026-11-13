@@ -889,6 +889,1189 @@
         "pacote": "kenney-music-jingles",
         "membro": "Audio/Hit jingles/jingles_HIT15.ogg"
       }
+    },
+    {
+      "arquivo": "whoosh/whoosh-cine-curto.wav",
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-curto",
+      "duracao": 0.492,
+      "lufs_momentaneo_max": -20.7,
+      "pico_dbtp": -2.4,
+      "ganho_db": 0.0,
+      "sha256": "15a90e077a52b6894000698231cb4d2ff5fe2853bb58d48f4042571b1baedebc",
+      "bytes": 47256,
+      "uso": "elemento que entra rápido (texto, card, ícone); âncora no instante em que ele assenta",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.12,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.6,
+        26.8,
+        36.1,
+        29.2,
+        7.4
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "whoosh-cine-curto",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "whoosh/whoosh-cine-medio.wav",
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-medio",
+      "duracao": 0.75,
+      "lufs_momentaneo_max": -20.0,
+      "pico_dbtp": -1.9,
+      "ganho_db": 0.0,
+      "sha256": "f737b26f88cef978cb2b0814a01ef542bbf1d910681b2f4002a3e75b5cb1c8db",
+      "bytes": 72030,
+      "uso": "troca de batida ou painel que desliza; o padrão para entrada de cena",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.26,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        1.3,
+        28.9,
+        40.2,
+        23.7,
+        5.9
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "whoosh-cine-medio",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "whoosh/whoosh-cine-longo.wav",
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-longo",
+      "duracao": 1.348,
+      "lufs_momentaneo_max": -18.5,
+      "pico_dbtp": -5.1,
+      "ganho_db": 0.0,
+      "sha256": "2c38034f3cc723e1bb4b27b0c2ef080c63f8e26cc68ba8933024077745665e7e",
+      "bytes": 129470,
+      "uso": "movimento longo: zoom, câmera ou cena que atravessa a tela",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.6,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        1.7,
+        44.5,
+        31.2,
+        17.0,
+        5.7
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "whoosh-cine-longo",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "whoosh/whoosh-cine-grave.wav",
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-grave",
+      "duracao": 0.929,
+      "lufs_momentaneo_max": -18.1,
+      "pico_dbtp": -3.6,
+      "ganho_db": 0.0,
+      "sha256": "9bcb54d1a88cb7196d995fc0e2a32763fba8331b16a3c5c2b89f6d81a5329af5",
+      "bytes": 89228,
+      "uso": "objeto grande ou título pesado passando; aparece inteiro em fone ou caixa",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.34,
+      "alvo_db": -14,
+      "nivel_db": -14.0,
+      "faixas_pct": [
+        19.3,
+        46.0,
+        23.6,
+        7.5,
+        3.7
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "whoosh-cine-grave",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "whoosh/whoosh-cine-agudo.wav",
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-agudo",
+      "duracao": 0.543,
+      "lufs_momentaneo_max": -22.4,
+      "pico_dbtp": -6.1,
+      "ganho_db": 0.0,
+      "sha256": "ce5e6878a454de56523accf981a58f3c9512dc68d994d003c85469fcfd076afb",
+      "bytes": 52126,
+      "uso": "detalhe leve e veloz (ícone, linha, cursor); cabe por cima da voz em volume baixo",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.17,
+      "alvo_db": -17,
+      "nivel_db": -17.0,
+      "faixas_pct": [
+        0.0,
+        0.1,
+        2.8,
+        54.7,
+        42.5
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "whoosh-cine-agudo",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "whoosh/whoosh-cine-cauda.wav",
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-cauda",
+      "duracao": 1.265,
+      "lufs_momentaneo_max": -19.7,
+      "pico_dbtp": -4.3,
+      "ganho_db": 0.0,
+      "sha256": "6989a29f408d61c264d085514306c242d115d0786d015538a0272a7af167f1a4",
+      "bytes": 121510,
+      "uso": "último movimento antes de uma pausa: a sala segura o silêncio depois",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.2,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.5,
+        21.8,
+        37.4,
+        35.3,
+        5.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "whoosh-cine-cauda",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "whoosh/whoosh-cine-corpo.wav",
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-corpo",
+      "duracao": 0.71,
+      "lufs_momentaneo_max": -20.1,
+      "pico_dbtp": -3.0,
+      "ganho_db": 0.0,
+      "sha256": "6c2c62912de73ed5c7a60f53742457c500b7216a697a346e0315e911b71e6f72",
+      "bytes": 68166,
+      "uso": "passada com peso de objeto real: print ou produto que cruza a tela",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.19,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.0,
+        72.6,
+        18.1,
+        7.2,
+        2.1
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "whoosh-cine-corpo",
+        "semente": 20261112,
+        "camadas": [
+          {
+            "pacote": "oga-wind-hit-time-morph",
+            "membro": "qubodup-megaswosh1.wav"
+          }
+        ]
+      }
+    },
+    {
+      "arquivo": "transition/swish-cine-leve.wav",
+      "categoria": "transition",
+      "nome": "swish-cine-leve",
+      "duracao": 0.322,
+      "lufs_momentaneo_max": -23.9,
+      "pico_dbtp": -7.0,
+      "ganho_db": 0.0,
+      "sha256": "ca88c48b679270586de86589772fdb9ded186a2e5ec37d4e06465d9766b38340",
+      "bytes": 30944,
+      "uso": "corte leve entre dois planos parecidos, troca de aba, item de lista",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.08,
+      "alvo_db": -18,
+      "nivel_db": -18.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        1.2,
+        75.9,
+        22.9
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "swish-cine-leve",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "transition/swish-cine-papel.wav",
+      "categoria": "transition",
+      "nome": "swish-cine-papel",
+      "duracao": 0.423,
+      "lufs_momentaneo_max": -24.0,
+      "pico_dbtp": -1.7,
+      "ganho_db": 0.0,
+      "sha256": "4114db1898a42fa111d621b53ca85dd52767409079e3d38e8725cc3cd6cfccfc",
+      "bytes": 40612,
+      "uso": "card, foto ou página que desliza; som de papel real, discreto",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.116,
+      "alvo_db": -18,
+      "nivel_db": -18.2,
+      "faixas_pct": [
+        0.1,
+        1.0,
+        23.0,
+        67.6,
+        8.2
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "swish-cine-papel",
+        "semente": 20261112,
+        "camadas": [
+          {
+            "pacote": "kenney-casino-audio",
+            "membro": "Audio/card-slide-4.ogg"
+          }
+        ]
+      }
+    },
+    {
+      "arquivo": "transition/transicao-cine.wav",
+      "categoria": "transition",
+      "nome": "transicao-cine",
+      "duracao": 1.692,
+      "lufs_momentaneo_max": -16.4,
+      "pico_dbtp": -2.7,
+      "ganho_db": 0.0,
+      "sha256": "5760303704f5fb44bc842187711c545c44557f7562ca98aad5d9f2a352c5e430",
+      "bytes": 162498,
+      "uso": "corte principal entre batidas, pronto: sobe, passa e assenta no corte",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.75,
+      "alvo_db": -13,
+      "nivel_db": -13.0,
+      "faixas_pct": [
+        64.4,
+        16.0,
+        10.2,
+        7.8,
+        1.7
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "transicao-cine",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "transition/transicao-cine-forte.wav",
+      "categoria": "transition",
+      "nome": "transicao-cine-forte",
+      "duracao": 2.566,
+      "lufs_momentaneo_max": -14.0,
+      "pico_dbtp": -2.5,
+      "ganho_db": 0.0,
+      "sha256": "e8302cc9d8d37836073136581443b6c5029c67292a35791fc291643b432dbcd3",
+      "bytes": 246372,
+      "uso": "virada do Reel (do gancho para a revelação): reverso, riser, impacto e brilho já alinhados",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 1.2,
+      "alvo_db": -11.5,
+      "nivel_db": -11.7,
+      "faixas_pct": [
+        65.1,
+        18.1,
+        10.6,
+        5.1,
+        1.1
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "transicao-cine-forte",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "transition/transicao-cine-suave.wav",
+      "categoria": "transition",
+      "nome": "transicao-cine-suave",
+      "duracao": 0.75,
+      "lufs_momentaneo_max": -19.8,
+      "pico_dbtp": -2.9,
+      "ganho_db": 0.0,
+      "sha256": "076bf34e77529d660b705b3d93b6677b1a2a71c928c6b48920c45eb6f73363dc",
+      "bytes": 72030,
+      "uso": "corte calmo: passada com um toque grave no ponto, sem subgrave",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.26,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.7,
+        56.7,
+        24.4,
+        14.5,
+        3.6
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "transicao-cine-suave",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "impact/impacto-cine-macio.wav",
+      "categoria": "impact",
+      "nome": "impacto-cine-macio",
+      "duracao": 0.942,
+      "lufs_momentaneo_max": -19.4,
+      "pico_dbtp": -4.7,
+      "ganho_db": 0.0,
+      "sha256": "71fa1cdc7c908ec085a17d625e38fb194b89bd6e95079adfb8c06397c1426cc8",
+      "bytes": 90498,
+      "uso": "elemento que assenta, título no frame 0, ponto final de um whoosh",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        84.2,
+        12.7,
+        3.1,
+        0.1,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "impacto-cine-macio",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "impact/impacto-cine-medio.wav",
+      "categoria": "impact",
+      "nome": "impacto-cine-medio",
+      "duracao": 1.366,
+      "lufs_momentaneo_max": -15.6,
+      "pico_dbtp": -3.1,
+      "ganho_db": 0.0,
+      "sha256": "182dbf7d916cf95644cde1af5f2eecbd3839d6e2be93c046965ec1f363d95600",
+      "bytes": 131172,
+      "uso": "revelação de número ou título forte; o padrão para o corte principal",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -12.5,
+      "nivel_db": -12.5,
+      "faixas_pct": [
+        80.0,
+        15.6,
+        3.9,
+        0.5,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "impacto-cine-medio",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "impact/impacto-cine-forte.wav",
+      "categoria": "impact",
+      "nome": "impacto-cine-forte",
+      "duracao": 2.206,
+      "lufs_momentaneo_max": -14.8,
+      "pico_dbtp": -1.6,
+      "ganho_db": 0.0,
+      "sha256": "1d74358dc0d4ca0adadcdc0d779d0955578a6b4d858f2a5b7cfacb4c4a7dee48",
+      "bytes": 211864,
+      "uso": "um por Reel: o momento de maior peso (resultado, antes e depois)",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -11,
+      "nivel_db": -11.0,
+      "faixas_pct": [
+        68.4,
+        25.6,
+        5.2,
+        0.6,
+        0.2
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "impacto-cine-forte",
+        "semente": 20261112,
+        "camadas": [
+          {
+            "pacote": "oga-muffled-distant-explosion",
+            "membro": "NenadSimic - Muffled Distant Explosion.wav"
+          }
+        ]
+      }
+    },
+    {
+      "arquivo": "impact/impacto-cine-sub.wav",
+      "categoria": "impact",
+      "nome": "impacto-cine-sub",
+      "duracao": 1.849,
+      "lufs_momentaneo_max": -15.8,
+      "pico_dbtp": -3.2,
+      "ganho_db": 0.0,
+      "sha256": "74b0c1b2e632139b0b984d08d681292fcb13ad07fb271484d2def033f3b2fa57",
+      "bytes": 177548,
+      "uso": "peso por baixo de outro efeito; sozinho quase some no alto-falante do celular",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -13,
+      "nivel_db": -13.0,
+      "faixas_pct": [
+        98.9,
+        1.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "impacto-cine-sub",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "impact/braam-cine-leve.wav",
+      "categoria": "impact",
+      "nome": "braam-cine-leve",
+      "duracao": 2.276,
+      "lufs_momentaneo_max": -14.9,
+      "pico_dbtp": -4.9,
+      "ganho_db": 0.0,
+      "sha256": "520a5ac036af647862fb809e0b420a08a54a31e2b151434a227aaffdcfd26f2c",
+      "bytes": 218540,
+      "uso": "abertura ou virada dramática, tom de trailer; no máximo um por peça",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -14,
+      "nivel_db": -14.0,
+      "faixas_pct": [
+        55.9,
+        38.3,
+        5.7,
+        0.1,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "braam-cine-leve",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "riser/riser-cine-meio.wav",
+      "categoria": "riser",
+      "nome": "riser-cine-meio",
+      "duracao": 0.545,
+      "lufs_momentaneo_max": -19.5,
+      "pico_dbtp": -3.6,
+      "ganho_db": 0.0,
+      "sha256": "dcd69b6505914a0935461e297d2dcda8361f83724598437b25fef450ca3ddaa7",
+      "bytes": 52364,
+      "uso": "meio segundo de tensão antes do corte; termina no corte",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.5,
+      "alvo_db": -14,
+      "nivel_db": -14.0,
+      "faixas_pct": [
+        0.0,
+        3.6,
+        17.7,
+        66.2,
+        12.5
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "riser-cine-meio",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "riser/riser-cine-1s.wav",
+      "categoria": "riser",
+      "nome": "riser-cine-1s",
+      "duracao": 1.045,
+      "lufs_momentaneo_max": -18.4,
+      "pico_dbtp": -3.6,
+      "ganho_db": 0.0,
+      "sha256": "b0cd67de60dce00d67e759491715bd8f670915161f73da6f88ff5d79159b94af",
+      "bytes": 100364,
+      "uso": "preparar a revelação (número, resultado) por um segundo",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 1.0,
+      "alvo_db": -14,
+      "nivel_db": -14.0,
+      "faixas_pct": [
+        0.0,
+        6.5,
+        22.7,
+        58.9,
+        11.9
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "riser-cine-1s",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "riser/riser-cine-2s.wav",
+      "categoria": "riser",
+      "nome": "riser-cine-2s",
+      "duracao": 2.045,
+      "lufs_momentaneo_max": -17.1,
+      "pico_dbtp": -5.0,
+      "ganho_db": 0.0,
+      "sha256": "ac3a3e455bd0b13bdfa13f51c9ecf7cafdd79ccc28567d92c7289f0cd93fe307",
+      "bytes": 196364,
+      "uso": "espera longa antes do ponto alto da peça",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 2.0,
+      "alvo_db": -14,
+      "nivel_db": -14.0,
+      "faixas_pct": [
+        0.0,
+        5.6,
+        21.6,
+        61.6,
+        11.2
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "riser-cine-2s",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "riser/reverso-cine-curto.wav",
+      "categoria": "riser",
+      "nome": "reverso-cine-curto",
+      "duracao": 0.512,
+      "lufs_momentaneo_max": -19.8,
+      "pico_dbtp": -4.1,
+      "ganho_db": 0.0,
+      "sha256": "d33f3377ab76c893056d1670fd80c0d44c21190b706410bc9edeaf8fd6bcba48",
+      "bytes": 49166,
+      "uso": "puxada rápida para dentro do corte; antes de impacto ou pop",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.5,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.0,
+        0.8,
+        55.1,
+        39.5,
+        4.6
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "reverso-cine-curto",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "riser/reverso-cine-longo.wav",
+      "categoria": "riser",
+      "nome": "reverso-cine-longo",
+      "duracao": 1.212,
+      "lufs_momentaneo_max": -18.5,
+      "pico_dbtp": -5.3,
+      "ganho_db": 0.0,
+      "sha256": "327507962fd272f69322b7d380254125c784e5edcc8e85a8d91a597b34526cd7",
+      "bytes": 116372,
+      "uso": "entrada do logo ou do fecho: cresce e para no ponto",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 1.2,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.0,
+        0.4,
+        77.5,
+        18.8,
+        3.3
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "reverso-cine-longo",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "tick/tique-cine-macio.wav",
+      "categoria": "tick",
+      "nome": "tique-cine-macio",
+      "duracao": 0.146,
+      "lufs_momentaneo_max": -28.0,
+      "pico_dbtp": -6.5,
+      "ganho_db": 0.0,
+      "sha256": "2c7945be885bf0f150c271fd3fabe694dad8f05a0bcd1aeb03b755ee065fc0f2",
+      "bytes": 14016,
+      "uso": "passo de contagem ou item de lista que marca, um por vez (0,08 s ou mais entre eles)",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -22,
+      "nivel_db": -22.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        88.0,
+        11.9,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "tique-cine-macio",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "tick/tique-cine-ficha.wav",
+      "categoria": "tick",
+      "nome": "tique-cine-ficha",
+      "duracao": 0.145,
+      "lufs_momentaneo_max": -28.0,
+      "pico_dbtp": -3.6,
+      "ganho_db": 0.0,
+      "sha256": "de14337eb138f80c794f7cd64c37cbbae2bd14e2e1869a14f874734a40b3e24e",
+      "bytes": 13974,
+      "uso": "tique com textura real: seleção, alternância, passo de carrossel",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -22,
+      "nivel_db": -22.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        1.0,
+        95.7,
+        3.2
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "tique-cine-ficha",
+        "semente": 20261112,
+        "camadas": [
+          {
+            "pacote": "kenney-casino-audio",
+            "membro": "Audio/chip-lay-1.ogg"
+          }
+        ]
+      }
+    },
+    {
+      "arquivo": "click/clique-cine-abafado.wav",
+      "categoria": "click",
+      "nome": "clique-cine-abafado",
+      "duracao": 0.162,
+      "lufs_momentaneo_max": -25.3,
+      "pico_dbtp": -2.3,
+      "ganho_db": 0.0,
+      "sha256": "9c32f7a91c109cedbf1268ff052520e7580adf7400938e92b5813a99cb18499c",
+      "bytes": 15632,
+      "uso": "botão ou campo tocado no print; não compete com a voz",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -19,
+      "nivel_db": -19.3,
+      "faixas_pct": [
+        0.2,
+        69.4,
+        24.4,
+        6.0,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "clique-cine-abafado",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "click/clique-cine-toque.wav",
+      "categoria": "click",
+      "nome": "clique-cine-toque",
+      "duracao": 0.277,
+      "lufs_momentaneo_max": -25.6,
+      "pico_dbtp": -2.0,
+      "ganho_db": 0.0,
+      "sha256": "9535bda759c8419a700021ea876d74e41d52aef665df445580c968bc3eab08fd",
+      "bytes": 26600,
+      "uso": "dedo tocando a tela ou um card; mais corpo que o clique",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -19,
+      "nivel_db": -19.6,
+      "faixas_pct": [
+        0.0,
+        50.6,
+        44.7,
+        4.7,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "clique-cine-toque",
+        "semente": 20261112,
+        "camadas": [
+          {
+            "pacote": "kenney-casino-audio",
+            "membro": "Audio/chip-lay-3.ogg"
+          }
+        ]
+      }
+    },
+    {
+      "arquivo": "pop/pop-cine-redondo.wav",
+      "categoria": "pop",
+      "nome": "pop-cine-redondo",
+      "duracao": 0.351,
+      "lufs_momentaneo_max": -21.0,
+      "pico_dbtp": -5.1,
+      "ganho_db": 0.0,
+      "sha256": "de6552bc1a2171cde2dcf1696add04101ab419f9e14b17f14790b22dbf74438c",
+      "bytes": 33712,
+      "uso": "selo, etiqueta, emoji ou balão que salta",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.0,
+        60.2,
+        39.7,
+        0.1,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "pop-cine-redondo",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "pop/pop-cine-grave.wav",
+      "categoria": "pop",
+      "nome": "pop-cine-grave",
+      "duracao": 0.43,
+      "lufs_momentaneo_max": -20.9,
+      "pico_dbtp": -6.2,
+      "ganho_db": 0.0,
+      "sha256": "d3c7a28a6d49816b76ce02fd9e16c37817133cf3106aa0d19d4c4b6667823e5a",
+      "bytes": 41322,
+      "uso": "elemento maior que salta (card, moldura, foto)",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.1,
+        98.9,
+        1.0,
+        0.1,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "pop-cine-grave",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "shine/brilho-cine-curto.wav",
+      "categoria": "shine",
+      "nome": "brilho-cine-curto",
+      "duracao": 1.139,
+      "lufs_momentaneo_max": -21.6,
+      "pico_dbtp": -11.1,
+      "ganho_db": 0.0,
+      "sha256": "4da7c144a00325bea1a71ee53e83ff6d423e844460089e516ff0a085d57e0845",
+      "bytes": 109352,
+      "uso": "destaque que acende: preço, selo, palavra-chave revelada",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -18,
+      "nivel_db": -18.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        0.0,
+        89.8,
+        10.2
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "brilho-cine-curto",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "shine/brilho-cine-longo.wav",
+      "categoria": "shine",
+      "nome": "brilho-cine-longo",
+      "duracao": 2.324,
+      "lufs_momentaneo_max": -20.2,
+      "pico_dbtp": -11.2,
+      "ganho_db": 0.0,
+      "sha256": "9570a87d956ad9d78e6d8cee56b204aa66fb2919af7dc9223aedaac6ce601e13",
+      "bytes": 223166,
+      "uso": "revelação com respiro: resultado final, logo, antes e depois",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -18,
+      "nivel_db": -18.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        0.0,
+        94.5,
+        5.5
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "brilho-cine-longo",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "shine/brilho-cine-sobe.wav",
+      "categoria": "shine",
+      "nome": "brilho-cine-sobe",
+      "duracao": 1.583,
+      "lufs_momentaneo_max": -18.9,
+      "pico_dbtp": -10.9,
+      "ganho_db": 0.0,
+      "sha256": "5a270a63d0deea45e9572a735d4786b904293bef99b8b944a3cb748871a20ca0",
+      "bytes": 151978,
+      "uso": "número ou imagem que se forma aos poucos; a âncora é a última nota",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.45,
+      "alvo_db": -18,
+      "nivel_db": -18.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        0.0,
+        86.2,
+        13.8
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "brilho-cine-sobe",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "success/sucesso-cine-discreto.wav",
+      "categoria": "success",
+      "nome": "sucesso-cine-discreto",
+      "duracao": 1.286,
+      "lufs_momentaneo_max": -17.0,
+      "pico_dbtp": -7.0,
+      "ganho_db": 0.0,
+      "sha256": "bccb452c4a280bc7b770a7125d69b78d6e9479a1b0eb273d81da7915c84125a2",
+      "bytes": 123454,
+      "uso": "tarefa concluída, check, resposta do produto, sem cara de jogo",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        99.0,
+        1.0,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "sucesso-cine-discreto",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "success/sucesso-cine-acorde.wav",
+      "categoria": "success",
+      "nome": "sucesso-cine-acorde",
+      "duracao": 2.074,
+      "lufs_momentaneo_max": -16.3,
+      "pico_dbtp": -4.8,
+      "ganho_db": 0.0,
+      "sha256": "67f6583e49c27b6509a02831ed057c41f32c8de07c9c6669cec6355dfe50c682",
+      "bytes": 199100,
+      "uso": "fecho da peça com logo ou chamada, depois da última fala",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.0,
+        4.9,
+        92.8,
+        2.1,
+        0.2
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "sucesso-cine-acorde",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "counter/contador-cine-macio.wav",
+      "categoria": "counter",
+      "nome": "contador-cine-macio",
+      "duracao": 1.406,
+      "lufs_momentaneo_max": -22.1,
+      "pico_dbtp": -7.5,
+      "ganho_db": 0.0,
+      "sha256": "06defbca46795ed5bc5c0c67852ffd9363b8e2f64447581759ede9893e1f2403",
+      "bytes": 135046,
+      "uso": "número contando por baixo; aparar com `duracao` no tamanho da contagem",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -21,
+      "nivel_db": -21.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        86.6,
+        13.3,
+        0.1
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "contador-cine-macio",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "counter/contador-cine-fecho.wav",
+      "categoria": "counter",
+      "nome": "contador-cine-fecho",
+      "duracao": 1.99,
+      "lufs_momentaneo_max": -22.3,
+      "pico_dbtp": -8.1,
+      "ganho_db": 0.0,
+      "sha256": "21247d09671c8fdf639d6cfc3d6250a37ffbdbc9917146b9cdc2b4d73abbc480",
+      "bytes": 191040,
+      "uso": "contagem que desacelera e para numa nota; âncora no valor final",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.976,
+      "alvo_db": -19,
+      "nivel_db": -19.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        83.2,
+        16.8,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "contador-cine-fecho",
+        "semente": 20261112
+      }
+    },
+    {
+      "arquivo": "typing/digitacao-cine-suave.wav",
+      "categoria": "typing",
+      "nome": "digitacao-cine-suave",
+      "duracao": 1.983,
+      "lufs_momentaneo_max": -23.5,
+      "pico_dbtp": -8.4,
+      "ganho_db": 0.0,
+      "sha256": "1eb1039e3f00aa3aed0b1dd8fed35326085829d2398f2e21eddb9089e9c7b3fb",
+      "bytes": 190406,
+      "uso": "busca ou prompt sendo digitado; aparar com `duracao`",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -21,
+      "nivel_db": -21.0,
+      "faixas_pct": [
+        0.0,
+        1.9,
+        55.5,
+        42.4,
+        0.2
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "digitacao-cine-suave",
+        "semente": 20261112,
+        "camadas": [
+          {
+            "pacote": "oga-keyboard-1",
+            "membro": "Human Typing/human_vel-003.wav"
+          }
+        ]
+      }
+    },
+    {
+      "arquivo": "notification/notificacao-cine-limpa.wav",
+      "categoria": "notification",
+      "nome": "notificacao-cine-limpa",
+      "duracao": 0.892,
+      "lufs_momentaneo_max": -17.2,
+      "pico_dbtp": -7.4,
+      "ganho_db": 0.0,
+      "sha256": "f28dae824e6c91d95187f7170e7fb886a4d601a183f63bdf86554eebb0356129",
+      "bytes": 85658,
+      "uso": "aviso, mensagem ou alerta que chega no print",
+      "produtos": [
+        "todos"
+      ],
+      "conjunto": "cine",
+      "ancora": 0.0,
+      "alvo_db": -15,
+      "nivel_db": -15.0,
+      "faixas_pct": [
+        0.0,
+        0.0,
+        97.5,
+        2.5,
+        0.0
+      ],
+      "origem": {
+        "sintese": "sfx_sintese.py",
+        "receita": "notificacao-cine-limpa",
+        "semente": 20261112
+      }
     }
   ]
 }

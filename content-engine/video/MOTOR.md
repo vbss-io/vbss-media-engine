@@ -1,6 +1,6 @@
 # Motor de vídeo local
 
-Tudo que vira vídeo passa por aqui. Quem automatiza (script, skill ou agente) nunca chama o motor direto: chama só os quatro scripts deste contrato e lê este arquivo para saber como escrever a composição. O render não manda nada para fora da máquina e só lê arquivos de dentro da pasta da composição. A única exceção em todo o repo é o texto da narração, que pode ir, antes do render, ao provedor de voz de nuvem escolhido; se o provedor treina com esse texto é coisa a conferir nos termos dele (e evitar plano gratuito que diga que usa os dados), não uma garantia daqui (ver `content-engine/audio/AUDIO.md`). O vídeo e os arquivos da composição nunca saem. Nenhuma peça é publicada sozinha: não existe postagem automática, e toda peça é revisada por uma pessoa antes de ir ao ar.
+Tudo que vira vídeo passa por aqui. Quem automatiza (script, skill ou agente) nunca chama o motor direto: chama só os scripts deste contrato e lê este arquivo para saber como escrever a composição. O render não manda nada para fora da máquina e só lê arquivos de dentro da pasta da composição. A única exceção em todo o repo é o texto da narração, que pode ir, antes do render, ao provedor de voz de nuvem escolhido; se o provedor treina com esse texto é coisa a conferir nos termos dele (e evitar plano gratuito que diga que usa os dados), não uma garantia daqui (ver `content-engine/audio/AUDIO.md`). O vídeo e os arquivos da composição nunca saem. Nenhuma peça é publicada sozinha: não existe postagem automática, e toda peça é revisada por uma pessoa antes de ir ao ar.
 
 ## Motor ativo
 
@@ -19,12 +19,14 @@ python content-engine/video/setup.py
 python content-engine/video/doctor.py
 python content-engine/video/render.py <pasta-da-composicao> <saida.mp4> [--fps 30] [--qualidade rascunho|padrao|final]
 python content-engine/video/frames.py <video.mp4> <pasta-saida> [--at 0,1.5,3] [--n 8] [--guias]
+python content-engine/video/preview.py <pasta-da-composicao> [--porta N] [--t SEG]
 ```
 
 - `setup.py`: instalação única. Instala os pacotes npm fixados do motor dentro de `content-engine/video/engines/<motor>/node_modules` e baixa o FFmpeg e o navegador fixo (`chrome-headless-shell`), ambos com conferência de SHA-256. Rede usada só aqui. Rodar de novo não baixa o que já está conferido.
 - `doctor.py`: confere tudo e imprime `PASS`/`FAIL` por item (Python, Node 22, FFmpeg, navegador em uso com caminho e versão, que só passa quando é o navegador fixo com SHA-256 conferido e vira `AVISO` quando cai no Chrome do sistema, versão fixada do motor, fontes e GSAP locais, isolamento do ambiente, auto-teste do bloqueio de rede, auto-teste do guarda de arquivos, casos de referência a arquivo fora da composição, casos de playlist e de tipo de arquivo recusados, `.gitignore`). Sai com código 1 se algo falhar.
 - `render.py`: recusa renderizar, antes de abrir o navegador, se houver `.env` perto da composição, URL externa nos arquivos dela, arquivo de tipo fora da lista permitida ou lista de reprodução (ver "Tipos de arquivo aceitos"), ou qualquer referência de arquivo que não seja um arquivo existente dentro da pasta da composição (checagem estática em `content-engine/common/midias.py`, detalhada em "Garantias"), além de `<audio>` sem `id` e atributo `crossorigin`; depois renderiza num ambiente isolado, com o guarda de arquivos ligado, e salva o `.mp4`. Se o guarda bloquear qualquer leitura de arquivo fora da composição durante o render, o `render.py` aborta, apaga o vídeo parcial e lista o que foi bloqueado. Imprime resolução, duração, fps, codec, quantas faixas de áudio saíram, se houve tentativa de rede bloqueada e se houve acesso a arquivo bloqueado.
 - `frames.py`: extrai PNGs do vídeo com o FFmpeg local para revisão. Sem `--at`, espalha `--n` frames do começo ao fim. `--guias` salva também uma cópia com as faixas de interface do Reels pintadas de vermelho (topo, rodapé e laterais): nada importante pode ficar nelas.
+- `preview.py`: prévia no navegador, para acertar tempo e posição antes de gastar um render (ver "Pré-visualização"). Não substitui o render.
 
 O motor não decide onde as peças ficam: a pasta da composição e o caminho do `.mp4` são argumentos. Exemplo pronto para renderizar: `examples/hello-world/`.
 
@@ -40,19 +42,54 @@ Resumo; o detalhe está em `engines/hyperframes/guide/`.
 - **Bibliotecas e fontes vêm de `_motor/`**, que o `render.py` monta na hora do render (não copie para a pasta):
   - `_motor/gsap.min.js` e plugins `_motor/CustomEase.min.js`, `SplitText.min.js`, `TextPlugin.min.js`, `ScrambleTextPlugin.min.js`, `DrawSVGPlugin.min.js`, `MorphSVGPlugin.min.js`, `MotionPathPlugin.min.js`, `Flip.min.js`.
   - Fontes (woff2, subset latino), copiadas de `content-engine/fonts/` (a mesma pasta do motor de imagem): `_motor/fonts/press-start-2p-400.woff2`, `_motor/fonts/inter-{400,500,600,700,800,900}.woff2`, `_motor/fonts/montserrat-{600,800}.woff2` e as variantes `-ext` (`press-start-2p-ext-400`, `inter-ext-<peso>`, `montserrat-ext-<peso>`).
+  - Kit de motion (opcional): `_motor/kit/motion.js` (`<script src="_motor/kit/motion.js"></script>` depois do GSAP), cópia de `content-engine/video/kit/`. Expõe `window.MotionKit = { criar, palavras, EASE, DUR }`; `const K = MotionKit.criar(tl)` devolve as funções que agendam tweens na timeline (`bate`, `sobe`, `sai`, `camera`, `cameraVolta`, `foco`, `marca`, `toque`, `digita`, `respira`, `empurra`, `cortina`, `legenda`); `digita` exige o `_motor/TextPlugin.min.js` registrado. Composição antiga que traz o próprio `kit/motion.js` continua funcionando.
   - Toda família usada no CSS precisa de `@font-face` apontando para esses arquivos; fallback só genérico (`sans-serif`, `monospace`). Família sem `@font-face` faz o motor tentar baixar a fonte, e o bloqueio de rede corta.
-- **Kit de motion (opcional)**: `content-engine/video/kit/motion.js` traz curvas (`EASE`), durações (`DUR`) e movimentos prontos sobre a timeline: `MotionKit.criar(tl)` devolve `bate`, `sobe`, `sai`, `camera`, `cameraVolta`, `foco`, `marca`, `toque`, `digita`, `respira`, `empurra` e `cortina`, além de `palavras` (fatia um texto em palavras animáveis). Como todo arquivo usado, ele precisa ser copiado para dentro da pasta da composição (ex.: `kit/motion.js`) e carregado depois do `_motor/gsap.min.js`; `digita` exige o `_motor/TextPlugin.min.js` registrado.
 - **Nenhuma URL `http://` ou `https://`** em HTML, CSS, JS, JSON ou SVG da composição (exceto `localhost`/`127.0.0.1` e os namespaces XML do tipo `xmlns="http://www.w3.org/2000/svg"`, que não são baixados). O `render.py` recusa.
 - Sem `.env` na pasta da composição nem nas 5 pastas acima.
 - Só tipos da lista fechada em "Tipos de arquivo aceitos" (sem playlist `.m3u8`, sem lista `ffconcat`).
 - Lint do motor roda em modo estrito: erro de lint para o render. Avisos `timeline_track_too_dense`, `nested_structure_needs_subcomposition` e `duplicate_media_discovery_risk` (mesma imagem usada em duas cenas) são esperados no formato de arquivo único e não afetam o vídeo.
+- **Abrir o `index.html` direto no navegador não funciona**: `_motor/` só existe durante o render e na prévia, e nada dá o play na timeline. Para ver a peça, use o `preview.py` ou o `render.py`.
+
+## Legenda sincronizada com a fala
+
+Os tempos por palavra vêm de `python content-engine/audio/legenda.py <pasta-da-composicao>` (`content-engine/audio/AUDIO.md`, seção "Legenda sincronizada"), que grava `legenda.json` e `legenda.js` (`window.__legenda = [...]`) na composição. O `.js` entra por `<script src>` (tipo aceito pela lista fechada); não use `fetch` do JSON.
+
+```html
+<script src="_motor/gsap.min.js"></script>
+<script src="_motor/kit/motion.js"></script>
+<script src="legenda.js"></script>
+...
+<section id="s-legenda" class="clip" data-start="0" data-duration="28.3" data-track-index="4">
+  <div id="legenda"></div>
+</section>
+...
+<script>
+  const K = MotionKit.criar(tl);
+  K.legenda("#legenda", window.__legenda);
+</script>
+```
+
+- `K.legenda(sel, blocos, opcoes)`: cria um elemento por bloco dentro de `sel` e agenda tudo na timeline (nada de timer nem animação CSS). O bloco entra no seu `inicio` (0,14 s, sem overshoot) e sai no `fim` ou no corte para o próximo; a palavra falada no momento ganha a cor ativa e escala 1,08; palavra com `destaque: true` fica na cor de acento. Aceita a lista de blocos ou o objeto do `legenda.json`. Devolve os elementos criados.
+- Padrão de fábrica: Inter 900 (o kit injeta o `@font-face` de `_motor/fonts/inter-900.woff2`), 68 px, contorno escuro de 10 px mais sombra, centralizada, faixa de 800 px de largura (cabe entre as margens de 5,5% e 13%), base em 24% da altura (acima da faixa de 22% do rodapé do Reels), no máximo 2 linhas (bloco que passar disso encolhe de 4 em 4 px até 44 px).
+- Opções (cada uma também é variável CSS no container): `tamanho` (`--k-leg-tamanho`), `largura` (`--k-leg-largura`), `base` (`--k-leg-base`, distância do rodapé), `cor` (`--k-leg-cor`), `ativa` (`--k-leg-ativa`), `acento` (`--k-leg-acento`), `contorno` (`--k-leg-contorno`), `espessura` (`--k-leg-espessura`), `fonte` (`--k-leg-fonte`), `peso` (`--k-leg-peso`). Só por opção: `escala` (1.08), `entrada` (0.14), `antecipa` (0.05 s antes da fala), `folga` (0.12 s depois da última palavra), `emenda` (0.3 s: intervalo até o próximo bloco abaixo do qual a troca é corte seco), `linhas` (2), `tamanhoMinimo` (44).
+- A seção da legenda fica acima das outras (`z-index` maior) e dura o vídeo todo. Reserve a faixa entre 68% e 76% da altura: elemento da peça ali fica atrás da legenda.
+- Conferir no `preview.py` e, depois do render, com `frames.py --guias` em instantes de fala.
+
+## Pré-visualização
+
+`python content-engine/video/preview.py <pasta-da-composicao> [--porta N] [--t SEG]` sobe um servidor só em `127.0.0.1` (porta 4790 ou a próxima livre) e imprime o endereço; Ctrl+C encerra.
+
+- Serve a composição com `_motor/` resolvido em memória (GSAP, fontes e kit vêm da instalação do motor): **nada é gravado na pasta da composição**. Caminhos com raiz (`/_motor/...`, `/assets/...`) também respondem.
+- Injeta, só na resposta do `index.html`, uma barra com tocar/pausar, linha do tempo, tempo atual e velocidade (0,25x a 2x). Ela dirige `window.__timelines["<id>"]`, mostra e esconde as cenas por `data-start`/`data-duration`, toca os `<audio>` em sincronia aproximada (`data-start`, `data-duration`, `data-volume`) e escala o palco para caber na janela. Espaço toca e pausa; setas andam um quadro (com Shift, 1 s). `--t 12.5` ou `?t=12.5` abre naquele segundo.
+- Só entrega arquivo de tipo aceito de dentro da pasta (e `_motor/`); recusa `Host` que não seja `127.0.0.1` ou `localhost`.
+- **É prévia, não prova.** Roda no navegador do sistema, sem o isolamento, o lint e o relógio quadro a quadro do motor; áudio e tempo são aproximados. A prova final continua sendo `render.py` seguido de `frames.py`.
 
 ## Áudio na composição
 
-Efeitos e voz vêm da camada de áudio (`content-engine/audio/AUDIO.md`): biblioteca de efeitos CC0 em `content-engine/audio/sfx/` e narração gerada por `content-engine/audio/voz.py` antes do render. Aqui eles só entram como arquivos locais:
+Efeitos, música e voz vêm da camada de áudio (`content-engine/audio/AUDIO.md`): biblioteca de efeitos em `content-engine/audio/sfx/`, música de fundo CC0 em `content-engine/audio/music/` e narração gerada por `content-engine/audio/voz.py` antes do render. Aqui eles só entram como arquivos locais:
 
 - Um `<audio>` por som, **na raiz** (filho direto do `#root`), para sobreviver aos cortes de cena: `<audio id="trilha-01" src="assets/sfx/pop-gota.wav" data-start="0.75" data-duration="0.19" data-track-index="11" data-volume="0.8"></audio>`.
-- `id` obrigatório (sem `id` o motor não mistura e o vídeo sai mudo); nunca `crossorigin`; `data-track-index` alto (voz 10, efeitos 11 em diante), sem dois `<audio>` sobrepostos na mesma trilha; `data-volume` é ganho linear (1 = nível do arquivo).
+- `id` obrigatório (sem `id` o motor não mistura e o vídeo sai mudo); nunca `crossorigin`; `data-track-index` alto (música 9, voz 10, efeitos 11 em diante), sem dois `<audio>` sobrepostos na mesma trilha; `data-volume` é ganho linear (1 = nível do arquivo).
 - O arquivo fica dentro da pasta da composição (`assets/sfx/`, `assets/voz/`); WAV 48 kHz é o formato da camada de áudio. Nada de URL: o `render.py` recusa endereço de internet e arquivo fora da pasta.
 - Não escreva os `<audio>` à mão: `python content-engine/audio/trilha.py <pasta-da-composicao> <trilha.json>` copia os efeitos e grava os elementos (substitui os anteriores marcados com `data-trilha="1"`).
 - Nunca chamar `play()`, `pause()` ou mexer em `currentTime`: o motor controla a mídia. O mix é feito pelo FFmpeg local (soma linear das faixas) e sai em AAC 48 kHz estéreo.
@@ -136,10 +173,10 @@ powershell -NoProfile -ExecutionPolicy Bypass -File content-engine\video\prova-l
 
 ## Como trocar de motor
 
-Trocar de motor não muda o contrato dos quatro scripts:
+Trocar de motor não muda o contrato dos scripts:
 
 1. Criar `content-engine/video/engines/<novo>/` com `package.json`/lockfile (ou o equivalente), `adapter.py` e `guide/README.md`.
-2. O `adapter.py` expõe o mesmo contrato do atual: `NOME`, `VERSAO_CLI`, `comando_instalacao(node, npm_cli)`, `versao_instalada()`, `checar()`, `preparar(stage_dir)`, `ambiente(chrome, chrome_versao, ffmpeg, ffprobe, sandbox_dir, guard_log)`, `comando_render(node, stage_dir, saida, fps, qualidade)`, `comando_selftest(node)` e `comando_selftest_arquivos(node)`. O motor precisa respeitar a lista de pastas permitidas que o `render.py` passa em `VBSS_FILE_GUARD_RAIZES` (log em `VBSS_FILE_GUARD_LOG`) e recusar leitura fora dela, como faz o `file-guard.cjs`. Se o motor não for Node, o adaptador adapta (o `render.py` só executa o comando que ele devolve).
+2. O `adapter.py` expõe o mesmo contrato do atual: `NOME`, `VERSAO_CLI`, `comando_instalacao(node, npm_cli)`, `versao_instalada()`, `checar()`, `recursos()` (mapa do que entra em `_motor/`, usado pelo `preparar` e pelo `preview.py`), `preparar(stage_dir)`, `ambiente(chrome, chrome_versao, ffmpeg, ffprobe, sandbox_dir, guard_log)`, `comando_render(node, stage_dir, saida, fps, qualidade)`, `comando_selftest(node)` e `comando_selftest_arquivos(node)`. O motor precisa respeitar a lista de pastas permitidas que o `render.py` passa em `VBSS_FILE_GUARD_RAIZES` (log em `VBSS_FILE_GUARD_LOG`) e recusar leitura fora dela, como faz o `file-guard.cjs`. Se o motor não for Node, o adaptador adapta (o `render.py` só executa o comando que ele devolve).
 3. Trocar `motor.json` para `{"ativo": "<novo>"}`.
 4. Reescrever a seção "Como escrever uma composição" deste arquivo e o `guide/` do novo motor.
 5. Rodar `setup.py`, `doctor.py`, e um render real com `prova-local.ps1` (seção "Como rodar a prova").
@@ -155,8 +192,10 @@ content-engine/video/
   doctor.py           diagnóstico PASS/FAIL
   render.py           render com checagens e isolamento
   frames.py           frames PNG para revisão
+  preview.py          prévia no navegador (servidor local, _motor/ em memória)
+  preview_barra.html  barra de controle que a prévia injeta no index.html
   prova-local.ps1     render monitorado (gera a prova)
-  kit/motion.js       kit de motion opcional (copiar para dentro da composição)
+  kit/motion.js       kit de motion (montado em _motor/kit/ pelo render e pela prévia)
   _comum.py           funções do vídeo (caminhos, FFmpeg, motor ativo, ffprobe) sobre content-engine/common/
   engines/hyperframes/
     package.json, package-lock.json, .npmrc

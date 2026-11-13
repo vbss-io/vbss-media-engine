@@ -30,6 +30,8 @@ VENDOR = {
     "Flip.min.js": "gsap/dist/Flip.min.js",
 }
 PASTA_VENDOR = "_motor"
+KIT_DIR = DIR.parents[1] / "kit"
+KIT_OBRIGATORIO = ("motion.js",)
 
 
 def comando_instalacao(node, npm_cli):
@@ -60,9 +62,21 @@ def checar():
     problemas = fontes_comuns.conferir()
     itens.append(("fontes locais compartilhadas (_motor/fonts/)", not problemas,
                   f"{len(fontes_comuns.arquivos())} arquivos em {fontes_comuns.FONTES_DIR}" if not problemas else "; ".join(problemas)))
+    kit_faltando = [nome for nome in KIT_OBRIGATORIO if not (KIT_DIR / nome).is_file()]
+    itens.append(("kit de motion (_motor/kit/)", not kit_faltando, str(KIT_DIR) if not kit_faltando else f"faltando: {', '.join(kit_faltando)}"))
     itens.append(("net-guard presente", NET_GUARD.is_file(), str(NET_GUARD)))
     itens.append(("file-guard presente", FILE_GUARD.is_file(), str(FILE_GUARD)))
     itens.append(("guia de autoria presente", GUIA.is_file(), str(GUIA)))
+    return itens
+
+
+def recursos():
+    itens = {alvo: NODE_MODULES / origem for alvo, origem in VENDOR.items()}
+    for nome, origem in fontes_comuns.arquivos().items():
+        itens[f"fonts/{nome}"] = origem
+    if KIT_DIR.is_dir():
+        for arq in sorted(KIT_DIR.glob("*.js")):
+            itens[f"kit/{arq.name}"] = arq
     return itens
 
 
@@ -70,12 +84,8 @@ def preparar(stage_dir):
     destino = Path(stage_dir) / PASTA_VENDOR
     if destino.exists():
         shutil.rmtree(destino)
-    for alvo, origem in VENDOR.items():
+    for alvo, origem in recursos().items():
         dst = destino / alvo
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(NODE_MODULES / origem, dst)
-    for nome, origem in fontes_comuns.arquivos().items():
-        dst = destino / "fonts" / nome
         dst.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(origem, dst)
     return destino

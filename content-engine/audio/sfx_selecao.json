@@ -475,6 +475,471 @@
       "produtos": [
         "todos"
       ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-curto",
+      "conjunto": "cine",
+      "sintese": "whoosh-cine-curto",
+      "alvo_db": -15,
+      "uso": "elemento que entra rápido (texto, card, ícone); âncora no instante em que ele assenta",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-medio",
+      "conjunto": "cine",
+      "sintese": "whoosh-cine-medio",
+      "alvo_db": -15,
+      "uso": "troca de batida ou painel que desliza; o padrão para entrada de cena",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-longo",
+      "conjunto": "cine",
+      "sintese": "whoosh-cine-longo",
+      "alvo_db": -15,
+      "uso": "movimento longo: zoom, câmera ou cena que atravessa a tela",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-grave",
+      "conjunto": "cine",
+      "sintese": "whoosh-cine-grave",
+      "alvo_db": -14,
+      "uso": "objeto grande ou título pesado passando; aparece inteiro em fone ou caixa",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-agudo",
+      "conjunto": "cine",
+      "sintese": "whoosh-cine-agudo",
+      "alvo_db": -17,
+      "uso": "detalhe leve e veloz (ícone, linha, cursor); cabe por cima da voz em volume baixo",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-cauda",
+      "conjunto": "cine",
+      "sintese": "whoosh-cine-cauda",
+      "alvo_db": -15,
+      "uso": "último movimento antes de uma pausa: a sala segura o silêncio depois",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "whoosh",
+      "nome": "whoosh-cine-corpo",
+      "conjunto": "cine",
+      "sintese": "whoosh-cine-corpo",
+      "alvo_db": -15,
+      "camadas": [
+        {
+          "pacote": "oga-wind-hit-time-morph",
+          "membro": "qubodup-megaswosh1.wav"
+        }
+      ],
+      "uso": "passada com peso de objeto real: print ou produto que cruza a tela",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "transition",
+      "nome": "swish-cine-leve",
+      "conjunto": "cine",
+      "sintese": "swish-cine-leve",
+      "alvo_db": -18,
+      "uso": "corte leve entre dois planos parecidos, troca de aba, item de lista",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "transition",
+      "nome": "swish-cine-papel",
+      "conjunto": "cine",
+      "sintese": "swish-cine-papel",
+      "alvo_db": -18,
+      "camadas": [
+        {
+          "pacote": "kenney-casino-audio",
+          "membro": "Audio/card-slide-4.ogg"
+        }
+      ],
+      "uso": "card, foto ou página que desliza; som de papel real, discreto",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "transition",
+      "nome": "transicao-cine",
+      "conjunto": "cine",
+      "sintese": "transicao-cine",
+      "alvo_db": -13,
+      "uso": "corte principal entre batidas, pronto: sobe, passa e assenta no corte",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "transition",
+      "nome": "transicao-cine-forte",
+      "conjunto": "cine",
+      "sintese": "transicao-cine-forte",
+      "alvo_db": -11.5,
+      "uso": "virada do Reel (do gancho para a revelação): reverso, riser, impacto e brilho já alinhados",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "transition",
+      "nome": "transicao-cine-suave",
+      "conjunto": "cine",
+      "sintese": "transicao-cine-suave",
+      "alvo_db": -15,
+      "uso": "corte calmo: passada com um toque grave no ponto, sem subgrave",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impact",
+      "nome": "impacto-cine-macio",
+      "conjunto": "cine",
+      "sintese": "impacto-cine-macio",
+      "alvo_db": -15,
+      "uso": "elemento que assenta, título no frame 0, ponto final de um whoosh",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impact",
+      "nome": "impacto-cine-medio",
+      "conjunto": "cine",
+      "sintese": "impacto-cine-medio",
+      "alvo_db": -12.5,
+      "uso": "revelação de número ou título forte; o padrão para o corte principal",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impact",
+      "nome": "impacto-cine-forte",
+      "conjunto": "cine",
+      "sintese": "impacto-cine-forte",
+      "alvo_db": -11,
+      "camadas": [
+        {
+          "pacote": "oga-muffled-distant-explosion",
+          "membro": "NenadSimic - Muffled Distant Explosion.wav"
+        }
+      ],
+      "uso": "um por Reel: o momento de maior peso (resultado, antes e depois)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impact",
+      "nome": "impacto-cine-sub",
+      "conjunto": "cine",
+      "sintese": "impacto-cine-sub",
+      "alvo_db": -13,
+      "uso": "peso por baixo de outro efeito; sozinho quase some no alto-falante do celular",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "impact",
+      "nome": "braam-cine-leve",
+      "conjunto": "cine",
+      "sintese": "braam-cine-leve",
+      "alvo_db": -14,
+      "uso": "abertura ou virada dramática, tom de trailer; no máximo um por peça",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "riser",
+      "nome": "riser-cine-meio",
+      "conjunto": "cine",
+      "sintese": "riser-cine-meio",
+      "alvo_db": -14,
+      "uso": "meio segundo de tensão antes do corte; termina no corte",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "riser",
+      "nome": "riser-cine-1s",
+      "conjunto": "cine",
+      "sintese": "riser-cine-1s",
+      "alvo_db": -14,
+      "uso": "preparar a revelação (número, resultado) por um segundo",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "riser",
+      "nome": "riser-cine-2s",
+      "conjunto": "cine",
+      "sintese": "riser-cine-2s",
+      "alvo_db": -14,
+      "uso": "espera longa antes do ponto alto da peça",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "riser",
+      "nome": "reverso-cine-curto",
+      "conjunto": "cine",
+      "sintese": "reverso-cine-curto",
+      "alvo_db": -15,
+      "uso": "puxada rápida para dentro do corte; antes de impacto ou pop",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "riser",
+      "nome": "reverso-cine-longo",
+      "conjunto": "cine",
+      "sintese": "reverso-cine-longo",
+      "alvo_db": -15,
+      "uso": "entrada do logo ou do fecho: cresce e para no ponto",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "tick",
+      "nome": "tique-cine-macio",
+      "conjunto": "cine",
+      "sintese": "tique-cine-macio",
+      "alvo_db": -22,
+      "uso": "passo de contagem ou item de lista que marca, um por vez (0,08 s ou mais entre eles)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "tick",
+      "nome": "tique-cine-ficha",
+      "conjunto": "cine",
+      "sintese": "tique-cine-ficha",
+      "alvo_db": -22,
+      "camadas": [
+        {
+          "pacote": "kenney-casino-audio",
+          "membro": "Audio/chip-lay-1.ogg"
+        }
+      ],
+      "uso": "tique com textura real: seleção, alternância, passo de carrossel",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "click",
+      "nome": "clique-cine-abafado",
+      "conjunto": "cine",
+      "sintese": "clique-cine-abafado",
+      "alvo_db": -19,
+      "uso": "botão ou campo tocado no print; não compete com a voz",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "click",
+      "nome": "clique-cine-toque",
+      "conjunto": "cine",
+      "sintese": "clique-cine-toque",
+      "alvo_db": -19,
+      "camadas": [
+        {
+          "pacote": "kenney-casino-audio",
+          "membro": "Audio/chip-lay-3.ogg"
+        }
+      ],
+      "uso": "dedo tocando a tela ou um card; mais corpo que o clique",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "pop",
+      "nome": "pop-cine-redondo",
+      "conjunto": "cine",
+      "sintese": "pop-cine-redondo",
+      "alvo_db": -15,
+      "uso": "selo, etiqueta, emoji ou balão que salta",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "pop",
+      "nome": "pop-cine-grave",
+      "conjunto": "cine",
+      "sintese": "pop-cine-grave",
+      "alvo_db": -15,
+      "uso": "elemento maior que salta (card, moldura, foto)",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "shine",
+      "nome": "brilho-cine-curto",
+      "conjunto": "cine",
+      "sintese": "brilho-cine-curto",
+      "alvo_db": -18,
+      "uso": "destaque que acende: preço, selo, palavra-chave revelada",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "shine",
+      "nome": "brilho-cine-longo",
+      "conjunto": "cine",
+      "sintese": "brilho-cine-longo",
+      "alvo_db": -18,
+      "uso": "revelação com respiro: resultado final, logo, antes e depois",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "shine",
+      "nome": "brilho-cine-sobe",
+      "conjunto": "cine",
+      "sintese": "brilho-cine-sobe",
+      "alvo_db": -18,
+      "uso": "número ou imagem que se forma aos poucos; a âncora é a última nota",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "success",
+      "nome": "sucesso-cine-discreto",
+      "conjunto": "cine",
+      "sintese": "sucesso-cine-discreto",
+      "alvo_db": -15,
+      "uso": "tarefa concluída, check, resposta do produto, sem cara de jogo",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "success",
+      "nome": "sucesso-cine-acorde",
+      "conjunto": "cine",
+      "sintese": "sucesso-cine-acorde",
+      "alvo_db": -15,
+      "uso": "fecho da peça com logo ou chamada, depois da última fala",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "counter",
+      "nome": "contador-cine-macio",
+      "conjunto": "cine",
+      "sintese": "contador-cine-macio",
+      "alvo_db": -21,
+      "uso": "número contando por baixo; aparar com `duracao` no tamanho da contagem",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "counter",
+      "nome": "contador-cine-fecho",
+      "conjunto": "cine",
+      "sintese": "contador-cine-fecho",
+      "alvo_db": -19,
+      "uso": "contagem que desacelera e para numa nota; âncora no valor final",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "typing",
+      "nome": "digitacao-cine-suave",
+      "conjunto": "cine",
+      "sintese": "digitacao-cine-suave",
+      "alvo_db": -21,
+      "camadas": [
+        {
+          "pacote": "oga-keyboard-1",
+          "membro": "Human Typing/human_vel-003.wav"
+        }
+      ],
+      "uso": "busca ou prompt sendo digitado; aparar com `duracao`",
+      "produtos": [
+        "todos"
+      ]
+    },
+    {
+      "categoria": "notification",
+      "nome": "notificacao-cine-limpa",
+      "conjunto": "cine",
+      "sintese": "notificacao-cine-limpa",
+      "alvo_db": -15,
+      "uso": "aviso, mensagem ou alerta que chega no print",
+      "produtos": [
+        "todos"
+      ]
+    }
+  ],
+  "combinacoes": [
+    {
+      "nome": "Entrada de cena",
+      "receita": "`whoosh/whoosh-cine-medio` com a âncora no frame em que o elemento assenta e `impact/impacto-cine-macio` no mesmo frame (volume 0.7). Elemento pequeno: `whoosh/whoosh-cine-curto` sozinho. Título pesado: troque o impacto por `impact/impacto-cine-medio`."
+    },
+    {
+      "nome": "Corte",
+      "receita": "`transition/transicao-cine` com a âncora no corte (deixa em `corte - 0,75`). Montado à mão: `riser/riser-cine-meio` terminando no corte, `whoosh/whoosh-cine-curto` e `impact/impacto-cine-macio` no corte. Corte leve: `transition/swish-cine-leve` ou `transition/transicao-cine-suave`."
+    },
+    {
+      "nome": "Revelar número",
+      "receita": "`counter/contador-cine-macio` enquanto conta (volume 0.5, aparado com `duracao`), `riser/riser-cine-1s` terminando na parada, e no valor final `impact/impacto-cine-medio` com `shine/brilho-cine-curto`. Versão curta: `counter/contador-cine-fecho` com a âncora no valor final."
+    },
+    {
+      "nome": "Toque de UI",
+      "receita": "`click/clique-cine-abafado` no aperto, `pop/pop-cine-redondo` no elemento que aparece e `success/sucesso-cine-discreto` na resposta do produto. Lista que marca: `tick/tique-cine-macio` em cada item."
+    },
+    {
+      "nome": "Fecho",
+      "receita": "`riser/reverso-cine-longo` terminando na entrada do logo, `impact/impacto-cine-macio` e `shine/brilho-cine-longo` no logo; ou só `success/sucesso-cine-acorde` depois da última fala (nunca por baixo dela)."
     }
   ]
 }

@@ -434,8 +434,10 @@ def sessao_api():
         subprocess.run(["taskkill", "/PID", str(proc.pid), "/T", "/F"], capture_output=True)
 
 
-def gerar(texto, voz, destino, seed=SEED, instrucoes="", velocidade=1.0):
+def gerar(texto, voz, destino, seed=SEED, instrucoes="", velocidade=1.0, passos=None):
     corpo = {"model": "omnivoice", "input": texto, "voice": voz, "language": "pt", "response_format": "wav", "seed": seed}
+    if passos:
+        corpo["num_step"] = passos
     if instrucoes:
         corpo["instructions"] = instrucoes
     if abs(velocidade - 1.0) > 1e-6:

@@ -1,0 +1,303 @@
+{
+  "formato": {
+    "extensao": "m4a",
+    "codec": "aac",
+    "taxa_bits": "160k",
+    "taxa": 48000,
+    "canais": 2,
+    "alvo_lufs_integrado": -16.0,
+    "teto_pico_dbtp": -1.5
+  },
+  "itens": [
+    {
+      "id": "chiptune-selecao",
+      "arquivo": "chiptune-selecao.m4a",
+      "sha256": "5475546f53d6d25f857521c4f6c243009772bd8e98a0c34ed965184ae257b72c",
+      "bytes": 453249,
+      "duracao": 21.333,
+      "bpm": 90.0,
+      "laco": true,
+      "clima": "chiptune discreta",
+      "uso": "fundo 8-bit calmo para explicação ou passo a passo com tema de jogo; laço curto e sem emenda",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -17.0,
+      "pico_dbtp": -1.8,
+      "ganho_db": -3.6,
+      "autor": "Juhani Junkala (SubspaceAudio)",
+      "pagina": "https://opengameart.org/content/4-chiptunes-adventure",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-chiptune-adventures",
+        "nome": "4 Chiptunes (Adventure)",
+        "url": "https://opengameart.org/sites/default/files/Juhani%20Junkala%20%5BChiptune%20Adventures%5D%20OGG.zip",
+        "sha256": "9c9547e184a6daef0cddf9eff5b8c42b357a9a0d2c8f2b5a01aa95154b85edef",
+        "membro": "Juhani Junkala [Chiptune Adventures] 4. Stage Select.ogg"
+      }
+    },
+    {
+      "id": "synthwave-noturna",
+      "arquivo": "synthwave-noturna.m4a",
+      "sha256": "78f5f6c3993ad22c2bf3e52e55fe5df8f0cea57d9153e5edfbb8068ebc06b9c2",
+      "bytes": 1109961,
+      "duracao": 53.832,
+      "bpm": 107.0,
+      "laco": true,
+      "clima": "synthwave",
+      "uso": "fundo retrô com batida constante; bom para vitrine de coleção e antes/depois",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -16.0,
+      "pico_dbtp": -1.9,
+      "ganho_db": -2.4,
+      "autor": "congusbongus",
+      "pagina": "https://opengameart.org/content/midnight-drive",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-midnight-drive",
+        "nome": "Midnight Drive",
+        "url": "https://opengameart.org/sites/default/files/midnight_drive.ogg",
+        "sha256": "0cec2b4468bd7e6ebc9ad0de21cdba7ada6260680d1c9e05bc8f5c733cf3e23f",
+        "corte": {
+          "inicio": 17.97,
+          "fim": 71.802
+        }
+      }
+    },
+    {
+      "id": "synthwave-cidade",
+      "arquivo": "synthwave-cidade.m4a",
+      "sha256": "01ceca35827ba3dea50d67e477b68eaa14893990493419eab241a0d59b50e198",
+      "bytes": 1197165,
+      "duracao": 58.435,
+      "bpm": 115.0,
+      "laco": true,
+      "clima": "synthwave",
+      "uso": "fundo de sintetizador com cara de cidade futurista; serve para produto de tecnologia e para jogo retrô",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -16.1,
+      "pico_dbtp": -4.2,
+      "ganho_db": -3.7,
+      "autor": "MintoDog",
+      "pagina": "https://opengameart.org/content/space-city",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-space-city",
+        "nome": "Space City",
+        "url": "https://opengameart.org/sites/default/files/space_city_bpm115_0.ogg",
+        "sha256": "6ecb8408cd84b1031425e8f1b941d7a89ab8a850cea2833ac2e005f76544d7a7",
+        "corte": {
+          "inicio": 0.0,
+          "fim": 58.435
+        }
+      }
+    },
+    {
+      "id": "lofi-tranquila",
+      "arquivo": "lofi-tranquila.m4a",
+      "sha256": "fb516a0694f49d96c0aeb1829a231ea18ef16d99d8ba49ac1a1e0db67ec98ac8",
+      "bytes": 1001217,
+      "duracao": 48.608,
+      "bpm": 79.0,
+      "laco": true,
+      "clima": "lo-fi",
+      "uso": "fundo lento e macio para narração longa, bastidor e tutorial",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -17.7,
+      "pico_dbtp": -1.5,
+      "ganho_db": -1.7,
+      "autor": "omfgdude (edição em loop de qubodup)",
+      "pagina": "https://opengameart.org/content/chill-lofi-inspired-loop-edit",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-chill-lofi-loop",
+        "nome": "Chill lofi inspired [loop edit]",
+        "url": "https://opengameart.org/sites/default/files/chilllofir-loop.ogg",
+        "sha256": "ccaa02bb60310146f1fa3b1c70be0a5a57f0674b9c4944a22b85b0c03e932cdb",
+        "corte": {
+          "inicio": 0.0,
+          "fim": 48.608
+        }
+      }
+    },
+    {
+      "id": "lofi-batida",
+      "arquivo": "lofi-batida.m4a",
+      "sha256": "1b964a9cd5477e60a3ef3797e01c0dac6bdd1f0dcc25ba0a11101103d2e7af95",
+      "bytes": 1123405,
+      "duracao": 56.0,
+      "bpm": 120.0,
+      "laco": true,
+      "clima": "lo-fi",
+      "uso": "fundo lo-fi com batida de hip hop, um pouco mais presente; passo a passo e lista",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -17.3,
+      "pico_dbtp": -1.5,
+      "ganho_db": 3.5,
+      "autor": "omfgdude",
+      "pagina": "https://opengameart.org/content/lofi-hip-hop-loop",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-lofi-hip-hop-loop",
+        "nome": "Lofi Hip Hop Loop",
+        "url": "https://opengameart.org/sites/default/files/LofiLoop_2.ogg",
+        "sha256": "e57ba821d4db8d66783ca984a2778ec68d1439e862239ec36407344ef3bd1eab",
+        "corte": {
+          "inicio": 0.0,
+          "fim": 56.0
+        }
+      }
+    },
+    {
+      "id": "eletronica-otimista",
+      "arquivo": "eletronica-otimista.m4a",
+      "sha256": "9c54e70d94aecbf4b802a866e1d5aeccab1317bc93dcc8ae8c1f6364e6ab9688",
+      "bytes": 1217987,
+      "duracao": 59.077,
+      "bpm": 130.0,
+      "laco": true,
+      "clima": "eletrônico leve",
+      "uso": "fundo eletrônico claro e positivo para novidade de produto e demonstração de recurso",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -16.0,
+      "pico_dbtp": -2.0,
+      "ganho_db": -0.4,
+      "autor": "Pro Sensory",
+      "pagina": "https://opengameart.org/content/optomistic-day-mastered-loopable",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-optomistic-day",
+        "nome": "Optomistic Day Mastered (Loopable)",
+        "url": "https://opengameart.org/sites/default/files/optomistic_day_masteredloopable_2.mp3",
+        "sha256": "69d9682e39a9f5f13e7dfccf0c981d292f6430590f6c7d7fac09048b84680939",
+        "corte": {
+          "inicio": 0.0,
+          "fim": 59.077
+        }
+      }
+    },
+    {
+      "id": "ambiente-contemplacao",
+      "arquivo": "ambiente-contemplacao.m4a",
+      "sha256": "4e25f3199f52e8d14a0cf64d22db93d375f67407696d68a0554ad074679c0de4",
+      "bytes": 1219774,
+      "duracao": 60.0,
+      "bpm": null,
+      "laco": false,
+      "clima": "ambiente calmo",
+      "uso": "cama de ambiente sem melodia nem batida marcada; para peça em que só a voz importa",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -16.9,
+      "pico_dbtp": -1.5,
+      "ganho_db": 10.2,
+      "autor": "Joth",
+      "pagina": "https://opengameart.org/content/contemplation-0",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-contemplation",
+        "nome": "Contemplation",
+        "url": "https://opengameart.org/sites/default/files/Contemplation.mp3",
+        "sha256": "283962d3a975c93613c46cda30c9f0816176ae3e2899f961591a49e2d41b4bf3",
+        "corte": {
+          "inicio": 0.2,
+          "fim": 60.2
+        }
+      }
+    },
+    {
+      "id": "ambiente-calma",
+      "arquivo": "ambiente-calma.m4a",
+      "sha256": "94fe81b00e6d86d039fc4e39d3e356fd98a63a60945ebc7b97225c78da92c5ea",
+      "bytes": 394227,
+      "duracao": 19.2,
+      "bpm": 100.0,
+      "laco": true,
+      "clima": "ambiente calmo",
+      "uso": "laço curto e relaxado para peça tranquila de até uns 40 s (repete a cada 19 s)",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -16.1,
+      "pico_dbtp": -4.7,
+      "ganho_db": -6.4,
+      "autor": "wipics",
+      "pagina": "https://opengameart.org/content/calm-loop",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-calm-loop",
+        "nome": "Calm Loop",
+        "url": "https://opengameart.org/sites/default/files/Relaxing_0.mp3",
+        "sha256": "1d7e386c079d4add6b3b1592054846e4977035f26844466e409467c6dc7bdbde",
+        "corte": {
+          "inicio": 0.01,
+          "fim": 19.21
+        }
+      }
+    },
+    {
+      "id": "chiptune-aventura",
+      "arquivo": "chiptune-aventura.m4a",
+      "sha256": "258e9c67d7c88020c504b05e80a7e0830982eb26a25641f7f337ec0ff1776627",
+      "bytes": 901526,
+      "duracao": 41.143,
+      "bpm": 140.0,
+      "laco": true,
+      "clima": "animada",
+      "uso": "chiptune de fase de plataforma, alegre e grudento; para peça animada de jogo, meme e contagem",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -18.1,
+      "pico_dbtp": -3.4,
+      "ganho_db": -6.2,
+      "autor": "Juhani Junkala (SubspaceAudio)",
+      "pagina": "https://opengameart.org/content/4-chiptunes-adventure",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-chiptune-adventures",
+        "nome": "4 Chiptunes (Adventure)",
+        "url": "https://opengameart.org/sites/default/files/Juhani%20Junkala%20%5BChiptune%20Adventures%5D%20OGG.zip",
+        "sha256": "9c9547e184a6daef0cddf9eff5b8c42b357a9a0d2c8f2b5a01aa95154b85edef",
+        "membro": "Juhani Junkala [Chiptune Adventures] 1. Stage 1.ogg"
+      }
+    },
+    {
+      "id": "animada-palmas",
+      "arquivo": "animada-palmas.m4a",
+      "sha256": "b380437b9ca718b65bdc3ae4eecd59813881482ef0d3951f4d4ca1cf3ffe3a37",
+      "bytes": 359128,
+      "duracao": 17.441,
+      "bpm": 110.1,
+      "laco": true,
+      "clima": "animada",
+      "uso": "laço curto e alegre para peça leve e divertida (repete a cada 17 s)",
+      "produtos": [
+        "todos"
+      ],
+      "lufs_integrado": -16.0,
+      "pico_dbtp": -2.7,
+      "ganho_db": 5.5,
+      "autor": "OwlishMedia",
+      "pagina": "https://opengameart.org/content/happy-clappy-loop",
+      "licenca": "CC0",
+      "origem": {
+        "fonte": "oga-happy-clappy-loop",
+        "nome": "Happy Clappy Loop",
+        "url": "https://opengameart.org/sites/default/files/HappyClappyLoop.wav",
+        "sha256": "1ca66b4e4d41e14a4ccfcc3b758e061cf283b9d5e332c4ea8e00f94f4deb6554"
+      }
+    }
+  ]
+}

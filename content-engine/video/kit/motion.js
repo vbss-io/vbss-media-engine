@@ -140,7 +140,91 @@
       return troca;
     };
 
+    k.legenda = (sel, blocos, o = {}) => {
+      const cont = typeof sel === "string" ? document.querySelector(sel) : sel;
+      const lista = (Array.isArray(blocos) ? blocos : (blocos && blocos.blocos) || []).filter((b) => b && b.palavras && b.palavras.length);
+      if (!cont || !lista.length) return [];
+      estiloDaLegenda();
+      cont.classList.add("k-legenda");
+      const variaveis = { fonte: "--k-leg-fonte", peso: "--k-leg-peso", tamanho: "--k-leg-tamanho", largura: "--k-leg-largura", base: "--k-leg-base", cor: "--k-leg-cor", ativa: "--k-leg-ativa", acento: "--k-leg-acento", contorno: "--k-leg-contorno", espessura: "--k-leg-espessura" };
+      Object.keys(variaveis).forEach((nome) => {
+        if (o[nome] === undefined) return;
+        const valor = typeof o[nome] === "number" && nome !== "peso" ? o[nome] + "px" : String(o[nome]);
+        cont.style.setProperty(variaveis[nome], valor);
+      });
+      const cs = getComputedStyle(cont);
+      const lida = (nome, padrao) => cs.getPropertyValue(nome).trim() || padrao;
+      const cor = lida("--k-leg-cor", "#FFFFFF");
+      const ativa = lida("--k-leg-ativa", "#FFD84D");
+      const acento = lida("--k-leg-acento", "#4FE3C1");
+      const escala = o.escala || 1.08;
+      const entrada = o.entrada || 0.14;
+      const antecipa = o.antecipa === undefined ? 0.05 : o.antecipa;
+      const folga = o.folga === undefined ? 0.12 : o.folga;
+      const emenda = o.emenda === undefined ? 0.3 : o.emenda;
+      const linhas = o.linhas || 2;
+      const minimo = o.tamanhoMinimo || 44;
+      const entradas = lista.map((b, i) => Math.max(i ? lista[i - 1].inicio + 0.01 : 0, b.inicio - antecipa));
+      const criados = [];
+      lista.forEach((b, i) => {
+        const bloco = document.createElement("div");
+        bloco.className = "k-leg-bloco";
+        const spans = b.palavras.map((p, j) => {
+          if (j) bloco.appendChild(document.createTextNode(" "));
+          const s = document.createElement("span");
+          s.className = p.destaque ? "k-leg-p k-leg-destaque" : "k-leg-p";
+          s.textContent = p.texto;
+          bloco.appendChild(s);
+          return s;
+        });
+        cont.appendChild(bloco);
+        let tamanho = parseFloat(getComputedStyle(bloco).fontSize) || 68;
+        const alturaDaLinha = () => parseFloat(getComputedStyle(bloco).lineHeight) || tamanho * 1.14;
+        while (bloco.offsetHeight > alturaDaLinha() * linhas + 4 && tamanho > minimo) {
+          tamanho -= 4;
+          bloco.style.fontSize = tamanho + "px";
+        }
+        gsap.set(bloco, { autoAlpha: 0 });
+        const entra = entradas[i];
+        tl.fromTo(
+          bloco,
+          { autoAlpha: 0, y: o.y === undefined ? 16 : o.y, scale: 0.96 },
+          { autoAlpha: 1, y: 0, scale: 1, duration: entrada, ease: EASE.casa, immediateRender: false },
+          entra
+        );
+        const proxima = i + 1 < lista.length ? entradas[i + 1] : null;
+        if (proxima !== null && proxima - b.fim <= emenda) tl.set(bloco, { autoAlpha: 0 }, proxima);
+        else tl.to(bloco, { autoAlpha: 0, duration: 0.12, ease: EASE.sai }, b.fim + folga);
+        b.palavras.forEach((p, j) => {
+          const s = spans[j];
+          const repouso = p.destaque ? acento : cor;
+          const acesa = p.destaque ? acento : ativa;
+          const apaga = j + 1 < b.palavras.length ? Math.max(b.palavras[j + 1].inicio, p.inicio + 0.08) : Math.max(p.fim, p.inicio + 0.08);
+          gsap.set(s, { color: repouso });
+          tl.fromTo(s, { color: repouso, scale: 1 }, { color: acesa, scale: escala, duration: 0.08, ease: "power2.out", immediateRender: false }, Math.max(p.inicio, entra));
+          tl.fromTo(s, { color: acesa, scale: escala }, { color: repouso, scale: 1, duration: 0.1, ease: "power2.out", immediateRender: false }, Math.max(apaga, entra + 0.08));
+        });
+        criados.push(bloco);
+      });
+      return criados;
+    };
+
     return k;
+  }
+
+  function estiloDaLegenda() {
+    if (document.getElementById("k-legenda-css")) return;
+    const css = [
+      '@font-face{font-family:"Inter";src:url("_motor/fonts/inter-900.woff2") format("woff2");font-weight:900;font-style:normal}',
+      '@font-face{font-family:"Inter";src:url("_motor/fonts/inter-ext-900.woff2") format("woff2");font-weight:900;font-style:normal;unicode-range:U+0100-024F}',
+      ".k-legenda{position:absolute;left:calc((100% - var(--k-leg-largura,800px))/2);width:var(--k-leg-largura,800px);bottom:var(--k-leg-base,24%);height:0;pointer-events:none}",
+      '.k-leg-bloco{position:absolute;left:0;right:0;bottom:0;margin:0;text-align:center;text-wrap:balance;font-family:var(--k-leg-fonte,"Inter",sans-serif);font-weight:var(--k-leg-peso,900);font-size:var(--k-leg-tamanho,68px);line-height:1.14;letter-spacing:-.01em;word-spacing:.16em;color:var(--k-leg-cor,#FFFFFF);-webkit-text-stroke:var(--k-leg-espessura,10px) var(--k-leg-contorno,#0B0B14);paint-order:stroke fill;text-shadow:0 6px 0 var(--k-leg-contorno,#0B0B14),0 0 26px rgba(0,0,0,.55);transform-origin:50% 100%}',
+      ".k-leg-p{display:inline-block;transform-origin:50% 60%}",
+    ].join("");
+    const estilo = document.createElement("style");
+    estilo.id = "k-legenda-css";
+    estilo.textContent = css;
+    document.head.appendChild(estilo);
   }
 
   window.MotionKit = { criar, palavras, EASE, DUR };

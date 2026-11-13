@@ -12,6 +12,9 @@ from common import ambiente as _ambiente
 from providers import kokoro
 
 resultados = []
+EXTENSOES_DE_AUDIO = (".m4a", ".mp3", ".ogg", ".opus", ".flac", ".wav")
+DURACAO_MAXIMA_MUSICA = 61.0
+LIMITE_MUSICA_MB = 25
 
 
 def item(nome, ok, detalhe="", aviso=False):
@@ -70,7 +73,7 @@ def checar_sfx():
     item("LICENCAS.md presente", (c.SFX_DIR / "LICENCAS.md").is_file(), str(c.rel(c.SFX_DIR / "LICENCAS.md")))
     fontes = c.ler_json(c.SFX_FONTES)["pacotes"]
     selecao = c.ler_json(c.SFX_SELECAO)["itens"]
-    sem_fonte = sorted({i["pacote"] for i in selecao} - set(fontes))
+    sem_fonte = sorted({ref["pacote"] for i in selecao for ref in ([i] if "pacote" in i else i.get("camadas", []))} - set(fontes))
     sem_sha = sorted(k for k, v in fontes.items() if not re.fullmatch(r"[0-9a-f]{64}", v.get("sha256", "")) or v.get("licenca") != "CC0")
     item("pacotes de origem com URL, SHA-256 e licenca CC0", not sem_fonte and not sem_sha, f"{len(fontes)} pacotes" if not (sem_fonte or sem_sha) else f"problema: {', '.join(sem_fonte + sem_sha)}")
     nomes_sel = {f"{i['categoria']}/{i['nome']}.wav" for i in selecao}
@@ -81,6 +84,48 @@ def checar_sfx():
     info("tamanho da biblioteca", f"{total / (1 << 20):.2f} MB em {len({it['categoria'] for it in itens})} categorias")
     cat = c.SFX_DIR / "catalogo.mp4"
     item("video-catalogo para audicao (sfx/catalogo.mp4)", cat.is_file(), c.rel(cat) if cat.is_file() else "rode python content-engine/audio/catalogo_audio.py", aviso=True)
+
+
+def checar_musica():
+    c.titulo("Biblioteca de musica de fundo (content-engine/audio/music)")
+    if not c.MUSICA_MANIFESTO.is_file():
+        item("manifesto musica.json", False, "rode python content-engine/audio/musica_setup.py")
+        return
+    manifesto = c.ler_json(c.MUSICA_MANIFESTO)
+    itens = manifesto["itens"]
+    fmt = manifesto["formato"]
+    faltando, diferentes = [], []
+    for it in itens:
+        arq = c.MUSICA_DIR / it["arquivo"]
+        if not arq.is_file():
+            faltando.append(it["arquivo"])
+        elif c.sha256(arq) != it["sha256"]:
+            diferentes.append(it["arquivo"])
+    item("arquivos do manifesto presentes", not faltando, f"{len(itens)} faixas" if not faltando else "faltam: " + ", ".join(faltando[:5]))
+    item("SHA-256 de cada faixa confere com musica.json", not diferentes, "ok" if not diferentes else "diferentes: " + ", ".join(diferentes[:5]))
+    esperados = {it["arquivo"] for it in itens}
+    extras = sorted(p.name for p in c.MUSICA_DIR.iterdir() if p.suffix.lower() in EXTENSOES_DE_AUDIO and p.name not in esperados)
+    item("nenhum audio fora do manifesto", not extras, "ok" if not extras else ", ".join(extras[:5]))
+    catalogo = c.MUSICA_DIR / "CATALOGO.md"
+    texto = catalogo.read_text(encoding="utf-8") if catalogo.is_file() else ""
+    sem_linha = [it["id"] for it in itens if f"`{it['id']}`" not in texto]
+    item("CATALOGO.md lista todas as faixas", bool(texto) and not sem_linha, "ok" if texto and not sem_linha else ("CATALOGO.md ausente" if not texto else "sem linha: " + ", ".join(sem_linha[:5])))
+    item("LICENCAS.md presente", (c.MUSICA_DIR / "LICENCAS.md").is_file(), str(c.rel(c.MUSICA_DIR / "LICENCAS.md")))
+    cfg = c.ler_json(c.MUSICA_FONTES)
+    fontes = cfg["fontes"]
+    sem_fonte = sorted({f["fonte"] for f in cfg["faixas"]} - set(fontes))
+    ruins = sorted(k for k, v in fontes.items() if not re.fullmatch(r"[0-9a-f]{64}", v.get("sha256", "")) or v.get("licenca") != "CC0" or not v.get("pagina") or not v.get("url"))
+    item("fontes com pagina, URL, SHA-256 e licenca CC0", not sem_fonte and not ruins, f"{len(fontes)} fontes" if not (sem_fonte or ruins) else f"problema: {', '.join(sem_fonte + ruins)}")
+    ids = {f["id"] for f in cfg["faixas"]}
+    item("musica.json bate com musica_fontes.json", ids == {it["id"] for it in itens}, "ok" if ids == {it["id"] for it in itens} else "rode python content-engine/audio/musica_setup.py")
+    fora = [it["id"] for it in itens if it["pico_dbtp"] is None or it["pico_dbtp"] > fmt["teto_pico_dbtp"] + 0.05 or it["lufs_integrado"] is None or it["lufs_integrado"] > fmt["alvo_lufs_integrado"] + 0.5]
+    item("nenhuma faixa acima do alvo de nivel ou do teto de pico", not fora, f"alvo {fmt['alvo_lufs_integrado']} LUFS, teto {fmt['teto_pico_dbtp']} dBTP" if not fora else ", ".join(fora[:5]))
+    longas = [it["id"] for it in itens if it["duracao"] > DURACAO_MAXIMA_MUSICA]
+    item(f"cada faixa com ate {DURACAO_MAXIMA_MUSICA:.0f} s", not longas, "ok" if not longas else ", ".join(longas[:5]))
+    total = sum(it["bytes"] for it in itens) / (1 << 20)
+    item(f"biblioteca abaixo de {LIMITE_MUSICA_MB} MB", total < LIMITE_MUSICA_MB, f"{total:.2f} MB em {len(itens)} faixas")
+    sem_bpm = [it["id"] for it in itens if it["bpm"] is None]
+    info("faixas sem bpm (ambiente sem pulso ou venv de audio ausente no setup)", ", ".join(sem_bpm) or "nenhuma")
 
 
 def checar_kokoro(ativo):
@@ -162,6 +207,7 @@ def checar_gitignore():
     faltam = [p for p in precisa if p not in texto]
     item(".gitignore ignora venv, caches, modelos e area de trabalho do audio", not faltam, "faltam: " + ", ".join(faltam) if faltam else str(gi))
     item("sfx/ curado fica no git (nao ignorado)", "content-engine/audio/sfx" not in texto, "ok")
+    item("music/ curada fica no git (nao ignorada)", "content-engine/audio/music" not in texto, "ok")
 
 
 def main():
@@ -174,6 +220,7 @@ def main():
     cfg = c.config_de_voz()
     checar_base()
     checar_sfx()
+    checar_musica()
     checar_voicestudio(cfg.get("provedor") == "voicestudio")
     checar_kokoro(cfg.get("provedor") == "kokoro")
     checar_nuvem(cfg.get("provedor"))

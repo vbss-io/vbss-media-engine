@@ -178,7 +178,7 @@ CASOS_RECUSADOS = {
 }
 CASOS_ACEITOS = {
     "arquivo dentro de assets/": '<audio id="a"><source src="assets/ok.wav"></audio>',
-    "bibliotecas do motor (_motor/)": '<script src="_motor/gsap.min.js"></script><style>@font-face{src:url("_motor/fonts/inter-400.woff2")}</style>',
+    "bibliotecas do motor (_motor/)": '<script src="_motor/gsap.min.js"></script><script src="_motor/kit/motion.js"></script><style>@font-face{src:url("_motor/fonts/inter-400.woff2")}</style>',
     "data: e ancora": '<img src="data:image/png;base64,AAAA"><svg><use href="#x"></use></svg>',
     "sub-composicao dentro da pasta": ('<div data-composition-src="sub/cena.html"></div>', {"sub/cena.html": '<template><audio id="s" src="assets/ok.wav"></audio></template>'}),
     "script inline sem caminho": '<script>const tl = gsap.timeline({paused:true}); tl.to("#a", {x: 10, ease: "power2.out"}, "+=0.5"); window.__timelines = {"x": tl};</script>',

@@ -9,6 +9,8 @@ LOCAL = True
 SCRIPT = Path(__file__).resolve().parents[3] / "voicestudio" / "voicestudio.py"
 VOZES_JSON = SCRIPT.parent / "voices" / "vozes.json"
 MODELO_TTS = "k2-fsa/OmniVoice"
+PASSOS = {"qualidade": 32, "rapido": 16}
+VARIANTE_PADRAO = "qualidade"
 _modulo = None
 
 
@@ -30,6 +32,10 @@ def _vs():
         _modulo = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(_modulo)
     return _modulo
+
+
+def variantes():
+    return tuple(PASSOS)
 
 
 def disponivel(variante=None):
@@ -58,6 +64,8 @@ def sintetizar(linhas, voz, pasta, velocidade=1.0, variante=None):
     if voz not in _vozes_guardadas():
         raise RuntimeError(f"voz '{voz}' nao esta em voicestudio/voices (existem: {', '.join(_vozes_guardadas())})")
     vs = _vs()
+    variante = variante or VARIANTE_PADRAO
+    passos = PASSOS[variante]
     t0 = time.perf_counter()
     itens = []
     try:
@@ -66,8 +74,8 @@ def sintetizar(linhas, voz, pasta, velocidade=1.0, variante=None):
             for i, texto in enumerate(linhas, 1):
                 destino = Path(pasta) / f"bruto-{i:02d}.wav"
                 t = time.perf_counter()
-                vs.gerar(texto, voz, destino, velocidade=velocidade)
+                vs.gerar(texto, voz, destino, velocidade=velocidade, passos=passos)
                 itens.append({"arquivo": str(destino), "sintese_s": round(time.perf_counter() - t, 3), "audio_s": None})
     except SystemExit as err:
         raise RuntimeError(f"VoiceStudio: {err}") from None
-    return {"modelo": f"VoiceStudio {vs.PIN['commit'][:8]} / OmniVoice (local, CPU, seed {vs.SEED})", "carga_s": round(carga, 3), "itens": itens}
+    return {"modelo": f"VoiceStudio {vs.PIN['commit'][:8]} / OmniVoice (local, CPU, seed {vs.SEED}, {passos} passos, variante {variante})", "carga_s": round(carga, 3), "itens": itens}

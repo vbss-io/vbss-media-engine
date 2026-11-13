@@ -96,6 +96,23 @@
       "url": "https://opengameart.org/sites/default/files/100-CC0-SFX_0.zip",
       "sha256": "a5c135878c132f1c59cca54e60061c296cd0ac27ad031ca2c41b8cd5cab3c706",
       "licenca": "CC0"
+    },
+    "oga-muffled-distant-explosion": {
+      "nome": "Muffled Distant Explosion",
+      "autor": "NenadSimic (OpenGameArt)",
+      "pagina": "https://opengameart.org/content/muffled-distant-explosion",
+      "url": "https://opengameart.org/sites/default/files/NenadSimic%20-%20Muffled%20Distant%20Explosion.wav",
+      "sha256": "13a0bf75af94ec6d332bc71cba489b573466e05c4b17288158b3d683b41de39f",
+      "licenca": "CC0",
+      "tipo": "arquivo"
+    },
+    "oga-wind-hit-time-morph": {
+      "nome": "Wind, hit, time morph",
+      "autor": "qubodup (OpenGameArt)",
+      "pagina": "https://opengameart.org/content/wind-hit-time-morph",
+      "url": "https://opengameart.org/sites/default/files/qubodup-timehitwind.zip",
+      "sha256": "8ed235b84ed19a5a72c47771e33d347406e67750b2a6ba72a2f558e64cc6205e",
+      "licenca": "CC0"
     }
   }
 }

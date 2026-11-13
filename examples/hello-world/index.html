@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Olá, mundo - composição de exemplo</title>
 <script src="_motor/gsap.min.js"></script>
-<script src="kit/motion.js"></script>
+<script src="_motor/kit/motion.js"></script>
 <style>
   @font-face{font-family:"Inter";src:url("_motor/fonts/inter-600.woff2") format("woff2");font-weight:600;font-style:normal}
   @font-face{font-family:"Inter";src:url("_motor/fonts/inter-ext-600.woff2") format("woff2");font-weight:600;font-style:normal;unicode-range:U+0100-02BA}
@@ -45,13 +45,15 @@
 </head>
 <body>
 <div id="root" data-composition-id="ola-mundo" data-start="0" data-width="1080" data-height="1920" data-duration="8">
-  <audio id="trilha-01" src="assets/sfx/pop-gota.wav" data-start="0.2" data-duration="0.188" data-track-index="11" data-volume="0.8" data-trilha="1"></audio>
-  <audio id="trilha-02" src="assets/sfx/whoosh-sobe.wav" data-start="2.3" data-duration="0.503" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
-  <audio id="trilha-03" src="assets/sfx/pop-gota.wav" data-start="3.2" data-duration="0.188" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-04" src="assets/sfx/pop-gota.wav" data-start="3.6" data-duration="0.188" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-05" src="assets/sfx/pop-gota.wav" data-start="4.0" data-duration="0.188" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-06" src="assets/sfx/whoosh-sobe.wav" data-start="5.1" data-duration="0.503" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
-  <audio id="trilha-07" src="assets/sfx/jingle-hit.wav" data-start="5.9" data-duration="1.108" data-track-index="11" data-volume="0.8" data-trilha="1"></audio>
+  <audio id="trilha-musica" src="assets/musica/base.wav" data-start="0" data-duration="7.98" data-track-index="9" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-01" src="assets/sfx/impacto-cine-macio.wav" data-start="0.2" data-duration="0.942" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-02" src="assets/sfx/transicao-cine-suave.wav" data-start="2.54" data-duration="0.75" data-track-index="11" data-volume="0.8" data-trilha="1"></audio>
+  <audio id="trilha-03" src="assets/sfx/pop-cine-redondo.wav" data-start="3.2" data-duration="0.351" data-track-index="12" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-04" src="assets/sfx/pop-cine-redondo.wav" data-start="3.6" data-duration="0.351" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-05" src="assets/sfx/pop-cine-redondo.wav" data-start="4.0" data-duration="0.351" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-06" src="assets/sfx/whoosh-cine-medio.wav" data-start="5.34" data-duration="0.75" data-track-index="11" data-volume="0.8" data-trilha="1"></audio>
+  <audio id="trilha-07" src="assets/sfx/impacto-cine-macio.wav" data-start="5.9" data-duration="0.942" data-track-index="12" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-08" src="assets/sfx/brilho-cine-curto.wav" data-start="5.9" data-duration="1.139" data-track-index="13" data-volume="0.8" data-trilha="1"></audio>
   <section id="s-fundo" class="clip" data-start="0" data-duration="8" data-track-index="0">
     <div id="fundo"></div>
     <div class="halo" id="h1"></div>
