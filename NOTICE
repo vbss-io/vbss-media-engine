@@ -1,0 +1,17 @@
+vbss-media-engine
+Copyright 2026 VBSS
+
+Este produto inclui material derivado da documentação de skills do HyperFrames
+(https://github.com/heygen-com/hyperframes), Copyright 2026 HeyGen, Inc.,
+licenciado sob a Apache License 2.0. Os arquivos derivados ficam em
+content-engine/video/engines/hyperframes/guide/ e foram modificados; ver
+guide/NOTICE.md.
+
+O código próprio deste repo é licenciado sob a Apache License 2.0 (arquivo
+LICENSE). Fontes, efeitos sonoros, músicas e a voz de exemplo têm licença
+própria, descrita na seção "Licenças e terceiros" do README.
+
+"VBSS" e "Imaginaria" são marcas do autor; a licença do código não concede
+direito de uso delas. HyperFrames, GSAP, Webflow, Chrome, VoiceStudio e os demais
+nomes citados pertencem aos respectivos donos, e este repo não é afiliado nem
+endossado por eles.

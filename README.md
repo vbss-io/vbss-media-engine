@@ -80,7 +80,7 @@ content-engine/
     engines/hyperframes/   adaptador do HyperFrames, guardas de rede e de arquivos, guia de autoria
     kit/motion.js          kit de motion (chega à composição como _motor/kit/motion.js)
   image/     motor de imagem: setup.py, doctor.py, render.py, folha.py, MOTOR.md
-               importar.py + IMAGENS-GERADAS.md: imagem gerada por IA (conector do Imaginaria) para dentro da peça
+               importar.py + IMAGENS-GERADAS.md: imagem de fora (gerada por IA ou não) para dentro da peça
   audio/      voz (voz.py, providers/), efeitos (sfx/), música (music/), trilha.py, legenda.py, AUDIO.md
   common/      o que os motores compartilham: navegador fixo, flags de isolamento, checagens
   fonts/     fontes woff2 locais (SIL OFL) com licenças e SHA-256
@@ -115,22 +115,28 @@ O detalhe e os limites estão nos `MOTOR.md`.
 
 Detalhes em `content-engine/audio/AUDIO.md`.
 
-## Imagens geradas por IA (Imaginaria)
+## Imagens de fora (e o conector do Imaginaria, opcional)
 
-O motor não gera imagem, mas o seu agente pode: com o conector do [Imaginaria](https://www.imaginaria.vbss.io/conectores) ligado ao Claude (ou a outro cliente MCP), ele cria o fundo, a ilustração ou a cena que a peça pede e traz o arquivo para a pasta dela. O render continua local.
+O motor não gera imagem, mas a peça pode usar qualquer uma: gerada por IA no serviço que você preferir, de banco de imagens ou sua. O `importar.py` traz a imagem para a pasta da peça, de uma URL `https` ou de um arquivo local, e o render continua local.
+
+```bash
+python content-engine/image/importar.py "<url ou arquivo da imagem>" <pasta-da-peca> --nome fundo-abertura
+```
+
+Se quiser que o próprio agente gere as imagens durante a conversa, uma opção pronta é o conector do [Imaginaria](https://www.imaginaria.vbss.io/conectores), do mesmo autor deste repo:
 
 ```bash
 claude mcp add --transport http imaginaria https://imaginaria-api.vbss.io/mcp
-python content-engine/image/importar.py "<url da imagem gerada>" <pasta-da-peca> --nome fundo-abertura
 ```
 
-- Conectar é grátis; cada geração gasta créditos comprados da sua conta no Imaginaria, e as imagens ficam privadas por padrão. O agente deve dizer o custo e esperar o seu sim antes de gerar.
-- O `importar.py` é o único passo com rede desse fluxo e só baixa: `https`, host permitido, sem redirecionamento, tipo conferido pelos bytes e teto de tamanho. A imagem vai para `assets/gerado/` com a origem registrada.
+- É opcional: o motor funciona igual sem ele.
+- Conectar é grátis; cada geração gasta créditos comprados da sua conta no Imaginaria.
+- O `importar.py` só baixa (ou copia) a imagem, confere que é PNG, JPEG ou WebP de verdade e registra a origem em `assets/gerado/origem.json`. Nada da peça é enviado.
 - Passo a passo para o agente e dicas de como a imagem entra bem no vídeo: `content-engine/image/IMAGENS-GERADAS.md`.
 
 ## Licenças e terceiros
 
-A licença do código próprio deste repo ainda não foi definida: veja `LICENCA-PENDENTE.md`. Componentes de terceiros:
+O código próprio deste repo (scripts, guardas, kit de motion, exemplos e documentação) é licenciado sob a **Apache License 2.0**: veja `LICENSE` e `NOTICE`. Componentes de terceiros:
 
 - **HyperFrames** (motor de vídeo, pacote npm instalado pelo setup): Apache-2.0, Copyright HeyGen, Inc. O guia de autoria em `content-engine/video/engines/hyperframes/guide/` é uma adaptação modificada da documentação de skills do HyperFrames, redistribuída sob Apache-2.0 com atribuição (`guide/NOTICE.md` e `guide/LICENSE-APACHE-2.0.txt`).
 - **GSAP** (instalado pelo setup, não incluído no repo): licença padrão "no charge" da GSAP (<https://gsap.com/standard-license>), que não é uma licença open source OSI. Leia os termos antes de usar.
@@ -139,11 +145,15 @@ A licença do código próprio deste repo ainda não foi definida: veja `LICENCA
 - **Música de fundo** (`content-engine/audio/music/`): 10 faixas CC0 1.0, origem de cada uma em `music/LICENCAS.md`.
 - **FFmpeg** (baixado pelo setup, build essentials da gyan.dev): GPLv3.
 - **chrome-headless-shell** (baixado pelo setup, Chrome for Testing do Google): termos do Chromium/Google.
-- **Kokoro-82M** (voz local, baixado pelo `voz_setup.py`): modelo Apache-2.0; `kokoro-onnx` MIT.
+- **Kokoro-82M** (voz local opcional, baixado pelo `voz_setup.py`): modelo Apache-2.0; `kokoro-onnx` MIT; as dependências de fonemas (eSpeak NG) são GPL-3.0 e são baixadas pelo pip, não redistribuídas.
+- **Whisper** (`faster-whisper-large-v3-turbo`, baixado pelo `voicestudio.py modelos`, usado na legenda): MIT.
 - **VoiceStudio** (clonado pelo `voicestudio.py instalar`, não incluído no repo): AGPL-3.0.
-- **Pesos do OmniVoice** (modelo usado pelo VoiceStudio): **CC-BY-NC, não comercial**.
+- **Pesos do OmniVoice** (modelo usado pelo VoiceStudio, baixado pelo `voicestudio.py modelos`): **CC-BY-NC, não comercial**. O modelo usa o tokenizador de áudio Higgs Audio 2 (Built with Higgs Materials licensed from Boson AI USA, Inc., Copyright Boson AI USA, Inc., All Rights Reserved) e é construído sobre o Llama 3 (Built with Meta Llama 3).
+- **Voz de exemplo `narradora` e narração do `examples/hello-world`**: áudios gerados com o OmniVoice, incluídos como demonstração não comercial do motor. Não os reutilize em peça comercial.
 
-> **Atenção, uso comercial:** a voz local do VoiceStudio usa os pesos do OmniVoice, cuja licença não permite uso comercial. Para peça comercial, use outro modelo ou provedor (por exemplo o Kokoro, Apache-2.0, ou um provedor de nuvem com chave própria e termos que permitam).
+> **Atenção, uso comercial:** a voz padrão (VoiceStudio) usa os pesos do OmniVoice, cuja licença não permite uso comercial. Para peça comercial, troque a voz: `VOZ_PROVEDOR=kokoro` (Apache-2.0) ou um provedor de nuvem com chave própria e termos que permitam. O resto do motor (vídeo, imagem, efeitos, músicas, fontes) não tem essa restrição. Quem gera a peça responde pelo uso que faz dela e dos materiais de terceiros.
+
+"VBSS" e "Imaginaria" são marcas do autor; a licença do código não concede direito de uso delas.
 
 ## Limites conhecidos
 

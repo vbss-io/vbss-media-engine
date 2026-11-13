@@ -2,7 +2,7 @@
   "name": "vbss-media-engine-video-engine-hyperframes",
   "private": true,
   "description": "Motor de video local do vbss-media-engine (adaptador HyperFrames). Instalado por content-engine/video/setup.py.",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
   "engines": {
     "node": ">=22"
   },

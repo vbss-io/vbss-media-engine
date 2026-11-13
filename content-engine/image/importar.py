@@ -14,7 +14,6 @@ sys.dont_write_bytecode = True
 
 import _comum as c
 
-HOSTS_PADRAO = ("cdn.vbss.io",)
 PASTA = Path("assets") / "gerado"
 MANIFESTO = "origem.json"
 TETO_MB = 25
@@ -70,16 +69,22 @@ def dimensoes_webp(dados):
     return 0, 0
 
 
-def conferir_url(url, hosts):
+def conferir_url(url):
     partes = urlsplit(url)
     if partes.scheme != "https":
-        c.falhar("a URL precisa ser https")
+        c.falhar("a URL precisa ser https (ou passe o caminho de um arquivo local)")
     if partes.username or partes.password or partes.port not in (None, 443):
         c.falhar("a URL nao pode ter usuario, senha nem porta diferente da 443")
-    host = (partes.hostname or "").lower()
-    if host not in hosts:
-        c.falhar(f"host '{host}' fora da lista permitida ({', '.join(sorted(hosts))}); para outra origem confiavel use --host {host}")
-    return host
+    return (partes.hostname or "").lower()
+
+
+def ler_local(caminho, teto_bytes):
+    arquivo = Path(caminho).expanduser()
+    if not arquivo.is_file():
+        c.falhar(f"{caminho} nao e uma URL https nem um arquivo existente")
+    if arquivo.stat().st_size > teto_bytes:
+        c.falhar(f"arquivo maior que {teto_bytes // (1024 * 1024)} MB: recusado")
+    return arquivo.read_bytes()
 
 
 def baixar(url, teto_bytes):
@@ -98,11 +103,10 @@ def baixar(url, teto_bytes):
 
 
 def main():
-    p = argparse.ArgumentParser(description="Traz uma imagem gerada fora (ex.: pelo conector do Imaginaria) para dentro da composicao, em assets/gerado/, conferindo origem, tipo e tamanho. E o unico passo com rede: o render continua local.")
-    p.add_argument("url", help="URL https da imagem (ex.: o media_url devolvido pela geracao)")
+    p = argparse.ArgumentParser(description="Traz uma imagem de fora (gerada por IA, banco de imagens, foto sua) para dentro da composicao, em assets/gerado/, conferindo tipo e tamanho e registrando a origem. Aceita URL https ou arquivo local. E o unico passo com rede: o render continua local.")
+    p.add_argument("origem", help="URL https da imagem (ex.: o media_url devolvido pela geracao) ou caminho de um arquivo local")
     p.add_argument("composicao", help="pasta da composicao ou da peca")
     p.add_argument("--nome", required=True, help="nome do arquivo sem extensao (letras minusculas, numeros e hifen), ex.: fundo-abertura")
-    p.add_argument("--host", action="append", default=[], help="host https adicional aceito, alem do padrao; pode repetir")
     p.add_argument("--prompt", help="prompt usado na geracao, guardado no origem.json")
     p.add_argument("--modelo", help="modelo usado na geracao, guardado no origem.json")
     p.add_argument("--teto-mb", type=int, default=TETO_MB, help=f"tamanho maximo aceito (padrao {TETO_MB} MB)")
@@ -113,11 +117,16 @@ def main():
         c.falhar(f"{comp} nao e uma pasta")
     if not NOME_RE.fullmatch(a.nome):
         c.falhar("--nome: so letras minusculas, numeros e hifen (ex.: fundo-abertura)")
-    hosts = {h.lower() for h in (*HOSTS_PADRAO, *a.host)}
-    host = conferir_url(a.url, hosts)
-
-    c.titulo(f"Importar imagem de {host}")
-    dados = baixar(a.url, a.teto_mb * 1024 * 1024)
+    teto = a.teto_mb * 1024 * 1024
+    if re.match(r"^[a-z][a-z0-9+.-]*://", a.origem, re.IGNORECASE):
+        host = conferir_url(a.origem)
+        c.titulo(f"Importar imagem de {host}")
+        dados = baixar(a.origem, teto)
+        origem = a.origem
+    else:
+        c.titulo("Importar imagem de arquivo local")
+        dados = ler_local(a.origem, teto)
+        origem = "arquivo local: " + Path(a.origem).name
     tipo, largura, altura = tipo_e_tamanho(dados)
     if not tipo:
         c.falhar("o conteudo nao e PNG, JPEG nem WebP (conferido pelos primeiros bytes, nao pela extensao): recusado")
@@ -134,7 +143,7 @@ def main():
     registro = json.loads(manifesto.read_text(encoding="utf-8")) if manifesto.is_file() else {}
     item = {
         "arquivo": destino.name,
-        "origem": a.url,
+        "origem": origem,
         "sha256": hashlib.sha256(dados).hexdigest(),
         "bytes": len(dados),
         "largura": largura,
