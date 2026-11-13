@@ -1,6 +1,6 @@
 # Vozes do VoiceStudio
 
-Esta pasta nasce vazia: o repo não traz nenhuma voz. Cada voz guardada aqui é um WAV de referência mais uma entrada em `vozes.json` (texto falado, origem e data), e cada máquina recria o perfil dela ao subir a API.
+O repo traz uma única voz de exemplo, `narradora` (design por atributos: feminina, jovem, tom médio, seed 7; não é clone de ninguém), usada na narração do `examples/hello-world`. Cada voz guardada aqui é um WAV de referência mais uma entrada em `vozes.json` (texto falado, origem e data), e cada máquina recria o perfil dela ao subir a API.
 
 Antes: `python voicestudio/voicestudio.py instalar` e `python voicestudio/voicestudio.py modelos`.
 

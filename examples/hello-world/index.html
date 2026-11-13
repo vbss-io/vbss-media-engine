@@ -48,15 +48,15 @@
 <body>
 <div id="root" data-composition-id="ola-mundo" data-start="0" data-width="1080" data-height="1920" data-duration="13.5">
   <audio id="trilha-musica" src="assets/musica/base.wav" data-start="0" data-duration="13.48" data-track-index="9" data-volume="1.0" data-trilha="1"></audio>
-  <audio id="trilha-01" src="assets/voz/voz-01.wav" data-start="0.3" data-duration="4.415" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-01" src="assets/voz/voz-01.wav" data-start="0.3" data-duration="3.868" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
   <audio id="trilha-02" src="assets/sfx/impacto-cine-macio.wav" data-start="0.3" data-duration="0.942" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
   <audio id="trilha-03" src="assets/sfx/transicao-cine-suave.wav" data-start="4.74" data-duration="0.75" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-04" src="assets/voz/voz-02.wav" data-start="5.25" data-duration="3.952" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
-  <audio id="trilha-05" src="assets/sfx/pop-cine-redondo.wav" data-start="5.43" data-duration="0.351" data-track-index="12" data-volume="0.6" data-trilha="1"></audio>
-  <audio id="trilha-06" src="assets/sfx/pop-cine-redondo.wav" data-start="6.61" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
-  <audio id="trilha-07" src="assets/sfx/pop-cine-redondo.wav" data-start="8.53" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-04" src="assets/voz/voz-02.wav" data-start="5.25" data-duration="3.669" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-05" src="assets/sfx/pop-cine-redondo.wav" data-start="5.47" data-duration="0.351" data-track-index="12" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-06" src="assets/sfx/pop-cine-redondo.wav" data-start="6.53" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-07" src="assets/sfx/pop-cine-redondo.wav" data-start="8.33" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
   <audio id="trilha-08" src="assets/sfx/whoosh-cine-medio.wav" data-start="9.34" data-duration="0.75" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
-  <audio id="trilha-09" src="assets/voz/voz-03.wav" data-start="9.95" data-duration="2.139" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-09" src="assets/voz/voz-03.wav" data-start="9.95" data-duration="1.931" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
   <audio id="trilha-10" src="assets/sfx/impacto-cine-macio.wav" data-start="9.95" data-duration="0.942" data-track-index="12" data-volume="0.7" data-trilha="1"></audio>
   <audio id="trilha-11" src="assets/sfx/brilho-cine-curto.wav" data-start="9.95" data-duration="1.139" data-track-index="13" data-volume="0.6" data-trilha="1"></audio>
   <section id="s-fundo" class="clip" data-start="0" data-duration="13.5" data-track-index="0">
@@ -105,24 +105,24 @@
   K.sobe("#a-kicker", 0.1, { y: 24, d: 0.3 });
   K.bate(K.palavras("#a-titulo"), 0.3, { de: 1.5, stagger: 0.18 });
   K.marca("#a-risco", 0.9);
-  K.sobe(K.palavras("#a-sub"), 1.04, { stagger: 0.07, y: 28, d: 0.32 });
+  K.sobe(K.palavras("#a-sub"), 1.06, { stagger: 0.07, y: 28, d: 0.32 });
   tl.to("#a-titulo", { scale: 1.03, transformOrigin: "0% 50%", duration: 3.4, ease: "none" }, 1.0);
   K.sai(["#a-kicker", "#a-titulo", "#a-risco", "#a-sub"], 4.62, { stagger: 0.04 });
 
   K.sobe("#b-titulo", T.meio + 0.05, { d: 0.3 });
-  K.sobe("#c1", 5.43, { y: 60 });
-  K.sobe("#c2", 6.61, { y: 60 });
-  K.sobe("#c3", 8.53, { y: 60 });
-  K.toque("#c1", 5.95);
-  K.toque("#c2", 7.5);
-  K.toque("#c3", 8.95);
+  K.sobe("#c1", 5.47, { y: 60 });
+  K.sobe("#c2", 6.53, { y: 60 });
+  K.sobe("#c3", 8.33, { y: 60 });
+  K.toque("#c1", 5.99);
+  K.toque("#c2", 7.27);
+  K.toque("#c3", 8.75);
   K.sai(["#b-titulo", "#c1", "#c2", "#c3"], 9.24, { stagger: 0.04 });
 
   K.bate("#f-logo", 9.95, { de: 1.4, d: 0.42 });
   K.sobe("#f-nome", 10.2, { y: 30 });
-  K.sobe("#f-sub", 10.79, { y: 20 });
+  K.sobe("#f-sub", 10.69, { y: 20 });
   gsap.set("#f-cores div", { scaleY: 0, transformOrigin: "50% 100%" });
-  tl.to("#f-cores div", { scaleY: 1, duration: 0.3, stagger: 0.1, ease: K.EASE.snap }, 11.45);
+  tl.to("#f-cores div", { scaleY: 1, duration: 0.3, stagger: 0.1, ease: K.EASE.snap }, 11.23);
   tl.to("#f-logo", { scale: 1.05, duration: 1.6, ease: K.EASE.respira }, 11.7);
 
   window.__timelines["ola-mundo"] = tl;

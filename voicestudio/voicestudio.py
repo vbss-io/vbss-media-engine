@@ -320,14 +320,25 @@ def aceitar_licenca(repo_id):
     linha("INFO", repo_id, "termos aceitos")
 
 
-def instalar_modelo(repo_id):
+def instalar_modelo(repo_id, refazer=False):
     instalados = {m["repo_id"] for m in api("GET", "/models").get("models", []) if m.get("installed")}
+    if refazer and repo_id in instalados:
+        api("DELETE", f"/models/{repo_id}", timeout=300)
+        linha("INFO", repo_id, "apagado para baixar de novo")
+        instalados.discard(repo_id)
     if repo_id in instalados:
         linha("PASS", repo_id, "ja baixado")
         return
     api("POST", "/models/install", {"repo_id": repo_id})
     print(f"  baixando {repo_id}...", flush=True)
-    while any(j["repo_id"] == repo_id for j in api("GET", "/models/install/status").get("jobs", [])):
+    while True:
+        try:
+            fila = api("GET", "/models/install/status").get("jobs", [])
+        except TimeoutError:
+            time.sleep(5)
+            continue
+        if not any(j["repo_id"] == repo_id for j in fila):
+            break
         time.sleep(5)
     instalados = {m["repo_id"] for m in api("GET", "/models").get("models", []) if m.get("installed")}
     item(repo_id, repo_id in instalados, "baixado" if repo_id in instalados else "falhou, veja .local/logs")
@@ -344,7 +355,9 @@ def cmd_modelos(args):
         esperar_api(proc)
         for repo_id in PIN["modelos"]:
             aceitar_licenca(repo_id)
-            instalar_modelo(repo_id)
+            instalar_modelo(repo_id, refazer=args.refazer)
+        for repo_id in PIN.get("licencas", []):
+            aceitar_licenca(repo_id)
         criadas = sincronizar_vozes()
         linha("INFO", "vozes da casa", ", ".join(criadas) + " criada(s)" if criadas else "ja estavam criadas")
     finally:
@@ -434,6 +447,10 @@ def sessao_api():
         subprocess.run(["taskkill", "/PID", str(proc.pid), "/T", "/F"], capture_output=True)
 
 
+TENTATIVAS_MOTOR = 5
+ESPERA_MOTOR = 20
+
+
 def gerar(texto, voz, destino, seed=SEED, instrucoes="", velocidade=1.0, passos=None):
     corpo = {"model": "omnivoice", "input": texto, "voice": voz, "language": "pt", "response_format": "wav", "seed": seed}
     if passos:
@@ -444,8 +461,15 @@ def gerar(texto, voz, destino, seed=SEED, instrucoes="", velocidade=1.0, passos=
         corpo["speed"] = velocidade
     destino = Path(destino)
     destino.parent.mkdir(parents=True, exist_ok=True)
-    destino.write_bytes(api("POST", "/v1/audio/speech", corpo, timeout=900))
-    return destino
+    for tentativa in range(1, TENTATIVAS_MOTOR + 1):
+        try:
+            destino.write_bytes(api("POST", "/v1/audio/speech", corpo, timeout=900))
+            return destino
+        except SystemExit as erro:
+            if "model_not_available" not in str(erro) or tentativa == TENTATIVAS_MOTOR:
+                raise
+            print(f"motor de voz ainda carregando, tentando de novo em {ESPERA_MOTOR} s ({tentativa} de {TENTATIVAS_MOTOR - 1})...", flush=True)
+            time.sleep(ESPERA_MOTOR)
 
 
 def tocar(arquivo):
@@ -696,6 +720,7 @@ def main():
     p.add_argument("--web", action="store_true", help="instala tambem bun e a interface web")
     p.set_defaults(func=cmd_instalar)
     p = sub.add_parser("modelos", help="aceita as licencas e baixa os modelos do pin.json (sobe um backend online temporario)")
+    p.add_argument("--refazer", action="store_true", help="apaga e baixa de novo os modelos do pin (use quando um download foi interrompido e a geracao diz que nao acha os arquivos)")
     p.set_defaults(func=cmd_modelos)
     p = sub.add_parser("subir", help="sobe a API em 127.0.0.1; offline por padrao")
     p.add_argument("--online", action="store_true", help="libera rede; o normal e baixar modelos pelo comando modelos")

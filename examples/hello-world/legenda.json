@@ -1,249 +1,249 @@
 {
- "versao": 1,
- "origem_do_texto": "examples/hello-world/voz.txt",
- "max_palavras": 4,
- "pausa_s": 0.35,
- "duracao_s": 11.97,
- "falas": [
-  {
-   "arquivo": "assets/voz/voz-01.wav",
-   "t": 0.3,
-   "duracao_s": 4.415,
-   "texto": "Olá, mundo. Este vídeo é feito de HTML e renderizado na sua máquina.",
-   "metodo": "whisper",
-   "palavras": 13,
-   "casadas_com_o_whisper": 13,
-   "ouvido": "Olá mundo, este vídeo é feito de HTML e renderizado na sua máquina."
-  },
-  {
-   "arquivo": "assets/voz/voz-02.wav",
-   "t": 5.25,
-   "duracao_s": 3.952,
-   "texto": "Você escreve a página, coloca voz, música e efeitos, e renderiza.",
-   "metodo": "whisper",
-   "palavras": 11,
-   "casadas_com_o_whisper": 11,
-   "ouvido": "Você escreve a página, coloca voz, música e efeitos e renderiza."
-  },
-  {
-   "arquivo": "assets/voz/voz-03.wav",
-   "t": 9.95,
-   "duracao_s": 2.139,
-   "texto": "Tudo local, sem depender da nuvem.",
-   "metodo": "whisper",
-   "palavras": 6,
-   "casadas_com_o_whisper": 6,
-   "ouvido": "Tudo local, sem depender da nuvem."
-  }
- ],
- "blocos": [
-  {
-   "inicio": 0.3,
-   "fim": 0.8,
-   "palavras": [
+  "versao": 1,
+  "origem_do_texto": "examples/hello-world/voz.txt",
+  "max_palavras": 4,
+  "pausa_s": 0.35,
+  "duracao_s": 11.79,
+  "falas": [
     {
-     "texto": "Olá,",
-     "inicio": 0.3,
-     "fim": 0.48
+      "arquivo": "assets/voz/voz-01.wav",
+      "t": 0.3,
+      "duracao_s": 3.868,
+      "texto": "Olá, mundo. Este vídeo é feito de HTML e renderizado na sua máquina.",
+      "metodo": "whisper",
+      "palavras": 13,
+      "casadas_com_o_whisper": 13,
+      "ouvido": "Olá mundo, este vídeo é feito de HTML e renderizado na sua máquina."
     },
     {
-     "texto": "mundo.",
-     "inicio": 0.48,
-     "fim": 0.8
+      "arquivo": "assets/voz/voz-02.wav",
+      "t": 5.25,
+      "duracao_s": 3.669,
+      "texto": "Você escreve a página, coloca voz, música e efeitos, e renderiza.",
+      "metodo": "whisper",
+      "palavras": 11,
+      "casadas_com_o_whisper": 11,
+      "ouvido": "Você escreve a página, coloca voz, música e efeitos e renderiza."
+    },
+    {
+      "arquivo": "assets/voz/voz-03.wav",
+      "t": 9.95,
+      "duracao_s": 1.931,
+      "texto": "Tudo local, sem depender da nuvem.",
+      "metodo": "whisper",
+      "palavras": 6,
+      "casadas_com_o_whisper": 6,
+      "ouvido": "Tudo local, sem depender da nuvem."
     }
-   ]
-  },
-  {
-   "inicio": 1.04,
-   "fim": 2.18,
-   "palavras": [
+  ],
+  "blocos": [
     {
-     "texto": "Este",
-     "inicio": 1.04,
-     "fim": 1.44
+      "inicio": 0.3,
+      "fim": 0.82,
+      "palavras": [
+        {
+          "texto": "Olá,",
+          "inicio": 0.3,
+          "fim": 0.5
+        },
+        {
+          "texto": "mundo.",
+          "inicio": 0.5,
+          "fim": 0.82
+        }
+      ]
     },
     {
-     "texto": "vídeo",
-     "inicio": 1.44,
-     "fim": 1.76
+      "inicio": 1.06,
+      "fim": 1.82,
+      "palavras": [
+        {
+          "texto": "Este",
+          "inicio": 1.06,
+          "fim": 1.2
+        },
+        {
+          "texto": "vídeo",
+          "inicio": 1.2,
+          "fim": 1.46
+        },
+        {
+          "texto": "é",
+          "inicio": 1.46,
+          "fim": 1.58
+        },
+        {
+          "texto": "feito",
+          "inicio": 1.58,
+          "fim": 1.82
+        }
+      ]
     },
     {
-     "texto": "é",
-     "inicio": 1.76,
-     "fim": 1.92
+      "inicio": 1.82,
+      "fim": 3.46,
+      "palavras": [
+        {
+          "texto": "de",
+          "inicio": 1.82,
+          "fim": 1.96
+        },
+        {
+          "texto": "HTML",
+          "inicio": 1.96,
+          "fim": 2.36,
+          "destaque": true
+        },
+        {
+          "texto": "e",
+          "inicio": 2.36,
+          "fim": 2.82
+        },
+        {
+          "texto": "renderizado",
+          "inicio": 2.82,
+          "fim": 3.46
+        }
+      ]
     },
     {
-     "texto": "feito",
-     "inicio": 1.92,
-     "fim": 2.18
+      "inicio": 3.46,
+      "fim": 4.06,
+      "palavras": [
+        {
+          "texto": "na",
+          "inicio": 3.46,
+          "fim": 3.58
+        },
+        {
+          "texto": "sua",
+          "inicio": 3.58,
+          "fim": 3.78
+        },
+        {
+          "texto": "máquina.",
+          "inicio": 3.78,
+          "fim": 4.06,
+          "destaque": true
+        }
+      ]
+    },
+    {
+      "inicio": 5.25,
+      "fim": 6.35,
+      "palavras": [
+        {
+          "texto": "Você",
+          "inicio": 5.25,
+          "fim": 5.47
+        },
+        {
+          "texto": "escreve",
+          "inicio": 5.47,
+          "fim": 5.87
+        },
+        {
+          "texto": "a",
+          "inicio": 5.87,
+          "fim": 5.99
+        },
+        {
+          "texto": "página,",
+          "inicio": 5.99,
+          "fim": 6.35
+        }
+      ]
+    },
+    {
+      "inicio": 6.53,
+      "fim": 7.57,
+      "palavras": [
+        {
+          "texto": "coloca",
+          "inicio": 6.53,
+          "fim": 6.73
+        },
+        {
+          "texto": "voz,",
+          "inicio": 6.73,
+          "fim": 7.09
+        },
+        {
+          "texto": "música",
+          "inicio": 7.27,
+          "fim": 7.57
+        }
+      ]
+    },
+    {
+      "inicio": 7.57,
+      "fim": 8.89,
+      "palavras": [
+        {
+          "texto": "e",
+          "inicio": 7.57,
+          "fim": 7.69
+        },
+        {
+          "texto": "efeitos,",
+          "inicio": 7.69,
+          "fim": 8.15
+        },
+        {
+          "texto": "e",
+          "inicio": 8.15,
+          "fim": 8.33
+        },
+        {
+          "texto": "renderiza.",
+          "inicio": 8.33,
+          "fim": 8.89,
+          "destaque": true
+        }
+      ]
+    },
+    {
+      "inicio": 9.95,
+      "fim": 11.23,
+      "palavras": [
+        {
+          "texto": "Tudo",
+          "inicio": 9.95,
+          "fim": 10.13
+        },
+        {
+          "texto": "local,",
+          "inicio": 10.13,
+          "fim": 10.49,
+          "destaque": true
+        },
+        {
+          "texto": "sem",
+          "inicio": 10.69,
+          "fim": 10.79
+        },
+        {
+          "texto": "depender",
+          "inicio": 10.79,
+          "fim": 11.23
+        }
+      ]
+    },
+    {
+      "inicio": 11.23,
+      "fim": 11.79,
+      "palavras": [
+        {
+          "texto": "da",
+          "inicio": 11.23,
+          "fim": 11.41
+        },
+        {
+          "texto": "nuvem.",
+          "inicio": 11.41,
+          "fim": 11.79
+        }
+      ]
     }
-   ]
-  },
-  {
-   "inicio": 2.18,
-   "fim": 3.86,
-   "palavras": [
-    {
-     "texto": "de",
-     "inicio": 2.18,
-     "fim": 2.3
-    },
-    {
-     "texto": "HTML",
-     "inicio": 2.3,
-     "fim": 2.72,
-     "destaque": true
-    },
-    {
-     "texto": "e",
-     "inicio": 2.72,
-     "fim": 3.22
-    },
-    {
-     "texto": "renderizado",
-     "inicio": 3.22,
-     "fim": 3.86
-    }
-   ]
-  },
-  {
-   "inicio": 3.86,
-   "fim": 4.54,
-   "palavras": [
-    {
-     "texto": "na",
-     "inicio": 3.86,
-     "fim": 4.0
-    },
-    {
-     "texto": "sua",
-     "inicio": 4.0,
-     "fim": 4.2
-    },
-    {
-     "texto": "máquina.",
-     "inicio": 4.2,
-     "fim": 4.54,
-     "destaque": true
-    }
-   ]
-  },
-  {
-   "inicio": 5.25,
-   "fim": 6.29,
-   "palavras": [
-    {
-     "texto": "Você",
-     "inicio": 5.25,
-     "fim": 5.43
-    },
-    {
-     "texto": "escreve",
-     "inicio": 5.43,
-     "fim": 5.79
-    },
-    {
-     "texto": "a",
-     "inicio": 5.79,
-     "fim": 5.91
-    },
-    {
-     "texto": "página,",
-     "inicio": 5.91,
-     "fim": 6.29
-    }
-   ]
-  },
-  {
-   "inicio": 6.61,
-   "fim": 7.77,
-   "palavras": [
-    {
-     "texto": "coloca",
-     "inicio": 6.61,
-     "fim": 6.85
-    },
-    {
-     "texto": "voz,",
-     "inicio": 6.85,
-     "fim": 7.27
-    },
-    {
-     "texto": "música",
-     "inicio": 7.49,
-     "fim": 7.77
-    }
-   ]
-  },
-  {
-   "inicio": 7.77,
-   "fim": 9.11,
-   "palavras": [
-    {
-     "texto": "e",
-     "inicio": 7.77,
-     "fim": 7.89
-    },
-    {
-     "texto": "efeitos,",
-     "inicio": 7.89,
-     "fim": 8.37
-    },
-    {
-     "texto": "e",
-     "inicio": 8.37,
-     "fim": 8.53
-    },
-    {
-     "texto": "renderiza.",
-     "inicio": 8.53,
-     "fim": 9.11,
-     "destaque": true
-    }
-   ]
-  },
-  {
-   "inicio": 9.95,
-   "fim": 11.45,
-   "palavras": [
-    {
-     "texto": "Tudo",
-     "inicio": 9.95,
-     "fim": 10.13
-    },
-    {
-     "texto": "local,",
-     "inicio": 10.13,
-     "fim": 10.51,
-     "destaque": true
-    },
-    {
-     "texto": "sem",
-     "inicio": 10.79,
-     "fim": 10.95
-    },
-    {
-     "texto": "depender",
-     "inicio": 10.95,
-     "fim": 11.45
-    }
-   ]
-  },
-  {
-   "inicio": 11.45,
-   "fim": 11.97,
-   "palavras": [
-    {
-     "texto": "da",
-     "inicio": 11.45,
-     "fim": 11.59
-    },
-    {
-     "texto": "nuvem.",
-     "inicio": 11.59,
-     "fim": 11.97
-    }
-   ]
-  }
- ]
+  ]
 }

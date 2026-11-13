@@ -17,6 +17,9 @@
     "k2-fsa/OmniVoice",
     "deepdml/faster-whisper-large-v3-turbo-ct2"
   ],
+  "licencas": [
+    "eustlb/higgs-audio-v2-tokenizer"
+  ],
   "portas": {
     "api": 3900,
     "web": 3901

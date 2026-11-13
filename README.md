@@ -39,7 +39,7 @@ python content-engine/audio/doctor.py
 
 ## Quickstart (5 minutos)
 
-Vídeo de exemplo (1080x1920, 13,5 s, com narração na voz local Kokoro, legenda palavra a palavra, música de fundo e efeitos sonoros). A narração e a legenda já vêm geradas na pasta do exemplo, então dá para renderizar sem instalar a voz:
+Vídeo de exemplo (1080x1920, 13,5 s, com narração na voz local do VoiceStudio (a voz de exemplo `narradora`), legenda palavra a palavra, música de fundo e efeitos sonoros). A narração e a legenda já vêm geradas na pasta do exemplo, então dá para renderizar sem instalar a voz:
 
 ```bash
 python content-engine/audio/trilha.py examples/hello-world examples/hello-world/trilha.json
@@ -81,7 +81,7 @@ content-engine/
   common/      o que os motores compartilham: navegador fixo, flags de isolamento, checagens
   fonts/     fontes woff2 locais (SIL OFL) com licenças e SHA-256
   tokens.json marcas: cores, fontes, logo, tom (vem com uma marca fictícia)
-voicestudio/  instalador e wrapper da voz local VoiceStudio; voices/ nasce vazia
+voicestudio/  instalador e wrapper da voz local VoiceStudio; voices/ traz só a voz de exemplo `narradora`
 examples/     hello-world (vídeo), card (imagem), narration (texto de voz)
 ```
 
@@ -106,7 +106,7 @@ O detalhe e os limites estão nos `MOTOR.md`.
 ## Voz
 
 - **Local por padrão.** O provedor padrão é o Kokoro (`pf_dora`, pt-BR), que roda na CPU e funciona sem voz própria e sem chave.
-- **VoiceStudio (local, opcional).** Voz mais natural, com voz criada por você (design por atributos ou clone de uma gravação autorizada). O repo não traz nenhuma voz: veja `voicestudio/voices/README.md`.
+- **VoiceStudio (local, opcional).** Voz mais natural, com voz criada por você (design por atributos ou clone de uma gravação autorizada). O repo traz uma única voz de exemplo, `narradora`, criada por atributos (sem clonar ninguém) e usada na narração do `examples/hello-world`; para criar a sua, veja `voicestudio/voices/README.md`.
 - **Nuvem (opcional, com chave própria).** Azure AI Speech, Azure OpenAI gpt-audio e Google Cloud Text-to-Speech. As chaves ficam só em `content-engine/audio/.env` (modelo em `.env.example`, ignorado pelo git). Com provedor de nuvem, o texto da narração sai da máquina; o vídeo e os arquivos da peça não.
 
 Detalhes em `content-engine/audio/AUDIO.md`.

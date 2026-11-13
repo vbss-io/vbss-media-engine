@@ -1,0 +1,50 @@
+{
+  "provedor": "voicestudio",
+  "local": true,
+  "voz": "narradora",
+  "modelo": "VoiceStudio d819ff54 / OmniVoice (local, CPU, seed 7, 32 passos, variante qualidade)",
+  "idioma": "pt-BR",
+  "velocidade": 1.0,
+  "opcoes": {},
+  "entrada": "examples/hello-world/voz.txt",
+  "gerado_em": "2026-11-13T11:32:22",
+  "total_caracteres": 167,
+  "duracao_total_s": 9.468,
+  "carga_modelo_s": 7.782,
+  "sintese_s": 212.107,
+  "processo_total_s": 220.207,
+  "fator_tempo_real": 22.4025,
+  "alvo_lufs": -16.0,
+  "linhas": [
+    {
+      "batida": 1,
+      "texto": "Olá, mundo. Este vídeo é feito de HTML e renderizado na sua máquina.",
+      "caracteres": 68,
+      "arquivo": "voz-01.wav",
+      "duracao_s": 3.868,
+      "lufs": -16.0,
+      "pico_dbtp": -5.3,
+      "ganho_db": 8.4
+    },
+    {
+      "batida": 2,
+      "texto": "Você escreve a página, coloca voz, música e efeitos, e renderiza.",
+      "caracteres": 65,
+      "arquivo": "voz-02.wav",
+      "duracao_s": 3.669,
+      "lufs": -16.0,
+      "pico_dbtp": -4.3,
+      "ganho_db": 8.7
+    },
+    {
+      "batida": 3,
+      "texto": "Tudo local, sem depender da nuvem.",
+      "caracteres": 34,
+      "arquivo": "voz-03.wav",
+      "duracao_s": 1.931,
+      "lufs": -16.0,
+      "pico_dbtp": -4.3,
+      "ganho_db": 8.9
+    }
+  ]
+}
