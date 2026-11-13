@@ -1,0 +1,13 @@
+{
+  "fundo": {
+    "arquivo": "fundo.webp",
+    "origem": "cdn.vbss.io/imaginaria/019dc5fe-be8b-7dd1-ac16-7afbe838b615/01a1d680-e146-71eb-add0-a720bbcb79c3",
+    "sha256": "c41f797539198dc8036793a9a8debee7dc8cd77b4d8e03930b3324cc2c75decd",
+    "bytes": 196472,
+    "largura": 1024,
+    "altura": 1536,
+    "importado_em": "2026-11-13",
+    "prompt": "Vertical cinematic illustration for a video background: a small glowing desktop workstation on a wooden desk at night seen from behind, its screen projecting soft beams of blue and teal light that turn into floating abstract film frames and sound waves rising upward. Deep navy blue night palette with accents of electric blue, teal and warm amber. Clean modern digital illustration, soft volumetric light, subtle grain, high detail. The upper third of the image is calm dark empty sky with only a few faint light particles, leaving free space for a title. No text, no letters, no logos, no people.",
+    "modelo": "azure/gpt-image-2.5-flare"
+  }
+}

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Imagem gerada - composição de exemplo</title>
+<script src="_motor/gsap.min.js"></script>
+<script src="_motor/kit/motion.js"></script>
+<script src="legenda.js"></script>
+<style>
+  @font-face{font-family:"Inter";src:url("_motor/fonts/inter-600.woff2") format("woff2");font-weight:600;font-style:normal}
+  @font-face{font-family:"Inter";src:url("_motor/fonts/inter-ext-600.woff2") format("woff2");font-weight:600;font-style:normal;unicode-range:U+0100-02BA}
+  @font-face{font-family:"Montserrat";src:url("_motor/fonts/montserrat-800.woff2") format("woff2");font-weight:800;font-style:normal}
+  @font-face{font-family:"Montserrat";src:url("_motor/fonts/montserrat-ext-800.woff2") format("woff2");font-weight:800;font-style:normal;unicode-range:U+0100-02BA}
+
+  :root{--azul-claro:#7FA8FF;--amarelo:#FFB703;--verde:#2EC4B6;--fundo:#070B1A;--texto:#F8FAFC}
+  body{margin:0;background:var(--fundo);color:var(--texto);font-family:"Inter",sans-serif;font-weight:600}
+  #root{position:relative;width:100%;height:100%;overflow:hidden;background:var(--fundo)}
+  .clip{position:absolute;inset:0}
+  #s-legenda{z-index:8 !important}
+  .titulo{font-family:"Montserrat",sans-serif;font-weight:800}
+
+  #imagem{position:absolute;left:-60px;top:-100px;width:1200px;height:2120px;object-fit:cover;transform-origin:50% 62%}
+  #veu-topo{position:absolute;left:0;top:0;width:1080px;height:900px;background:linear-gradient(rgba(7,11,26,.82) 0%,rgba(7,11,26,.55) 55%,rgba(7,11,26,0) 100%)}
+  #veu-base{position:absolute;left:0;top:1180px;width:1080px;height:740px;background:linear-gradient(rgba(7,11,26,0) 0%,rgba(7,11,26,.78) 38%,rgba(7,11,26,.9) 100%)}
+
+  #kicker{position:absolute;left:90px;top:262px;font-size:36px;letter-spacing:.16em;text-transform:uppercase;color:var(--azul-claro)}
+  #titulo{position:absolute;left:90px;right:120px;top:326px;font-size:116px;line-height:1.04}
+  #titulo em{font-style:normal;color:var(--amarelo)}
+  #risco{position:absolute;left:90px;top:600px;width:360px;height:12px;background:var(--verde)}
+
+  .passo{position:absolute;top:680px;height:96px;box-sizing:border-box;padding:0 30px;display:flex;align-items:center;gap:16px;font-size:40px;background:rgba(15,23,42,.82);border:3px solid rgba(127,168,255,.55);border-radius:18px}
+  .passo b{font-family:"Montserrat",sans-serif;font-weight:800;color:var(--amarelo)}
+  #p1{left:90px}
+  #p2{left:340px}
+  #p3{left:640px}
+
+  #fecho{position:absolute;left:90px;right:120px;top:326px;font-size:116px;line-height:1.04}
+  #fecho em{font-style:normal;color:var(--verde)}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="imagem-gerada" data-start="0" data-width="1080" data-height="1920" data-duration="12">
+  <audio id="trilha-musica" src="assets/musica/base.wav" data-start="0" data-duration="11.98" data-track-index="9" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-01" src="assets/voz/voz-01.wav" data-start="0.5" data-duration="4.682" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-02" src="assets/sfx/impacto-cine-macio.wav" data-start="0.5" data-duration="0.942" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-03" src="assets/sfx/brilho-cine-curto.wav" data-start="1.3" data-duration="1.139" data-track-index="12" data-volume="0.5" data-trilha="1"></audio>
+  <audio id="trilha-04" src="assets/voz/voz-02.wav" data-start="6.0" data-duration="4.082" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-05" src="assets/sfx/pop-cine-redondo.wav" data-start="6.52" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-06" src="assets/sfx/pop-cine-redondo.wav" data-start="7.34" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-07" src="assets/sfx/pop-cine-redondo.wav" data-start="8.58" data-duration="0.351" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-08" src="assets/sfx/whoosh-cine-medio.wav" data-start="9.29" data-duration="0.75" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-09" src="assets/sfx/impacto-cine-medio.wav" data-start="9.95" data-duration="1.366" data-track-index="12" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-10" src="assets/sfx/brilho-cine-longo.wav" data-start="9.95" data-duration="2.03" data-track-index="13" data-volume="0.5" data-trilha="1"></audio>
+  <section id="s-fundo" class="clip" data-start="0" data-duration="12" data-track-index="0">
+    <img id="imagem" src="assets/gerado/fundo.webp" alt="Mesa de trabalho à noite com quadros de vídeo e ondas de som saindo da tela">
+    <div id="veu-topo"></div>
+    <div id="veu-base"></div>
+  </section>
+
+  <section id="s-texto" class="clip" data-start="0" data-duration="12" data-track-index="1">
+    <div id="kicker">Fundo gerado por IA</div>
+    <div class="titulo" id="titulo">Do pedido<br><em>ao vídeo</em></div>
+    <div id="risco"></div>
+    <div class="passo" id="p1"><b>1</b>Gere</div>
+    <div class="passo" id="p2"><b>2</b>Importe</div>
+    <div class="passo" id="p3"><b>3</b>Renderize</div>
+    <div class="titulo" id="fecho">Tudo na<br><em>sua máquina</em></div>
+  </section>
+
+  <section id="s-legenda" class="clip" data-start="0" data-duration="12" data-track-index="4">
+    <div id="legenda"></div>
+  </section>
+</div>
+<script>
+  const tl = gsap.timeline({ paused: true });
+  const K = MotionKit.criar(tl);
+  const TOTAL = 12;
+
+  tl.fromTo("#imagem", { scale: 1, y: 0 }, { scale: 1.09, y: -34, duration: TOTAL, ease: "none" }, 0);
+  K.legenda("#legenda", window.__legenda, { ativa: "#FFB703", acento: "#2EC4B6" });
+
+  K.sobe("#kicker", 0.3, { y: 24, d: 0.3 });
+  K.bate(K.palavras("#titulo"), 0.5, { de: 1.4, stagger: 0.16 });
+  K.marca("#risco", 1.3);
+
+  K.sobe("#p1", 6.52, { y: 40, d: 0.34 });
+  K.sobe("#p2", 7.34, { y: 40, d: 0.34 });
+  K.sobe("#p3", 8.58, { y: 40, d: 0.34 });
+  K.toque("#p1", 6.9);
+  K.toque("#p2", 7.75);
+  K.toque("#p3", 9.0);
+
+  K.sai(["#kicker", "#titulo", "#risco"], 9.55, { stagger: 0.04 });
+  K.bate(K.palavras("#fecho"), 9.95, { de: 1.4, stagger: 0.14 });
+  tl.to(".passo", { borderColor: "#2EC4B6", duration: 0.3, stagger: 0.08 }, 10.3);
+
+  window.__timelines["imagem-gerada"] = tl;
+</script>
+</body>
+</html>

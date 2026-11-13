@@ -16,7 +16,9 @@ import _comum as c
 
 PASTA = Path("assets") / "gerado"
 MANIFESTO = "origem.json"
-TETO_MB = 25
+TETO_MB = {"imagem": 25, "video": 300}
+IMAGENS = ("png", "jpg", "webp")
+VIDEOS = ("mp4", "mov", "webm")
 TEMPO_LIMITE_S = 60
 NOME_RE = re.compile(r"[a-z0-9][a-z0-9-]{0,40}")
 
@@ -34,6 +36,10 @@ def tipo_e_tamanho(dados):
         return ("jpg", *dimensoes_jpeg(dados))
     if dados[:4] == b"RIFF" and dados[8:12] == b"WEBP":
         return ("webp", *dimensoes_webp(dados))
+    if dados[4:8] == b"ftyp":
+        return ("mov" if dados[8:12] == b"qt  " else "mp4"), 0, 0
+    if dados[:4] == bytes.fromhex("1a45dfa3"):
+        return "webm", 0, 0
     return None, 0, 0
 
 
@@ -103,13 +109,13 @@ def baixar(url, teto_bytes):
 
 
 def main():
-    p = argparse.ArgumentParser(description="Traz uma imagem de fora (gerada por IA, banco de imagens, foto sua) para dentro da composicao, em assets/gerado/, conferindo tipo e tamanho e registrando a origem. Aceita URL https ou arquivo local. E o unico passo com rede: o render continua local.")
-    p.add_argument("origem", help="URL https da imagem (ex.: o media_url devolvido pela geracao) ou caminho de um arquivo local")
+    p = argparse.ArgumentParser(description="Traz uma imagem ou um video de fora (gerado por IA, banco de midia, material seu) para dentro da composicao, em assets/gerado/, conferindo tipo e tamanho e registrando a origem. Aceita URL https ou arquivo local. E o unico passo com rede: o render continua local.")
+    p.add_argument("origem", help="URL https da imagem ou do video (ex.: o media_url devolvido pela geracao) ou caminho de um arquivo local")
     p.add_argument("composicao", help="pasta da composicao ou da peca")
     p.add_argument("--nome", required=True, help="nome do arquivo sem extensao (letras minusculas, numeros e hifen), ex.: fundo-abertura")
     p.add_argument("--prompt", help="prompt usado na geracao, guardado no origem.json")
     p.add_argument("--modelo", help="modelo usado na geracao, guardado no origem.json")
-    p.add_argument("--teto-mb", type=int, default=TETO_MB, help=f"tamanho maximo aceito (padrao {TETO_MB} MB)")
+    p.add_argument("--teto-mb", type=int, help=f"tamanho maximo aceito (padrao: {TETO_MB['imagem']} MB para imagem, {TETO_MB['video']} MB para video)")
     a = p.parse_args()
 
     comp = Path(a.composicao).resolve()
@@ -117,24 +123,26 @@ def main():
         c.falhar(f"{comp} nao e uma pasta")
     if not NOME_RE.fullmatch(a.nome):
         c.falhar("--nome: so letras minusculas, numeros e hifen (ex.: fundo-abertura)")
-    teto = a.teto_mb * 1024 * 1024
+    teto = (a.teto_mb or TETO_MB["video"]) * 1024 * 1024
     if re.match(r"^[a-z][a-z0-9+.-]*://", a.origem, re.IGNORECASE):
         host = conferir_url(a.origem)
-        c.titulo(f"Importar imagem de {host}")
+        c.titulo(f"Importar midia de {host}")
         dados = baixar(a.origem, teto)
-        origem = a.origem
+        origem = a.origem.split("://", 1)[1]
     else:
-        c.titulo("Importar imagem de arquivo local")
+        c.titulo("Importar midia de arquivo local")
         dados = ler_local(a.origem, teto)
         origem = "arquivo local: " + Path(a.origem).name
     tipo, largura, altura = tipo_e_tamanho(dados)
     if not tipo:
-        c.falhar("o conteudo nao e PNG, JPEG nem WebP (conferido pelos primeiros bytes, nao pela extensao): recusado")
+        c.falhar("o conteudo nao e imagem (PNG, JPEG, WebP) nem video (MP4, MOV, WebM), conferido pelos primeiros bytes e nao pela extensao: recusado")
+    if tipo in IMAGENS and not a.teto_mb and len(dados) > TETO_MB["imagem"] * 1024 * 1024:
+        c.falhar(f"imagem maior que {TETO_MB['imagem']} MB: recusada (use --teto-mb para aceitar)")
 
     pasta = comp / PASTA
     pasta.mkdir(parents=True, exist_ok=True)
     for antigo in pasta.glob(f"{a.nome}.*"):
-        if antigo.suffix.lstrip(".") in ("png", "jpg", "webp"):
+        if antigo.suffix.lstrip(".") in IMAGENS + VIDEOS:
             antigo.unlink()
     destino = pasta / f"{a.nome}.{tipo}"
     destino.write_bytes(dados)
@@ -150,6 +158,8 @@ def main():
         "altura": altura,
         "importado_em": time.strftime("%Y-%m-%d"),
     }
+    if tipo in VIDEOS:
+        del item["largura"], item["altura"]
     if a.prompt:
         item["prompt"] = a.prompt
     if a.modelo:
@@ -158,8 +168,12 @@ def main():
     manifesto.write_text(json.dumps(registro, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
 
     rel = (PASTA / destino.name).as_posix()
-    c.linha("OK", rel, f"{tipo.upper()} {largura}x{altura}, {len(dados) / 1024:.0f} KB, sha256 {item['sha256'][:12]}")
-    print(f"   Na composicao de video: <img src=\"{rel}\">   Na peca de imagem: <img src=\"/{rel}\">")
+    if tipo in VIDEOS:
+        c.linha("OK", rel, f"video {tipo.upper()}, {len(dados) / (1024 * 1024):.1f} MB, sha256 {item['sha256'][:12]}")
+        print(f"   Na composicao de video: <video src=\"{rel}\" muted playsinline data-start=\"0\" data-duration=\"<segundos>\" data-track-index=\"<n>\"></video>")
+    else:
+        c.linha("OK", rel, f"{tipo.upper()} {largura}x{altura}, {len(dados) / 1024:.0f} KB, sha256 {item['sha256'][:12]}")
+        print(f"   Na composicao de video: <img src=\"{rel}\">   Na peca de imagem: <img src=\"/{rel}\">")
     print(f"   Origem registrada em {(PASTA / MANIFESTO).as_posix()}")
 
 

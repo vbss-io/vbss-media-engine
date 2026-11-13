@@ -1,0 +1,40 @@
+{
+  "provedor": "voicestudio",
+  "local": true,
+  "voz": "narradora",
+  "modelo": "VoiceStudio d819ff54 / OmniVoice (local, CPU, seed 7, 32 passos, variante qualidade)",
+  "idioma": "pt-BR",
+  "velocidade": 1.0,
+  "opcoes": {},
+  "entrada": "examples/generated-image/voz.txt",
+  "gerado_em": "2026-11-13T17:07:04",
+  "total_caracteres": 153,
+  "duracao_total_s": 8.764,
+  "carga_modelo_s": 9.815,
+  "sintese_s": 192.842,
+  "processo_total_s": 202.965,
+  "fator_tempo_real": 22.0039,
+  "alvo_lufs": -16.0,
+  "linhas": [
+    {
+      "batida": 1,
+      "texto": "Este fundo foi gerado por inteligência artificial, a partir de um pedido em texto.",
+      "caracteres": 82,
+      "arquivo": "voz-01.wav",
+      "duracao_s": 4.682,
+      "lufs": -16.0,
+      "pico_dbtp": -3.6,
+      "ganho_db": 9.0
+    },
+    {
+      "batida": 2,
+      "texto": "O agente gera, o motor importa, e o vídeo é renderizado na sua máquina.",
+      "caracteres": 71,
+      "arquivo": "voz-02.wav",
+      "duracao_s": 4.082,
+      "lufs": -16.0,
+      "pico_dbtp": -4.6,
+      "ganho_db": 8.8
+    }
+  ]
+}

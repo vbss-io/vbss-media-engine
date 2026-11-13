@@ -86,7 +86,7 @@ content-engine/
   fonts/     fontes woff2 locais (SIL OFL) com licenças e SHA-256
   tokens.json marcas: cores, fontes, logo, tom (vem com uma marca fictícia)
 voicestudio/  instalador e wrapper da voz local VoiceStudio; voices/ traz só a voz de exemplo `narradora`
-examples/     hello-world (vídeo), card (imagem), narration (texto de voz)
+examples/     hello-world (vídeo narrado), generated-image (vídeo com fundo gerado por IA), card (imagem), narration (texto de voz)
 ```
 
 Documentação de contrato, por motor:
@@ -117,7 +117,7 @@ Detalhes em `content-engine/audio/AUDIO.md`.
 
 ## Imagens de fora (e o conector do Imaginaria, opcional)
 
-O motor não gera imagem, mas a peça pode usar qualquer uma: gerada por IA no serviço que você preferir, de banco de imagens ou sua. O `importar.py` traz a imagem para a pasta da peça, de uma URL `https` ou de um arquivo local, e o render continua local.
+O motor não gera imagem nem filmagem, mas a peça pode usar qualquer uma: gerada por IA no serviço que você preferir, de banco de mídia ou sua. O `importar.py` traz a imagem ou o clipe para a pasta da peça, de uma URL `https` ou de um arquivo local, e o render continua local.
 
 ```bash
 python content-engine/image/importar.py "<url ou arquivo da imagem>" <pasta-da-peca> --nome fundo-abertura
@@ -131,8 +131,10 @@ claude mcp add --transport http imaginaria https://imaginaria-api.vbss.io/mcp
 
 - É opcional: o motor funciona igual sem ele.
 - Conectar é grátis; cada geração gasta créditos comprados da sua conta no Imaginaria.
-- O `importar.py` só baixa (ou copia) a imagem, confere que é PNG, JPEG ou WebP de verdade e registra a origem em `assets/gerado/origem.json`. Nada da peça é enviado.
-- Passo a passo para o agente e dicas de como a imagem entra bem no vídeo: `content-engine/image/IMAGENS-GERADAS.md`.
+- O `importar.py` só baixa (ou copia) o arquivo, confere que é imagem ou vídeo de verdade e registra a origem em `assets/gerado/origem.json`. Nada da peça é enviado.
+- Vale para imagem (PNG, JPEG, WebP) e para clipe de vídeo (MP4, MOV, WebM): o Imaginaria gera os dois.
+- Exemplo pronto: `examples/generated-image/`, com um fundo gerado pelo conector e trazido pelo `importar.py` (`python content-engine/video/render.py examples/generated-image output/imagem-gerada.mp4`).
+- Passo a passo para o agente e dicas de como a mídia entra bem no vídeo: `content-engine/image/IMAGENS-GERADAS.md`.
 
 ## Licenças e terceiros
 

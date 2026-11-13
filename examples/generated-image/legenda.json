@@ -1,0 +1,236 @@
+{
+  "versao": 1,
+  "origem_do_texto": "examples/generated-image/voz.txt",
+  "max_palavras": 4,
+  "pausa_s": 0.35,
+  "duracao_s": 9.96,
+  "falas": [
+    {
+      "arquivo": "assets/voz/voz-01.wav",
+      "t": 0.5,
+      "duracao_s": 4.682,
+      "texto": "Este fundo foi gerado por inteligência artificial, a partir de um pedido em texto.",
+      "metodo": "whisper",
+      "palavras": 14,
+      "casadas_com_o_whisper": 13,
+      "ouvido": "Este fundo foi gerado por inteligência artificial a partir de um pedido em textos."
+    },
+    {
+      "arquivo": "assets/voz/voz-02.wav",
+      "t": 6.0,
+      "duracao_s": 4.082,
+      "texto": "O agente gera, o motor importa, e o vídeo é renderizado na sua máquina.",
+      "metodo": "whisper",
+      "palavras": 14,
+      "casadas_com_o_whisper": 14,
+      "ouvido": "O agente gera, o motor importa e o vídeo é renderizado na sua máquina."
+    }
+  ],
+  "blocos": [
+    {
+      "inicio": 0.5,
+      "fim": 1.88,
+      "palavras": [
+        {
+          "texto": "Este",
+          "inicio": 0.5,
+          "fim": 0.82
+        },
+        {
+          "texto": "fundo",
+          "inicio": 0.82,
+          "fim": 1.18
+        },
+        {
+          "texto": "foi",
+          "inicio": 1.18,
+          "fim": 1.46
+        },
+        {
+          "texto": "gerado",
+          "inicio": 1.46,
+          "fim": 1.88
+        }
+      ]
+    },
+    {
+      "inicio": 1.88,
+      "fim": 3.18,
+      "palavras": [
+        {
+          "texto": "por",
+          "inicio": 1.88,
+          "fim": 2.1
+        },
+        {
+          "texto": "inteligência",
+          "inicio": 2.1,
+          "fim": 2.74,
+          "destaque": true
+        },
+        {
+          "texto": "artificial,",
+          "inicio": 2.74,
+          "fim": 3.18,
+          "destaque": true
+        }
+      ]
+    },
+    {
+      "inicio": 3.18,
+      "fim": 3.84,
+      "palavras": [
+        {
+          "texto": "a",
+          "inicio": 3.18,
+          "fim": 3.56
+        },
+        {
+          "texto": "partir",
+          "inicio": 3.56,
+          "fim": 3.84
+        }
+      ]
+    },
+    {
+      "inicio": 3.84,
+      "fim": 4.5,
+      "palavras": [
+        {
+          "texto": "de",
+          "inicio": 3.84,
+          "fim": 3.98
+        },
+        {
+          "texto": "um",
+          "inicio": 3.98,
+          "fim": 4.06
+        },
+        {
+          "texto": "pedido",
+          "inicio": 4.06,
+          "fim": 4.5
+        }
+      ]
+    },
+    {
+      "inicio": 4.5,
+      "fim": 5.12,
+      "palavras": [
+        {
+          "texto": "em",
+          "inicio": 4.5,
+          "fim": 4.66
+        },
+        {
+          "texto": "texto.",
+          "inicio": 4.66,
+          "fim": 5.12
+        }
+      ]
+    },
+    {
+      "inicio": 6.0,
+      "fim": 6.9,
+      "palavras": [
+        {
+          "texto": "O",
+          "inicio": 6.0,
+          "fim": 6.14
+        },
+        {
+          "texto": "agente",
+          "inicio": 6.14,
+          "fim": 6.52
+        },
+        {
+          "texto": "gera,",
+          "inicio": 6.52,
+          "fim": 6.9,
+          "destaque": true
+        }
+      ]
+    },
+    {
+      "inicio": 7.0,
+      "fim": 7.94,
+      "palavras": [
+        {
+          "texto": "o",
+          "inicio": 7.0,
+          "fim": 7.02
+        },
+        {
+          "texto": "motor",
+          "inicio": 7.02,
+          "fim": 7.34
+        },
+        {
+          "texto": "importa,",
+          "inicio": 7.34,
+          "fim": 7.94,
+          "destaque": true
+        }
+      ]
+    },
+    {
+      "inicio": 7.94,
+      "fim": 8.46,
+      "palavras": [
+        {
+          "texto": "e",
+          "inicio": 7.94,
+          "fim": 8.16
+        },
+        {
+          "texto": "o",
+          "inicio": 8.16,
+          "fim": 8.24
+        },
+        {
+          "texto": "vídeo",
+          "inicio": 8.24,
+          "fim": 8.46
+        }
+      ]
+    },
+    {
+      "inicio": 8.46,
+      "fim": 9.2,
+      "palavras": [
+        {
+          "texto": "é",
+          "inicio": 8.46,
+          "fim": 8.58
+        },
+        {
+          "texto": "renderizado",
+          "inicio": 8.58,
+          "fim": 9.2
+        }
+      ]
+    },
+    {
+      "inicio": 9.2,
+      "fim": 9.96,
+      "palavras": [
+        {
+          "texto": "na",
+          "inicio": 9.2,
+          "fim": 9.38
+        },
+        {
+          "texto": "sua",
+          "inicio": 9.38,
+          "fim": 9.62
+        },
+        {
+          "texto": "máquina.",
+          "inicio": 9.62,
+          "fim": 9.96,
+          "destaque": true
+        }
+      ]
+    }
+  ]
+}
