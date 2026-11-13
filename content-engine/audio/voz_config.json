@@ -1,8 +1,8 @@
 {
-  "provedor": "kokoro",
+  "provedor": "voicestudio",
   "velocidade": 1.0,
   "vozes_padrao": {
-    "voicestudio": "",
+    "voicestudio": "narradora",
     "kokoro": "pf_dora",
     "azure": "pt-BR-Thalita:DragonHDLatestNeural",
     "azure_openai": "marin",

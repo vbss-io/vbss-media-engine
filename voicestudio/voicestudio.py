@@ -38,6 +38,7 @@ PORTA_WEB = PIN["portas"]["web"]
 PROXY_MORTO = "http://127.0.0.1:9"
 LOOPBACK = "127.0.0.1,localhost,::1"
 CHAVES_DE_REDE = ("HTTP_PROXY", "HTTPS_PROXY", "ALL_PROXY", "NO_PROXY", "HF_HUB_OFFLINE", "TRANSFORMERS_OFFLINE", "HF_DATASETS_OFFLINE", "UV_OFFLINE")
+COM_CARA_DE_SEGREDO = re.compile(r"KEY|TOKEN|SECRET|SENHA|PASSWORD|PASSWD|CREDENTIAL|CONNECTION_STRING|^(AZURE|AWS|GOOGLE|GCP|OPENAI|ANTHROPIC|GITHUB|GH|NPM|STRIPE|MONGO|VOZ)_", re.IGNORECASE)
 FORA_DA_PASTA = [
     Path(os.environ.get("APPDATA", "")) / "OmniVoice",
     Path(os.environ.get("APPDATA", "")) / "VoiceStudio",
@@ -86,7 +87,7 @@ def escrever_json(path, dados):
 
 
 def ambiente(online):
-    env = {k: v for k, v in os.environ.items() if k.upper() not in CHAVES_DE_REDE}
+    env = {k: v for k, v in os.environ.items() if k.upper() not in CHAVES_DE_REDE and not COM_CARA_DE_SEGREDO.search(k)}
     pastas = {
         "OMNIVOICE_DATA_DIR": DADOS,
         "OMNIVOICE_CACHE_DIR": MODELOS,

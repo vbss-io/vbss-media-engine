@@ -7,9 +7,10 @@ Serve para qualquer conteúdo que caiba numa página: vídeo explicativo, vídeo
 ## Requisitos
 
 - Windows 10 ou 11 (x64). Os scripts baixam binários para Windows e a prova monitorada usa PowerShell.
-- Python 3 (testado com 3.11; só biblioteca padrão, e a voz local Kokoro cria um venv próprio).
+- Python 3 (testado com 3.11; só biblioteca padrão, e as vozes locais criam ambientes próprios, isolados).
 - Node.js 22 ou mais novo (motor de vídeo).
-- Git (só para a voz local VoiceStudio, opcional).
+- Git (para a voz local padrão, o VoiceStudio).
+- Cerca de 12 GB livres em disco para a voz local padrão (VoiceStudio e modelos); o resto do motor ocupa bem menos.
 
 ## Instalação
 
@@ -29,13 +30,15 @@ python content-engine/image/doctor.py
 Áudio:
 
 ```bash
-python content-engine/audio/voz_setup.py
+python voicestudio/voicestudio.py instalar
+python voicestudio/voicestudio.py modelos
 python content-engine/audio/doctor.py
 ```
 
 - Os efeitos sonoros e as músicas de fundo já estão no repo: não precisam de instalação.
-- `voz_setup.py` só é necessário para narração com a voz local Kokoro (cria o venv e baixa o modelo, com hashes fixados).
-- Sem o `voz_setup.py`, o `audio/doctor.py` acusa `FAIL` nos itens do Kokoro, porque ele é o provedor de voz padrão; efeitos, música e trilha funcionam mesmo assim.
+- A voz padrão é a `narradora`, no VoiceStudio, que roda nesta máquina. `instalar` baixa o VoiceStudio no commit fixado com as dependências travadas e `modelos` baixa os modelos de voz e de legenda (cerca de 8 GB de download; é o único passo pesado, e só é feito uma vez). Se o download for interrompido, rode `modelos --refazer`. O `modelos` aceita em seu nome as licenças dos modelos que baixa (OmniVoice, com pesos CC-BY-NC, de uso não comercial; o tokenizador de áudio Higgs; e o Whisper, MIT): leia-as antes de rodar.
+- Sem essa instalação, o `audio/doctor.py` acusa `FAIL` no VoiceStudio, porque ele é o provedor de voz padrão; efeitos, música, trilha e o render do exemplo (que já vem narrado) funcionam mesmo assim.
+- Alternativa leve, sem VoiceStudio: a voz local Kokoro (`python content-engine/audio/voz_setup.py` e `VOZ_PROVEDOR=kokoro` no `.env`). É mais robótica em português.
 
 ## Quickstart (5 minutos)
 
@@ -105,8 +108,8 @@ O detalhe e os limites estão nos `MOTOR.md`.
 
 ## Voz
 
-- **Local por padrão.** O provedor padrão é o Kokoro (`pf_dora`, pt-BR), que roda na CPU e funciona sem voz própria e sem chave.
-- **VoiceStudio (local, opcional).** Voz mais natural, com voz criada por você (design por atributos ou clone de uma gravação autorizada). O repo traz uma única voz de exemplo, `narradora`, criada por atributos (sem clonar ninguém) e usada na narração do `examples/hello-world`; para criar a sua, veja `voicestudio/voices/README.md`.
+- **Local por padrão: VoiceStudio com a voz `narradora`.** Roda na CPU, offline, sem chave, na qualidade de 32 passos. A `narradora` é uma voz de exemplo criada por atributos (sem clonar ninguém), a mesma da narração do `examples/hello-world`. Para criar a sua (design por atributos ou clone de uma gravação autorizada), veja `voicestudio/voices/README.md`.
+- **Kokoro (local, opcional).** Mais leve e de uso comercial livre (Apache-2.0), mas mais robótico em português: `voz_setup.py` e `VOZ_PROVEDOR=kokoro`.
 - **Nuvem (opcional, com chave própria).** Azure AI Speech, Azure OpenAI gpt-audio e Google Cloud Text-to-Speech. As chaves ficam só em `content-engine/audio/.env` (modelo em `.env.example`, ignorado pelo git). Com provedor de nuvem, o texto da narração sai da máquina; o vídeo e os arquivos da peça não.
 
 Detalhes em `content-engine/audio/AUDIO.md`.

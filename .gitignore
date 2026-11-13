@@ -13,3 +13,7 @@ content-engine/audio/.env
 voicestudio/repo/
 voicestudio/.local/
 output/
+
+.env
+.env.*
+!.env.example

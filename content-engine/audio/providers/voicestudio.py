@@ -22,7 +22,7 @@ def _vozes_guardadas():
 
 
 VOZES = [{"id": nome, "genero": "", "idioma": "pt-BR", "nota": voz.get("origem", "")} for nome, voz in _vozes_guardadas().items()]
-VOZ_PADRAO = ""
+VOZ_PADRAO = "narradora"
 
 
 def _vs():
