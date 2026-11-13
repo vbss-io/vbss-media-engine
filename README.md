@@ -80,6 +80,7 @@ content-engine/
     engines/hyperframes/   adaptador do HyperFrames, guardas de rede e de arquivos, guia de autoria
     kit/motion.js          kit de motion (chega à composição como _motor/kit/motion.js)
   image/     motor de imagem: setup.py, doctor.py, render.py, folha.py, MOTOR.md
+               importar.py + IMAGENS-GERADAS.md: imagem gerada por IA (conector do Imaginaria) para dentro da peça
   audio/      voz (voz.py, providers/), efeitos (sfx/), música (music/), trilha.py, legenda.py, AUDIO.md
   common/      o que os motores compartilham: navegador fixo, flags de isolamento, checagens
   fonts/     fontes woff2 locais (SIL OFL) com licenças e SHA-256
@@ -113,6 +114,19 @@ O detalhe e os limites estão nos `MOTOR.md`.
 - **Nuvem (opcional, com chave própria).** Azure AI Speech, Azure OpenAI gpt-audio e Google Cloud Text-to-Speech. As chaves ficam só em `content-engine/audio/.env` (modelo em `.env.example`, ignorado pelo git). Com provedor de nuvem, o texto da narração sai da máquina; o vídeo e os arquivos da peça não.
 
 Detalhes em `content-engine/audio/AUDIO.md`.
+
+## Imagens geradas por IA (Imaginaria)
+
+O motor não gera imagem, mas o seu agente pode: com o conector do [Imaginaria](https://www.imaginaria.vbss.io/conectores) ligado ao Claude (ou a outro cliente MCP), ele cria o fundo, a ilustração ou a cena que a peça pede e traz o arquivo para a pasta dela. O render continua local.
+
+```bash
+claude mcp add --transport http imaginaria https://imaginaria-api.vbss.io/mcp
+python content-engine/image/importar.py "<url da imagem gerada>" <pasta-da-peca> --nome fundo-abertura
+```
+
+- Conectar é grátis; cada geração gasta créditos comprados da sua conta no Imaginaria, e as imagens ficam privadas por padrão. O agente deve dizer o custo e esperar o seu sim antes de gerar.
+- O `importar.py` é o único passo com rede desse fluxo e só baixa: `https`, host permitido, sem redirecionamento, tipo conferido pelos bytes e teto de tamanho. A imagem vai para `assets/gerado/` com a origem registrada.
+- Passo a passo para o agente e dicas de como a imagem entra bem no vídeo: `content-engine/image/IMAGENS-GERADAS.md`.
 
 ## Licenças e terceiros
 
