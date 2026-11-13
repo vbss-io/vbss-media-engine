@@ -4,6 +4,17 @@ Engine local para gerar mídia a partir de HTML: vídeo (HTML + GSAP), imagem es
 
 Serve para qualquer conteúdo que caiba numa página: vídeo explicativo, vídeo curto vertical, cartão, slide de carrossel, capa. Você cria as suas próprias marcas e projetos; o repo traz só uma marca fictícia de exemplo.
 
+## O que sai dele
+
+Resultados dos exemplos deste repo, gerados com os comandos do Quickstart e versionados em `examples/output/` para você ver (e ouvir) antes de instalar:
+
+| Vídeo narrado | Vídeo com fundo gerado por IA | Imagem |
+| --- | --- | --- |
+| [![Olá, mundo](examples/output/ola-mundo.jpg)](examples/output/ola-mundo.mp4) | [![Imagem gerada](examples/output/imagem-gerada.jpg)](examples/output/imagem-gerada.mp4) | [![Cartão](examples/output/cartao.jpg)](examples/output/cartao.png) |
+| [`ola-mundo.mp4`](examples/output/ola-mundo.mp4), de `examples/hello-world/` | [`imagem-gerada.mp4`](examples/output/imagem-gerada.mp4), de `examples/generated-image/` | [`cartao.png`](examples/output/cartao.png), de `examples/card/` |
+
+Os dois vídeos têm narração na voz local, legenda palavra a palavra, música de fundo e efeitos sonoros.
+
 ## Requisitos
 
 - Windows 10 ou 11 (x64). Os scripts baixam binários para Windows e a prova monitorada usa PowerShell.
@@ -64,7 +75,7 @@ Imagem de exemplo (1080x1350):
 python content-engine/image/render.py examples/card/cartao.html output/cartao.png --raiz examples/card
 ```
 
-Narração de exemplo (depois do `voz_setup.py`):
+Narração de exemplo (depois de instalar a voz local):
 
 ```bash
 python content-engine/audio/voz.py examples/narration/voz.txt --saida output/voz
@@ -86,7 +97,7 @@ content-engine/
   fonts/     fontes woff2 locais (SIL OFL) com licenças e SHA-256
   tokens.json marcas: cores, fontes, logo, tom (vem com uma marca fictícia)
 voicestudio/  instalador e wrapper da voz local VoiceStudio; voices/ traz só a voz de exemplo `narradora`
-examples/     hello-world (vídeo narrado), generated-image (vídeo com fundo gerado por IA), card (imagem), narration (texto de voz)
+examples/     output/ (resultados já renderizados), hello-world (vídeo narrado), generated-image (vídeo com fundo gerado por IA), card (imagem), narration (texto de voz)
 ```
 
 Documentação de contrato, por motor:
