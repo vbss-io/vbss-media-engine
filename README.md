@@ -8,12 +8,12 @@ Serve para qualquer conteúdo que caiba numa página: vídeo explicativo, vídeo
 
 Resultados dos exemplos deste repo, gerados com os comandos do Quickstart e versionados em `examples/output/` para você ver (e ouvir) antes de instalar:
 
-| Vídeo narrado | Vídeo com fundo gerado por IA | Imagem |
-| --- | --- | --- |
-| [![Olá, mundo](examples/output/ola-mundo.jpg)](examples/output/ola-mundo.mp4) | [![Imagem gerada](examples/output/imagem-gerada.jpg)](examples/output/imagem-gerada.mp4) | [![Cartão](examples/output/cartao.jpg)](examples/output/cartao.png) |
-| [`ola-mundo.mp4`](examples/output/ola-mundo.mp4), de `examples/hello-world/` | [`imagem-gerada.mp4`](examples/output/imagem-gerada.mp4), de `examples/generated-image/` | [`cartao.png`](examples/output/cartao.png), de `examples/card/` |
+| Vídeo narrado | Vídeo com fundo gerado por IA | Reel a partir de um roteiro | Imagem |
+| --- | --- | --- | --- |
+| [![Olá, mundo](examples/output/ola-mundo.jpg)](examples/output/ola-mundo.mp4) | [![Imagem gerada](examples/output/imagem-gerada.jpg)](examples/output/imagem-gerada.mp4) | [![Reel a partir de um roteiro](examples/output/reel-roteiro.jpg)](examples/output/reel-roteiro.mp4) | [![Cartão](examples/output/cartao.jpg)](examples/output/cartao.png) |
+| [`ola-mundo.mp4`](examples/output/ola-mundo.mp4), de `examples/hello-world/` | [`imagem-gerada.mp4`](examples/output/imagem-gerada.mp4), de `examples/generated-image/` | [`reel-roteiro.mp4`](examples/output/reel-roteiro.mp4), de `examples/reel-from-script/` | [`cartao.png`](examples/output/cartao.png), de `examples/card/` |
 
-Os dois vídeos têm narração na voz local, legenda palavra a palavra, música de fundo e efeitos sonoros.
+Os três vídeos têm narração na voz local, legenda palavra a palavra, música de fundo e efeitos sonoros. O terceiro não teve nenhum tempo digitado: saiu de um `roteiro.json` pelo montador.
 
 ## Requisitos
 
@@ -69,6 +69,14 @@ python content-engine/video/frames.py output/ola-mundo.mp4 output/frames --n 6
 
 > **Abrir o `index.html` direto no navegador não funciona:** as bibliotecas, as fontes e o kit de motion vêm de `_motor/`, que só existe na prévia e no render. Use o `preview.py` ou o `render.py`.
 
+Reel montado a partir de um roteiro (1080x1920, 18,9 s; a voz já vem gerada, então montar de novo não chama o motor de voz, só confere e reescreve a composição):
+
+```bash
+python content-engine/video/montar_reel.py examples/reel-from-script
+python content-engine/video/render.py examples/reel-from-script output/reel-roteiro.mp4
+python content-engine/video/checar_reel.py output/reel-roteiro.mp4 examples/reel-from-script
+```
+
 Imagem de exemplo (1080x1350):
 
 ```bash
@@ -83,21 +91,39 @@ python content-engine/audio/voz.py examples/narration/voz.txt --saida output/voz
 
 Para criar a sua peça, copie `examples/hello-world/` e leia `content-engine/video/MOTOR.md` (seção "Como escrever uma composição"). Peça narrada ganha legenda palavra a palavra com `content-engine/audio/legenda.py` e `K.legenda` do kit de motion (seções "Legenda sincronizada" do `AUDIO.md` e do `MOTOR.md`).
 
+## Reel a partir de um roteiro
+
+Para vídeo vertical narrado, não é preciso escrever o `index.html`: você descreve a peça num `roteiro.json` (a fala de cada batida e a cena que aparece com ela) e o montador gera a voz, a legenda, os efeitos, a música da marca e a composição inteira. Cada movimento é amarrado a uma palavra da fala, e os cortes caem no compasso da música.
+
+```bash
+python content-engine/video/montar_reel.py <pasta-da-peca>
+python content-engine/video/render.py <pasta-da-peca> output/reel.mp4
+python content-engine/video/checar_reel.py output/reel.mp4 <pasta-da-peca>
+```
+
+- `montar_reel.py` só gera a fala que falta ou mudou, confere a pronúncia de cada fala com o Whisper local (e tenta outra semente quando acha divergência) e não sobrescreve ajuste feito à mão.
+- `checar_reel.py` dá `PASS`/`FAIL` por item: trecho parado, primeiro segundo, texto e legenda na zona segura, cortes no compasso, pronúncia, música abaixo da voz e loudness. Não substitui olhar os quadros e ouvir a peça.
+- Cenas prontas: `abertura`, `aparelho` (print da tela do produto com câmera e destaques), `galeria`, `comparacao`, `passos`, `impacto` e `fecho`. As cores, as fontes e a música vêm do bloco `motion` da marca no `tokens.json`.
+- Formato do `roteiro.json`, catálogo de cenas e limites da checagem: `content-engine/video/MOTOR.md`, seção "Montador de Reel". Roteiro pronto para copiar: `examples/reel-from-script/roteiro.json`.
+
 ## Mapa das pastas
 
 ```text
 content-engine/
   video/      motor de vídeo: setup.py, doctor.py, render.py, frames.py, preview.py, MOTOR.md
+    montar_reel.py, reel_cenas.py, reel_tempos.py   montador de Reel a partir do roteiro.json
+    checar_reel.py, apontar.py                      checagem de motion e coordenadas do print
+    tests/                 testes do montador e da checagem
     engines/hyperframes/   adaptador do HyperFrames, guardas de rede e de arquivos, guia de autoria
     kit/motion.js          kit de motion (chega à composição como _motor/kit/motion.js)
   image/     motor de imagem: setup.py, doctor.py, render.py, folha.py, MOTOR.md
                importar.py + IMAGENS-GERADAS.md: imagem de fora (gerada por IA ou não) para dentro da peça
-  audio/      voz (voz.py, providers/), efeitos (sfx/), música (music/), trilha.py, legenda.py, AUDIO.md
+  audio/      voz (voz.py, providers/), efeitos (sfx/), música (music/), trilha.py, legenda.py, pronuncia.py, AUDIO.md
   common/      o que os motores compartilham: navegador fixo, flags de isolamento, checagens
   fonts/     fontes woff2 locais (SIL OFL) com licenças e SHA-256
-  tokens.json marcas: cores, fontes, logo, tom (vem com uma marca fictícia)
+  tokens.json marcas: cores, fontes, logo, tom e motion (vem com uma marca fictícia)
 voicestudio/  instalador e wrapper da voz local VoiceStudio; voices/ traz só a voz de exemplo `narradora`
-examples/     output/ (resultados já renderizados), hello-world (vídeo narrado), generated-image (vídeo com fundo gerado por IA), card (imagem), narration (texto de voz)
+examples/     output/ (resultados já renderizados), hello-world (vídeo narrado), generated-image (vídeo com fundo gerado por IA), reel-from-script (Reel montado a partir de um roteiro), card (imagem), narration (texto de voz)
 ```
 
 Documentação de contrato, por motor:
@@ -162,7 +188,7 @@ O código próprio deste repo (scripts, guardas, kit de motion, exemplos e docum
 - **Whisper** (`faster-whisper-large-v3-turbo`, baixado pelo `voicestudio.py modelos`, usado na legenda): MIT.
 - **VoiceStudio** (clonado pelo `voicestudio.py instalar`, não incluído no repo): AGPL-3.0.
 - **Pesos do OmniVoice** (modelo usado pelo VoiceStudio, baixado pelo `voicestudio.py modelos`): **CC-BY-NC, não comercial**. O modelo usa o tokenizador de áudio Higgs Audio 2 (Built with Higgs Materials licensed from Boson AI USA, Inc., Copyright Boson AI USA, Inc., All Rights Reserved) e é construído sobre o Llama 3 (Built with Meta Llama 3).
-- **Voz de exemplo `narradora` e narração do `examples/hello-world`**: áudios gerados com o OmniVoice, incluídos como demonstração não comercial do motor. Não os reutilize em peça comercial.
+- **Voz de exemplo `narradora` e narração dos exemplos em `examples/`**: áudios gerados com o OmniVoice, incluídos como demonstração não comercial do motor. Não os reutilize em peça comercial.
 
 > **Atenção, uso comercial:** a voz padrão (VoiceStudio) usa os pesos do OmniVoice, cuja licença não permite uso comercial. Para peça comercial, troque a voz: `VOZ_PROVEDOR=kokoro` (Apache-2.0) ou um provedor de nuvem com chave própria e termos que permitam. O resto do motor (vídeo, imagem, efeitos, músicas, fontes) não tem essa restrição. Quem gera a peça responde pelo uso que faz dela e dos materiais de terceiros.
 

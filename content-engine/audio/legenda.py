@@ -11,6 +11,7 @@ from pathlib import Path
 sys.dont_write_bytecode = True
 
 import _comum as c
+import pronuncia
 
 MODELO_WHISPER = "deepdml/faster-whisper-large-v3-turbo-ct2"
 WORKER = c.AUDIO_DIR / "legenda_worker.py"
@@ -394,6 +395,11 @@ def main():
                        "ouvido": " ".join(o["texto"] for o in palavras_ouvidas) or None})
         status = "OK" if metodo == "whisper" else "AVISO"
         c.linha(status, f["arquivo"], f"{metodo}: {casadas}/{len(palavras)} palavras casadas, {len(da_fala)} bloco(s): " + " | ".join(" ".join(x["texto"] for x in b["palavras"]) for b in da_fala))
+        if palavras_ouvidas:
+            conferida = pronuncia.conferir_fala(f["wav"], f["texto"], palavras_ouvidas)
+            relato[-1]["pronuncia"] = {"ok": conferida["ok"], "divergencias": [pronuncia.descrever(d) for d in conferida["divergencias"]]}
+            for d in relato[-1]["pronuncia"]["divergencias"]:
+                c.linha("AVISO", f"PRONUNCIA em {f['arquivo']}", d)
         if a.detalhe:
             for b in da_fala:
                 for x in b["palavras"]:
@@ -405,6 +411,11 @@ def main():
     escrever_js(comp_dir / "legenda.js", blocos)
     c.titulo("Resultado")
     c.linha("OK", f"{len(blocos)} bloco(s), {sum(len(b['palavras']) for b in blocos)} palavra(s)", f"{c.rel(comp_dir / 'legenda.json')} e legenda.js (window.__legenda)")
+    divergentes = [r["arquivo"] for r in relato if r.get("pronuncia") and not r["pronuncia"]["ok"]]
+    if divergentes:
+        c.linha("AVISO", f"a voz nao disse o texto como esta escrito em {len(divergentes)} fala(s)", "OUCA e gere de novo antes do render (voz.py --batidas N): " + ", ".join(divergentes))
+    elif any(r.get("pronuncia") for r in relato):
+        c.linha("OK", "pronuncia conferida", "o que o Whisper ouviu bate com o texto em todas as falas")
     if any(r["metodo"] != "whisper" for r in relato):
         c.linha("AVISO", "fala(s) com tempo estimado pelo plano B", "confira a legenda no preview antes do render")
     print('   Na composicao: <script src="legenda.js"></script> e K.legenda("#legenda", window.__legenda)')

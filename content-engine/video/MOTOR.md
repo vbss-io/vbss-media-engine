@@ -20,6 +20,9 @@ python content-engine/video/doctor.py
 python content-engine/video/render.py <pasta-da-composicao> <saida.mp4> [--fps 30] [--qualidade rascunho|padrao|final]
 python content-engine/video/frames.py <video.mp4> <pasta-saida> [--at 0,1.5,3] [--n 8] [--guias]
 python content-engine/video/preview.py <pasta-da-composicao> [--porta N] [--t SEG]
+python content-engine/video/montar_reel.py <pasta-da-peca> [--sobrescrever] [--refazer-legenda] [--ouvida 2,4 --por "nome"]
+python content-engine/video/apontar.py <print> [--largura N] [--conferir x,y,w,h --saida recorte.png]
+python content-engine/video/checar_reel.py <video.mp4> [<pasta-da-peca>]
 ```
 
 - `setup.py`: instalação única. Instala os pacotes npm fixados do motor dentro de `content-engine/video/engines/<motor>/node_modules` e baixa o FFmpeg e o navegador fixo (`chrome-headless-shell`), ambos com conferência de SHA-256. Rede usada só aqui. Rodar de novo não baixa o que já está conferido.
@@ -27,12 +30,174 @@ python content-engine/video/preview.py <pasta-da-composicao> [--porta N] [--t SE
 - `render.py`: recusa renderizar, antes de abrir o navegador, se houver `.env` perto da composição, URL externa nos arquivos dela, arquivo de tipo fora da lista permitida ou lista de reprodução (ver "Tipos de arquivo aceitos"), ou qualquer referência de arquivo que não seja um arquivo existente dentro da pasta da composição (checagem estática em `content-engine/common/midias.py`, detalhada em "Garantias"), além de `<audio>` sem `id` e atributo `crossorigin`; depois renderiza num ambiente isolado, com o guarda de arquivos ligado, e salva o `.mp4`. Se o guarda bloquear qualquer leitura de arquivo fora da composição durante o render, o `render.py` aborta, apaga o vídeo parcial e lista o que foi bloqueado. Imprime resolução, duração, fps, codec, quantas faixas de áudio saíram, se houve tentativa de rede bloqueada e se houve acesso a arquivo bloqueado.
 - `frames.py`: extrai PNGs do vídeo com o FFmpeg local para revisão. Sem `--at`, espalha `--n` frames do começo ao fim. `--guias` salva também uma cópia com as faixas de interface do Reels pintadas de vermelho (topo, rodapé e laterais): nada importante pode ficar nelas.
 - `preview.py`: prévia no navegador, para acertar tempo e posição antes de gastar um render (ver "Pré-visualização"). Não substitui o render.
+- `montar_reel.py`: monta a composição inteira de um Reel narrado a partir do `roteiro.json` da pasta da peça (ver "Montador de Reel"). É o caminho padrão para vídeo vertical narrado; escrever o `index.html` à mão fica para o que o catálogo de cenas não cobre.
+- `apontar.py`: tira do print as coordenadas de um alvo, com régua no navegador ou com um recorte para conferir (ver "Apontar coordenadas no print").
+- `checar_reel.py`: checagem automática de motion do vídeo renderizado, `PASS`/`FAIL` por item e código 1 em falha (ver "Checagem de motion").
 
-O motor não decide onde as peças ficam: a pasta da composição e o caminho do `.mp4` são argumentos. Exemplo pronto para renderizar: `examples/hello-world/`.
+O motor não decide onde as peças ficam: a pasta da composição e o caminho do `.mp4` são argumentos. Exemplos prontos para renderizar: `examples/hello-world/` (composição escrita à mão) e `examples/reel-from-script/` (montada a partir de um roteiro).
+
+## Montador de Reel (roteiro.json)
+
+Caminho padrão para vídeo vertical narrado. A pessoa escreve um `roteiro.json` na pasta da peça e o montador produz a composição inteira: `index.html`, `trilha.json` já aplicado, legenda e `montagem.json`. Nenhum tempo é digitado: cada movimento é amarrado a uma PALAVRA da fala.
+
+```bash
+python content-engine/video/montar_reel.py <pasta-da-peca> [--sobrescrever] [--refazer-legenda]
+python content-engine/video/apontar.py <print> [--largura 884] [--conferir x,y,w,h --saida recorte.png]
+python content-engine/video/render.py <pasta-da-peca> <saida>/reel.mp4
+python content-engine/video/checar_reel.py <saida>/reel.mp4 <pasta-da-peca>
+```
+
+O que o `montar_reel.py` faz, na ordem:
+
+- **Voz.** Grava as falas em `vozes/voz.txt` (já com a grafia de pronúncia da marca, ver `pronuncia` abaixo) e em `vozes/legenda.txt` (a grafia da tela, que é a que a legenda mostra) e gera só as que faltam (ou cujo texto mudou) com a voz padrão: `voz.py --batidas N`. Fala já gravada com o mesmo texto não é gerada de novo. A geração confere a pronúncia e tenta outra semente quando acha divergência (`content-engine/audio/AUDIO.md`, seção "Conferência de pronúncia").
+- **Tempos de cena.** Cada batida dura a fala mais o respiro: a fala começa 0,15 s depois do quadro 0 no gancho e 0,25 s depois do corte nas outras; sobra 0,3 s de respiro; a última batida ganha 2,6 s depois da fala para o logo. Com música, o corte sobe para a próxima batida do compasso (BPM do `musica.json`). `"cortes": "fala"` no roteiro desliga o encaixe; `"minimo": 5.0` numa batida estica a duração dela.
+- **Legenda.** Roda o `legenda.py` (Whisper local) e tira dele o início e o fim de cada palavra. Rodar de novo sem mudar fala nem tempo não chama o Whisper.
+- **Momentos.** Cada `{"na": "sem caixa", "faz": ...}` vira o instante em que a palavra é dita. `na` aceita uma palavra ou uma expressão seguida da fala (sem acento, caixa ou pontuação), `"@inicio"` e `"@fim"`. Opcionais: `"vez": 2` (segunda vez que a palavra aparece), `"ponto": "fim"` (fim da palavra) e `"ajuste": 0.15` (segundos, no máximo 0,5 para cada lado). Palavra que não está na fala para a montagem com a frase na mensagem.
+- **Efeitos.** Um efeito do conjunto cine por tipo de movimento, com nível de peça com voz (0,4 a 0,8), e a âncora aplicada (`t = momento - âncora`). O mesmo efeito repetido a menos de 0,09 s é descartado.
+- **Música, legenda e marca.** Música da marca (`motion.musica` do `tokens.json`) com volume 0,55 e 0,2 sob a voz; faixa escura atrás da legenda; cores, fontes e estilo de `motion` do `tokens.json`; logo copiado do caminho do `tokens.json` para `assets/` (ou `"logo"` no roteiro).
+- **Regra do primeiro segundo.** Nenhum título, apoio, selo ou painel entra antes de 1,0 s: o montador segura o texto até lá. Só a legenda da fala aparece antes.
+
+Garantias:
+
+- **Determinístico e idempotente.** Mesmo roteiro e mesmas falas dão o mesmo `index.html`, `trilha.json` e `base.wav`, byte a byte.
+- **Ajuste manual não é sobrescrito.** O `montagem.json` guarda o SHA-256 do `index.html` e do `trilha.json` gerados. Se um deles mudou (ou a pasta tem um `index.html` que não veio do montador), a montagem para e diz qual. O lugar do ajuste é o roteiro: campos da cena, `css_extra` e `js_extra`. `--sobrescrever` troca assim mesmo e guarda a versão anterior em `ajustes-manuais/`.
+- Avisos (alvo fora da tela, momento no fim da batida, letra que a fonte pixel não tem, fecho sem chamada) saem no fim e ficam em `montagem.json`.
+- **Fala apontada e ouvida por uma pessoa.** `--ouvida 2,4 --por "nome"` registra em `vozes/ouvidas.json` que alguém ouviu aquelas falas e achou certas (com o SHA-256 do áudio). A liberação entra no `montagem.json` e a checagem troca o `FAIL` de pronúncia por `AVISO`. Fala gerada de novo perde a liberação.
+
+### Formato do roteiro.json
+
+- `marca`: chave do `content-engine/tokens.json` (obrigatório).
+- `titulo`: nome da peça (vai no `<title>`); `nome_da_marca`: texto alternativo do logo (sem ele, a chave da marca).
+- `logo`: arquivo do logo dentro da pasta; sem ele, o do `tokens.json` é copiado para `assets/`.
+- `musica`: `{"faixa": "synthwave-noturna"}` (mais `volume`, `sob_voz`, `entrada`, `saida` se quiser); sem a chave, usa a faixa da marca; `false` tira a música.
+- `cortes`: `"compasso"` (padrão com música) ou `"fala"`.
+- `fundo`: `{"textura": "assets/textura.png"}` (textura que desliza) ou `{"midia": "assets/foto.jpg"}` (imagem desfocada atrás de tudo).
+- `painel`: o fio condutor. `{"titulo": "SEU PEDIDO", "itens": ["O PRODUTO", "O TAMANHO", "A ENTREGA"], "entra_na_batida": 2}`, de 1 a 4 itens. Fica no topo até o fecho e é preenchido pelas batidas.
+- `legenda`: `{"destaque": ["roteiro", "comando"]}` (palavras em cor de acento).
+- `pronuncia`: `{"IA": "i a"}`. Troca a palavra inteira só no texto que vai para a voz; a legenda e a tela ficam como estão escritas na fala. O padrão de cada marca fica em `motion.pronuncia` do `tokens.json`; o do roteiro soma e vence.
+- `css_extra`, `js_extra`: texto livre somado ao fim do CSS e do script (ajuste fino que o roteiro não cobre).
+- `batidas`: lista. Cada batida tem `fala` (uma linha, escrita para a voz) e `cena` (`tipo` mais os campos do tipo). Opcional `minimo` (segundos).
+- Em qualquer cena menos `fecho`, `passos` e `impacto`: `titulo` (linhas separadas por `|`, `*palavra*` em cor de acento), `titulo_na`, `apoio`, `apoio_na`; `transicao`: `"corte"` (padrão) ou `"cortina"`.
+
+O bloco `motion` de cada marca no `tokens.json` (todos opcionais; sem ele a marca cai no estilo `suave` com as cores dela): `estilo` (`suave` ou `pixel`), `fonte_titulo` e `fonte_texto` (famílias de `content-engine/fonts`), `acento`, `acento2`, `tinta`, `fundo` (três cores, do centro para a borda), `sombra_texto`, `apagado`, `linha`, `cortina` (três cores), `musica` (faixa padrão) e `pronuncia`.
+
+Exemplo completo (é o roteiro de `examples/reel-from-script/roteiro.json`, com a marca fictícia `exemplo`):
+
+```json
+{
+ "marca": "exemplo",
+ "nome_da_marca": "Marca Exemplo",
+ "titulo": "Reel a partir de um roteiro - Marca Exemplo",
+ "fundo": {"midia": "assets/fundo.webp"},
+ "legenda": {"destaque": ["roteiro", "comando"]},
+ "batidas": [
+  {
+   "fala": "Este vídeo nasceu de um roteiro em texto, sem nenhum tempo digitado.",
+   "cena": {
+    "tipo": "abertura", "midia": "assets/fundo.webp",
+    "titulo": "DO ROTEIRO|*AO VÍDEO*", "titulo_na": "roteiro",
+    "apoio": "sem *nenhum tempo* digitado", "apoio_na": "sem"
+   }
+  },
+  {
+   "fala": "Você escreve a fala de cada batida e escolhe a cena que aparece com ela.",
+   "cena": {
+    "tipo": "passos", "rotulo": "A FALA DA BATIDA",
+    "pedido": "Você escreve a fala de cada batida", "digita_na": "escreve",
+    "partida": "assets/fundo.webp", "resultado": "assets/cartao.png", "resultado_na": "cena"
+   }
+  },
+  {
+   "fala": "O motor gera a voz, a legenda e a trilha, com os cortes no compasso da música.",
+   "cena": {
+    "tipo": "impacto",
+    "linhas": [{"texto": "VOZ", "na": "voz"}, {"texto": "LEGENDA", "na": "legenda"}, {"texto": "*TRILHA*", "na": "trilha"}],
+    "apoio": "cada corte *no compasso*", "apoio_na": "cortes"
+   }
+  },
+  {
+   "fala": "Monte o seu com um comando.",
+   "cena": {
+    "tipo": "fecho",
+    "linhas": [{"texto": "MONTE", "na": "Monte"}, {"texto": "*O SEU*", "na": "seu"}],
+    "apoio": "com *um comando*", "apoio_na": "comando"
+   }
+  }
+ ]
+}
+```
+
+Uma batida com a cena `aparelho`, que o exemplo acima não usa (print da tela do seu produto, câmera e destaques amarrados às palavras):
+
+```json
+{
+ "fala": "Primeiro, escolha o tamanho: cada um tem a sua tabela de medidas.",
+ "cena": {
+  "tipo": "aparelho", "print": "assets/tela-produto.png", "largura_do_print": 884, "rolagem": 245, "painel_item": 1,
+  "momentos": [
+   {"na": "tamanho", "faz": "camera", "alvo": {"x": 12, "y": 358, "w": 864, "h": 388}, "zoom": 1.45},
+   {"na": "cada", "faz": "foco", "alvo": {"x": 12, "y": 358, "w": 864, "h": 119}},
+   {"na": "a sua", "faz": "foco", "alvo": {"x": 12, "y": 628, "w": 864, "h": 119}, "cor": "acento2"},
+   {"na": "a sua", "faz": "toque"},
+   {"na": "tabela", "faz": "preenche", "valor": "Tamanho M", "ajuste": 0.12},
+   {"na": "medidas", "faz": "confirma", "ajuste": 0.3}
+  ]
+ }
+}
+```
+
+### Catálogo de cenas
+
+Todas tomam cores, fontes, bordas e sombras do estilo da marca (`motion.estilo` no `tokens.json`): `pixel` (Press Start 2P nos títulos, borda reta, sombra dura) ou `suave` (Inter 900, cantos de 30 px, sombra macia, fundo com a mídia desfocada). Marca sem `motion` cai no `suave` com as cores dela.
+
+- **`abertura`** - o RESULTADO em tela cheia no primeiro segundo. Campos: `midia` (imagem ou clipe; cobre a tela; imagem ganha zoom lento, `zoom` e `foco: {"x": 50, "y": 40}` em %), `titulo`, `apoio`. O texto só entra depois de 1,0 s, com um véu escuro no topo. Usar: primeira batida de peça cujo resultado é uma imagem ou vídeo. Clipe com poucos quadros-chave faz o render avisar `sparse keyframes`: reencodar com um quadro-chave por segundo.
+- **`aparelho`** - a tela real do produto dentro de um aparelho. Campos: `print`, `largura_do_print` (largura lógica das coordenadas; sem ele, a do arquivo), `rolagem` (y do print no topo da tela ao começar a batida), `abre_em` (alvo que enche a tela no quadro 0: é a abertura pelo resultado quando o resultado está na tela do produto), `painel_item`, `momentos`. Batidas `aparelho` seguidas usam o mesmo aparelho: print diferente entra empurrando o anterior; mesmo print com outra `rolagem` rola. Momentos (`faz`): `camera` (`alvo`, `zoom` de 1,05 a 2,2; de 1,35 a 1,5 costuma bastar), `volta`, `foco` (`alvo`, `cor: "acento2"`), `marca` (`alvo`, `cor`, `d`), `toque`, `rola` (`para` ou `alvo`), `chip` (`texto`; etiquetas acima da legenda), `preenche` (`valor`, digita na linha do painel) e `confirma`. Câmera, foco e etiquetas se recolhem sozinhos no fim da batida. Usar: mostrar onde clicar e o que ler; print em alta resolução (1300 px de largura ou mais) e com a informação que importa à vista.
+- **`painel`** (chave do roteiro, não é cena) - o fio condutor. Batida com `painel_item: N` mostra um selo com o nome do item, que voa para a linha N; `preenche` digita o valor e `confirma` marca OK e soma o contador. No fecho, `"resumo": true` traz o cartão com os valores. Usar: peça que junta 2 a 4 respostas ao longo do vídeo.
+- **`comparacao`** - antes e depois. Campos: `antes`, `depois`, `rotulos`, `modo` (`"cortina"`: uma imagem cobre a outra da esquerda para a direita; `"lado"`: dois cartões no mesmo fundo, diferenciados pelo acento), `revela_na`. Usar: edição, estilo, restauração.
+- **`galeria`** - até 6 mídias em pilha, cada uma entrando na sua palavra. Campos: `midias: [{"arquivo": ..., "na": ...}]` (imagem ou clipe), `formato` (`retrato`, `quadrado`, `paisagem`). A imagem ganha zoom lento; a anterior recua. Usar: variações, vitrine, sequência de resultados.
+- **`passos`** - pedido digitado e resultado. Campos: `rotulo`, `pedido` (texto digitado), `digita_na`, `resultado` (imagem ou clipe), `resultado_na`, `formato`, `partida` (imagem que fica no cartão enquanto o pedido é digitado, com zoom lento; para vídeo, um quadro dele). Sem `partida`, o cartão vazio mostra só um brilho passando. Usar: "escreva isto, sai isto"; com `partida`, "esta imagem vira isto" (animar, estender, editar).
+- **`impacto`** - texto grande. Campos: `linhas: [{"texto": ..., "na": ...}]`, `apoio`, `apoio_na`, `topo`. Usar: virada da peça, número, promessa; no máximo uma por peça.
+- **`fecho`** - sempre a última. Campos: `linhas`, `apoio`, `resumo`, `brilhos`, `chamada` (padrão: o `url` da marca). Entra com cortina; o logo bate depois da última palavra e a chamada para o site sobe em seguida. Toda peça termina aqui: sem `fecho` o montador avisa.
+
+### Apontar coordenadas no print
+
+O `alvo` de `camera`, `foco`, `marca` e `abre_em` é um retângulo `{"x", "y", "w", "h"}` no print. Ninguém mede no olho:
+
+- `python content-engine/video/apontar.py <print> --largura 884` abre o print no navegador (só `127.0.0.1`) com régua a cada 100 px. Clicar e arrastar em volta do alvo gera a linha `"alvo": {...}` pronta para copiar; ela também sai no terminal.
+- `--largura` é o mesmo número do `largura_do_print` da cena. Sem ele, as coordenadas são os pixels reais do arquivo.
+- `--conferir x,y,w,h --saida recorte.png` grava o pedaço do print com o retângulo desenhado, para confirmar um alvo sem abrir o navegador (é como um agente confere).
+- Alvo por texto ("a linha que diz Tamanho M") não existe: exigiria ler o print (OCR), que não há no motor sem pacote novo.
+
+### Checagem de motion
+
+`python content-engine/video/checar_reel.py <reel.mp4> [<pasta-da-peca>]` imprime `PASS`, `AVISO` ou `FAIL` por item e sai com código 1 se houver `FAIL`. Os limites vêm de uma peça de referência aprovada (maior trecho parado 0,47 s; 9% do vídeo em trechos parados de 0,3 s ou mais; -13,8 LUFS; música 14,3 dB abaixo da voz; 2 quiques em 68 animações).
+
+Só com o vídeo:
+
+- **formato**: 1080x1920 a 30 fps, com faixa de áudio.
+- **duração**: de 5 a 90 s (fora disso, aviso).
+- **trecho parado** (`freezedetect`, ruído 0,001): falha com trecho acima de 0,8 s ou com mais de 20% do vídeo em trechos de 0,3 s ou mais; aviso acima de 0,6 s.
+- **loudness final**: -14 LUFS com folga de 1,5 (aviso até 3) e pico até -1 dBTP.
+- **primeiro segundo (imagem)**: tela preta no quadro 0 falha; mais de 80% de área lisa nos quadros de 0, 0,5 e 0,95 s vira aviso de cartela.
+
+Com a pasta da peça:
+
+- **vídeo e composição**: mesma duração; aviso se o vídeo é mais antigo que o `index.html`.
+- **primeiro segundo (texto)**: nenhum texto do montador antes de 1,0 s.
+- **texto na zona segura**: cada bloco de texto planejado (título, apoio, selo, etiquetas, painel, resumo, logo, chamada) dentro das margens do `frames.py` (11,5% no topo, 22% no rodapé, 5,5% à esquerda, 13% à direita).
+- **cortes no compasso**: cada corte de cena em múltiplo da batida da música.
+- **legenda**: `legenda.json` com blocos e `K.legenda` no `index.html`; faixa da legenda dentro da zona segura; texto claro na faixa em instantes de fala do vídeo.
+- **pronúncia da voz**: resultado da conferência gravado no `legenda.json`; fala apontada só deixa de reprovar com a liberação de quem ouviu (`--ouvida` do montador), e vira aviso.
+- **música abaixo da voz**: música presente e pelo menos 10 dB abaixo da voz nos trechos de fala (aviso entre 6 e 10), medido nos arquivos da trilha.
+- **quique nos movimentos**: `back`, `elastic`, `bounce` e `K.toque` contados no script; falha acima de 12% das animações (mínimo de 3 liberados).
+
+O que ela não julga (precisa de olho e de ouvido): se o primeiro segundo mostra o resultado e não uma tela qualquer; se um texto transbordou a caixa planejada (a posição conferida é a planejada, não a desenhada); se cada movimento caiu na palavra certa; se a voz, a música e os efeitos soam bem. Peça escrita à mão (sem `montagem.json`) fica sem as checagens de texto. Depois dela, continuam obrigatórios os quadros do `frames.py --guias` e ouvir a peça inteira.
+
+Testes: `python -m unittest discover -s tests` em `content-engine/video/` (palavra para momento, grafia de pronúncia para a voz, encaixe no compasso, âncora de efeito, limites da checagem e as cenas `passos` e `abertura`).
 
 ## Como escrever uma composição para o motor ativo (HyperFrames)
 
-Resumo; o detalhe está em `engines/hyperframes/guide/`.
+O `montar_reel.py` já escreve neste formato; esta seção vale para composição feita à mão e para entender o que ele gera. Resumo; o detalhe está em `engines/hyperframes/guide/`.
 
 - Uma pasta por vídeo com **um `index.html`** (composição única, sem sub-composições) e uma subpasta `assets/` com cópias dos arquivos usados (prints, fotos, logo).
 - **Todo arquivo usado mora dentro da pasta**, referenciado por caminho relativo sem `..`. Caminho absoluto, unidade de disco (`C:/`), `file:`, caminho de rede (`\\servidor\...`) e `..` são recusados em qualquer lugar: atributo, CSS, `srcdoc`, texto de `<script>` e arquivo `.js`. `<base href>` e `<meta http-equiv="refresh">` também. Se mesmo assim usar `data-composition-src`, o arquivo da sub-composição precisa estar dentro da pasta e é conferido com as mesmas regras.
@@ -194,6 +359,12 @@ content-engine/video/
   frames.py           frames PNG para revisão
   preview.py          prévia no navegador (servidor local, _motor/ em memória)
   preview_barra.html  barra de controle que a prévia injeta no index.html
+  montar_reel.py      monta o Reel a partir do roteiro.json (voz, tempos, legenda, efeitos, musica, marca)
+  reel_tempos.py      calculo puro: palavra para momento, encaixe no compasso, ancora e escolha de efeito
+  reel_cenas.py       catalogo de cenas e estilos por marca (gera o HTML, o CSS e a timeline)
+  apontar.py          coordenadas do alvo no print (regua no navegador ou recorte para conferir)
+  checar_reel.py      checagem automatica de motion do video renderizado
+  tests/              test_reel_tempos.py (tempos, pronuncia, compasso, ancora e limites da checagem), test_reel_cenas.py (cenas passos e abertura), test_reel_ouvidas.py (liberacao de fala ouvida por uma pessoa)
   prova-local.ps1     render monitorado (gera a prova)
   kit/motion.js       kit de motion (montado em _motor/kit/ pelo render e pela prévia)
   _comum.py           funções do vídeo (caminhos, FFmpeg, motor ativo, ffprobe) sobre content-engine/common/

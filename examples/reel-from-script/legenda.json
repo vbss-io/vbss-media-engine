@@ -1,0 +1,409 @@
+{
+  "versao": 1,
+  "origem_do_texto": "examples/reel-from-script/vozes/legenda.txt",
+  "max_palavras": 4,
+  "pausa_s": 0.35,
+  "duracao_s": 16.12,
+  "falas": [
+    {
+      "arquivo": "assets/voz/voz-01.wav",
+      "t": 0.15,
+      "duracao_s": 3.66,
+      "texto": "Este vídeo nasceu de um roteiro em texto, sem nenhum tempo digitado.",
+      "metodo": "whisper",
+      "palavras": 12,
+      "casadas_com_o_whisper": 12,
+      "ouvido": "Este vídeo nasceu de um roteiro em texto sem nenhum tempo digitado.",
+      "pronuncia": {
+        "ok": true,
+        "divergencias": []
+      }
+    },
+    {
+      "arquivo": "assets/voz/voz-02.wav",
+      "t": 4.4,
+      "duracao_s": 4.168,
+      "texto": "Você escreve a fala de cada batida e escolhe a cena que aparece com ela.",
+      "metodo": "whisper",
+      "palavras": 15,
+      "casadas_com_o_whisper": 15,
+      "ouvido": "Você escreve a fala de cada batida e escolhe a cena que aparece com ela.",
+      "pronuncia": {
+        "ok": true,
+        "divergencias": []
+      }
+    },
+    {
+      "arquivo": "assets/voz/voz-03.wav",
+      "t": 9.48,
+      "duracao_s": 4.302,
+      "texto": "O motor gera a voz, a legenda e a trilha, com os cortes no compasso da música.",
+      "metodo": "whisper",
+      "palavras": 17,
+      "casadas_com_o_whisper": 17,
+      "ouvido": "O motor gera a voz, a legenda e a trilha com os cortes no compasso da música.",
+      "pronuncia": {
+        "ok": true,
+        "divergencias": []
+      }
+    },
+    {
+      "arquivo": "assets/voz/voz-04.wav",
+      "t": 14.56,
+      "duracao_s": 1.682,
+      "texto": "Monte o seu com um comando.",
+      "metodo": "whisper",
+      "palavras": 6,
+      "casadas_com_o_whisper": 6,
+      "ouvido": "Monte o seu com um comando.",
+      "pronuncia": {
+        "ok": true,
+        "divergencias": []
+      }
+    }
+  ],
+  "blocos": [
+    {
+      "inicio": 0.15,
+      "fim": 1.09,
+      "palavras": [
+        {
+          "texto": "Este",
+          "inicio": 0.15,
+          "fim": 0.43
+        },
+        {
+          "texto": "vídeo",
+          "inicio": 0.43,
+          "fim": 0.71
+        },
+        {
+          "texto": "nasceu",
+          "inicio": 0.71,
+          "fim": 1.09
+        }
+      ]
+    },
+    {
+      "inicio": 1.09,
+      "fim": 1.67,
+      "palavras": [
+        {
+          "texto": "de",
+          "inicio": 1.09,
+          "fim": 1.17
+        },
+        {
+          "texto": "um",
+          "inicio": 1.17,
+          "fim": 1.25
+        },
+        {
+          "texto": "roteiro",
+          "inicio": 1.25,
+          "fim": 1.67,
+          "destaque": true
+        }
+      ]
+    },
+    {
+      "inicio": 1.67,
+      "fim": 2.73,
+      "palavras": [
+        {
+          "texto": "em",
+          "inicio": 1.67,
+          "fim": 1.83
+        },
+        {
+          "texto": "texto,",
+          "inicio": 1.83,
+          "fim": 2.21
+        },
+        {
+          "texto": "sem",
+          "inicio": 2.21,
+          "fim": 2.47
+        },
+        {
+          "texto": "nenhum",
+          "inicio": 2.47,
+          "fim": 2.73
+        }
+      ]
+    },
+    {
+      "inicio": 2.73,
+      "fim": 3.73,
+      "palavras": [
+        {
+          "texto": "tempo",
+          "inicio": 2.73,
+          "fim": 3.05
+        },
+        {
+          "texto": "digitado.",
+          "inicio": 3.05,
+          "fim": 3.73
+        }
+      ]
+    },
+    {
+      "inicio": 4.4,
+      "fim": 5.32,
+      "palavras": [
+        {
+          "texto": "Você",
+          "inicio": 4.4,
+          "fim": 4.62
+        },
+        {
+          "texto": "escreve",
+          "inicio": 4.62,
+          "fim": 4.98
+        },
+        {
+          "texto": "a",
+          "inicio": 4.98,
+          "fim": 5.08
+        },
+        {
+          "texto": "fala",
+          "inicio": 5.08,
+          "fim": 5.32
+        }
+      ]
+    },
+    {
+      "inicio": 5.32,
+      "fim": 6.32,
+      "palavras": [
+        {
+          "texto": "de",
+          "inicio": 5.32,
+          "fim": 5.48
+        },
+        {
+          "texto": "cada",
+          "inicio": 5.48,
+          "fim": 5.72
+        },
+        {
+          "texto": "batida",
+          "inicio": 5.72,
+          "fim": 6.32
+        }
+      ]
+    },
+    {
+      "inicio": 6.32,
+      "fim": 7.28,
+      "palavras": [
+        {
+          "texto": "e",
+          "inicio": 6.32,
+          "fim": 6.76
+        },
+        {
+          "texto": "escolhe",
+          "inicio": 6.76,
+          "fim": 7.04
+        },
+        {
+          "texto": "a",
+          "inicio": 7.04,
+          "fim": 7.12
+        },
+        {
+          "texto": "cena",
+          "inicio": 7.12,
+          "fim": 7.28
+        }
+      ]
+    },
+    {
+      "inicio": 7.28,
+      "fim": 8.54,
+      "palavras": [
+        {
+          "texto": "que",
+          "inicio": 7.28,
+          "fim": 7.46
+        },
+        {
+          "texto": "aparece",
+          "inicio": 7.46,
+          "fim": 8.02
+        },
+        {
+          "texto": "com",
+          "inicio": 8.02,
+          "fim": 8.26
+        },
+        {
+          "texto": "ela.",
+          "inicio": 8.26,
+          "fim": 8.54
+        }
+      ]
+    },
+    {
+      "inicio": 9.48,
+      "fim": 10.2,
+      "palavras": [
+        {
+          "texto": "O",
+          "inicio": 9.48,
+          "fim": 9.58
+        },
+        {
+          "texto": "motor",
+          "inicio": 9.58,
+          "fim": 9.9
+        },
+        {
+          "texto": "gera",
+          "inicio": 9.9,
+          "fim": 10.2
+        }
+      ]
+    },
+    {
+      "inicio": 10.2,
+      "fim": 11.3,
+      "palavras": [
+        {
+          "texto": "a",
+          "inicio": 10.2,
+          "fim": 10.42
+        },
+        {
+          "texto": "voz,",
+          "inicio": 10.42,
+          "fim": 10.66
+        },
+        {
+          "texto": "a",
+          "inicio": 10.8,
+          "fim": 10.9
+        },
+        {
+          "texto": "legenda",
+          "inicio": 10.9,
+          "fim": 11.3
+        }
+      ]
+    },
+    {
+      "inicio": 11.3,
+      "fim": 12.06,
+      "palavras": [
+        {
+          "texto": "e",
+          "inicio": 11.3,
+          "fim": 11.42
+        },
+        {
+          "texto": "a",
+          "inicio": 11.42,
+          "fim": 11.54
+        },
+        {
+          "texto": "trilha,",
+          "inicio": 11.54,
+          "fim": 11.86
+        },
+        {
+          "texto": "com",
+          "inicio": 11.86,
+          "fim": 12.06
+        }
+      ]
+    },
+    {
+      "inicio": 12.06,
+      "fim": 13.34,
+      "palavras": [
+        {
+          "texto": "os",
+          "inicio": 12.06,
+          "fim": 12.28
+        },
+        {
+          "texto": "cortes",
+          "inicio": 12.28,
+          "fim": 12.7
+        },
+        {
+          "texto": "no",
+          "inicio": 12.7,
+          "fim": 12.82
+        },
+        {
+          "texto": "compasso",
+          "inicio": 12.82,
+          "fim": 13.34
+        }
+      ]
+    },
+    {
+      "inicio": 13.34,
+      "fim": 13.76,
+      "palavras": [
+        {
+          "texto": "da",
+          "inicio": 13.34,
+          "fim": 13.44
+        },
+        {
+          "texto": "música.",
+          "inicio": 13.44,
+          "fim": 13.76
+        }
+      ]
+    },
+    {
+      "inicio": 14.56,
+      "fim": 15.48,
+      "palavras": [
+        {
+          "texto": "Monte",
+          "inicio": 14.56,
+          "fim": 14.88
+        },
+        {
+          "texto": "o",
+          "inicio": 14.88,
+          "fim": 15.02
+        },
+        {
+          "texto": "seu",
+          "inicio": 15.02,
+          "fim": 15.26
+        },
+        {
+          "texto": "com",
+          "inicio": 15.26,
+          "fim": 15.48
+        }
+      ]
+    },
+    {
+      "inicio": 15.48,
+      "fim": 16.12,
+      "palavras": [
+        {
+          "texto": "um",
+          "inicio": 15.48,
+          "fim": 15.62
+        },
+        {
+          "texto": "comando.",
+          "inicio": 15.62,
+          "fim": 16.12,
+          "destaque": true
+        }
+      ]
+    }
+  ]
+}

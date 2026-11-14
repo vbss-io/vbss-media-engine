@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pt-BR">
+<!-- GERADO por content-engine/video/montar_reel.py a partir do roteiro.json. Nao edite aqui: ajuste o roteiro e monte de novo. -->
+<head>
+<meta charset="UTF-8">
+<title>Reel a partir de um roteiro - Marca Exemplo</title>
+<script src="_motor/gsap.min.js"></script>
+<script src="_motor/TextPlugin.min.js"></script>
+<script src="_motor/kit/motion.js"></script>
+<script src="legenda.js"></script>
+<style>
+  @font-face{font-family:"Inter";src:url("_motor/fonts/inter-600.woff2") format("woff2");font-weight:600;font-style:normal}
+  @font-face{font-family:"Inter";src:url("_motor/fonts/inter-800.woff2") format("woff2");font-weight:800;font-style:normal}
+  @font-face{font-family:"Inter";src:url("_motor/fonts/inter-900.woff2") format("woff2");font-weight:900;font-style:normal}
+  :root{--acento:#2EC4B6;--acento2:#FFB703;--claro:#F8FAFC;--tinta:#0F172A;--sombra:#060B18;--apagado:#94A3B8;--linha:rgba(255,255,255,.14);--fundo1:#1E293B;--fundo2:#0F172A;--fundo3:#0B1120;--halo1:rgba(255,183,3,0.34);--halo2:rgba(255,183,3,0.2);--faixa:rgba(11,17,32,0.86);--faixa-forte:rgba(11,17,32,0.94);--acento-luz:rgba(46,196,182,0.5);--acento-marca:rgba(46,196,182,0.34);--acento2-marca:rgba(255,183,3,0.3);--f-titulo:"Inter";--f-texto:"Inter"}
+  body{margin:0;background:var(--tinta);color:var(--claro);font-family:var(--f-texto),sans-serif}
+  #root{position:relative;width:100%;height:100%;overflow:hidden;background:var(--tinta)}
+  .clip{position:absolute;inset:0}
+  #fundo{position:absolute;inset:0;background:radial-gradient(ellipse 900px 1300px at 50% 45%,var(--fundo1) 0%,var(--fundo2) 60%,var(--fundo3) 100%)}
+  #fundo-m{position:absolute;left:-80px;top:-80px;width:1240px;height:2080px;background-size:cover;background-position:50% 50%;filter:blur(40px) brightness(.4)}
+  .textura{position:absolute;left:-60px;top:0;width:1200px;height:2300px;opacity:.16}
+  .halo{position:absolute;width:900px;height:900px;border-radius:50%}
+  #h1{left:-320px;top:980px;background:radial-gradient(circle,var(--halo1) 0%,rgba(0,0,0,0) 68%)}
+  #h2{left:520px;top:120px;background:radial-gradient(circle,var(--halo2) 0%,rgba(0,0,0,0) 68%)}
+  #leg-fundo{position:absolute;left:0;top:1270px;width:1080px;height:300px;background:linear-gradient(rgba(0,0,0,0) 0%,var(--faixa) 34%,var(--faixa) 66%,rgba(0,0,0,0) 100%)}
+  .tit{position:absolute;left:140px;width:800px;text-align:center}
+  .tit span.ln,.imp span.ln{display:inline-block}
+  .tit em,.imp em{font-style:normal;color:var(--acento)}
+  .apo{position:absolute;left:140px;width:800px;text-align:center;font-size:46px;font-weight:800;line-height:1.3;color:#fff}
+  .apo em{font-style:normal;color:var(--acento);background:linear-gradient(var(--acento),var(--acento)) no-repeat 0 100%;background-size:0% 8px;padding-bottom:10px}
+  .imp{position:absolute;left:140px;width:800px;text-align:center;line-height:1}
+  .ab-m{position:absolute;left:0;top:0;width:1080px;height:1920px;background-size:cover;background-position:50% 50%}
+  .ab-veu{position:absolute;left:0;top:0;width:1080px;height:900px;background:linear-gradient(180deg,rgba(8,9,12,.9) 0%,rgba(8,9,12,.55) 60%,rgba(8,9,12,0) 100%)}
+  .cam{position:absolute;left:0;top:0;width:1080px;height:1920px;transform-origin:0 0}
+  .fone{position:absolute;box-sizing:border-box;overflow:hidden}
+  .tela{position:absolute;left:0;width:720px;height:1448px;overflow:hidden;background:var(--tinta)}
+  .pg{position:absolute;left:0;top:0;width:720px;height:1448px;overflow:hidden;background:var(--tinta)}
+  .rol{position:absolute;left:0;top:0;transform-origin:0 0}
+  .rol img{display:block}
+  .foco{position:absolute;left:0;top:0;box-sizing:border-box}
+  .mk{position:absolute;background:var(--acento-marca);border-bottom:7px solid var(--acento)}
+  .mk.b{background:var(--acento2-marca);border-bottom-color:var(--acento2)}
+  .veu{position:absolute;left:0;top:1120px;width:1080px;height:800px;background:linear-gradient(rgba(0,0,0,0) 0%,var(--faixa-forte) 28%,var(--faixa-forte) 100%)}
+  .chip{position:absolute;box-sizing:border-box;white-space:nowrap}
+  .pilula{position:absolute;box-sizing:border-box;text-align:center;white-space:nowrap}
+  .cartao{position:absolute;box-sizing:border-box;overflow:hidden}
+  .cartao .im{position:absolute;left:0;top:0;width:100%;height:100%;background-size:cover;background-position:50% 50%}
+  .cartao video{position:absolute;left:0;top:0;width:100%;height:100%;object-fit:cover}
+  .cartao .rv{position:absolute;left:0;top:0;width:100%;height:100%;overflow:hidden}
+  .cartao .dv{position:absolute;left:-4px;top:0;width:8px;height:100%;background:var(--acento)}
+  .cartao .gr{position:absolute;left:0;top:0;width:60%;height:100%;background:linear-gradient(90deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.14) 50%,rgba(255,255,255,0) 100%)}
+  .cx{position:absolute;box-sizing:border-box}
+  .pedido{left:60px;width:880px;padding:26px 30px 30px}
+  .pedido .lb{font-size:22px;font-weight:900;letter-spacing:.12em;color:var(--acento);margin-bottom:12px}
+  .pedido .tx{font-size:44px;font-weight:800;letter-spacing:-.02em;line-height:1.16;color:#fff}
+  .cur{display:inline-block;width:6px;height:34px;margin-left:4px;background:var(--acento);vertical-align:-5px}
+  #hud{left:60px;width:880px}
+  #hud .topo{position:absolute;left:0;right:0;top:0;height:54px;background:var(--acento);color:var(--tinta);font-size:28px;font-weight:900;letter-spacing:.06em;line-height:54px;padding-left:25px}
+  #cnt{position:absolute;right:22px;top:0;font-size:20px;line-height:54px;color:var(--tinta)}
+  .campo{position:absolute;left:0;right:0;height:84px;border-bottom:2px solid var(--linha)}
+  .campo:last-child{border-bottom:0}
+  .rot{position:absolute;left:25px;top:13px;font-size:20px;color:var(--apagado);white-space:nowrap}
+  .val{position:absolute;left:25px;top:38px;font-size:34px;font-weight:900;color:#fff;white-space:nowrap;line-height:40px}
+  .ok{position:absolute;right:22px;top:26px;padding:9px 10px 7px;background:var(--acento2);color:var(--tinta);font-size:14px}
+  .selo{position:absolute;left:90px;top:760px;transform-origin:0 0}
+  .selo .in{box-sizing:border-box;padding:24px 30px 26px}
+  .selo .n{font-size:28px;color:var(--acento);line-height:28px;margin-bottom:14px}
+  .selo .t{font-size:44px;color:#fff;line-height:52px;white-space:nowrap}
+  #f-card{left:230px;width:620px}
+  #f-card .topo{height:50px;background:var(--acento);color:var(--tinta);font-size:24px;font-weight:900;letter-spacing:.06em;line-height:50px;padding-left:20px}
+  #f-card .li{position:relative;height:72px;border-bottom:2px solid var(--linha);font-size:30px;font-weight:900;line-height:72px;padding-left:20px;color:#fff;white-space:nowrap}
+  #f-card .li:last-child{border-bottom:0}
+  #f-card .li b{position:absolute;right:16px;top:20px;padding:8px 9px 6px;background:var(--acento2);color:var(--tinta);font-size:13px;line-height:1;font-weight:400}
+  #f-glow{position:absolute;left:190px;width:700px;height:380px;border-radius:50%;background:radial-gradient(ellipse,var(--acento-luz) 0%,rgba(0,0,0,0) 70%)}
+  #f-logo{position:absolute;left:280px;width:520px;height:176px;object-fit:contain}
+  .brilhos{position:absolute;left:0;width:1080px;height:531px}
+  .fx{position:absolute;left:-310px;top:-100px;width:1700px;height:2120px;transform-origin:50% 50%}
+
+  .tt{font-family:var(--f-titulo),sans-serif;font-weight:900;letter-spacing:-.04em}
+  .tit,.imp{color:#fff;text-shadow:0 4px 24px rgba(0,0,0,.5)}
+  .cx{background:rgba(18,19,26,.92);border:2px solid var(--acento-luz);border-radius:30px}
+  .cartao{border:8px solid #fff;border-radius:30px;box-shadow:0 26px 60px rgba(0,0,0,.35);background:#111}
+  .fone{border:4px solid rgba(255,255,255,.16);border-radius:30px;background:var(--tinta);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+  .fone .tela{border-radius:26px}
+  .chip{font-size:24px;font-weight:900;letter-spacing:.08em;line-height:54px;height:54px;padding:0 16px;border-radius:14px;background:rgba(18,19,26,.92);border:2px solid var(--acento-luz);color:#fff}
+  .chip.a{background:var(--acento);border-color:var(--acento);color:var(--tinta)}
+  .pilula{font-size:34px;font-weight:900;letter-spacing:-.01em;line-height:60px;height:60px;border-radius:30px;background:var(--acento);color:var(--tinta)}
+  .foco{border:6px solid var(--acento);border-radius:22px;box-shadow:0 0 28px var(--acento-luz)}
+  #s-fundo{z-index:0 !important}
+  #s-b1{z-index:5 !important}
+  #s-b2{z-index:5 !important}
+  #s-b3{z-index:5 !important}
+  #s-cortina{z-index:9 !important}
+  #s-fim{z-index:6 !important}
+  #s-legenda{z-index:8 !important}
+</style>
+</head>
+<body>
+<div id="root" data-composition-id="reel" data-start="0" data-width="1080" data-height="1920" data-duration="18.92">
+  <audio id="trilha-musica" src="assets/musica/base.wav" data-start="0" data-duration="18.9" data-track-index="9" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-01" src="assets/voz/voz-01.wav" data-start="0.15" data-duration="3.66" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-02" src="assets/sfx/impacto-cine-medio.wav" data-start="1.25" data-duration="1.366" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-03" src="assets/sfx/pop-cine-redondo.wav" data-start="2.21" data-duration="0.351" data-track-index="12" data-volume="0.4" data-trilha="1"></audio>
+  <audio id="trilha-04" src="assets/sfx/transicao-cine.wav" data-start="3.404" data-duration="1.692" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-05" src="assets/voz/voz-02.wav" data-start="4.4" data-duration="4.168" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-06" src="assets/sfx/digitacao-cine-suave.wav" data-start="4.62" data-duration="1.19" data-track-index="12" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-07" src="assets/sfx/whoosh-cine-curto.wav" data-start="7.1" data-duration="0.492" data-track-index="11" data-volume="0.45" data-trilha="1"></audio>
+  <audio id="trilha-08" src="assets/sfx/brilho-cine-curto.wav" data-start="7.12" data-duration="1.139" data-track-index="12" data-volume="0.5" data-trilha="1"></audio>
+  <audio id="trilha-09" src="assets/sfx/transicao-cine-suave.wav" data-start="8.971" data-duration="0.75" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-10" src="assets/voz/voz-03.wav" data-start="9.48" data-duration="4.302" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-11" src="assets/sfx/impacto-cine-macio.wav" data-start="10.42" data-duration="0.942" data-track-index="11" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-12" src="assets/sfx/impacto-cine-medio.wav" data-start="10.9" data-duration="1.366" data-track-index="12" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-13" src="assets/sfx/impacto-cine-medio.wav" data-start="11.54" data-duration="1.366" data-track-index="11" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-14" src="assets/sfx/pop-cine-redondo.wav" data-start="12.28" data-duration="0.351" data-track-index="12" data-volume="0.4" data-trilha="1"></audio>
+  <audio id="trilha-15" src="assets/sfx/transicao-cine-forte.wav" data-start="13.108" data-duration="2.566" data-track-index="11" data-volume="0.65" data-trilha="1"></audio>
+  <audio id="trilha-16" src="assets/voz/voz-04.wav" data-start="14.56" data-duration="1.682" data-track-index="10" data-volume="1.0" data-trilha="1"></audio>
+  <audio id="trilha-17" src="assets/sfx/impacto-cine-macio.wav" data-start="14.56" data-duration="0.942" data-track-index="12" data-volume="0.6" data-trilha="1"></audio>
+  <audio id="trilha-18" src="assets/sfx/impacto-cine-medio.wav" data-start="15.02" data-duration="1.366" data-track-index="13" data-volume="0.7" data-trilha="1"></audio>
+  <audio id="trilha-19" src="assets/sfx/reverso-cine-longo.wav" data-start="15.402" data-duration="1.212" data-track-index="14" data-volume="0.5" data-trilha="1"></audio>
+  <audio id="trilha-20" src="assets/sfx/pop-cine-redondo.wav" data-start="15.62" data-duration="0.351" data-track-index="12" data-volume="0.4" data-trilha="1"></audio>
+  <audio id="trilha-21" src="assets/sfx/impacto-cine-medio.wav" data-start="16.602" data-duration="1.366" data-track-index="11" data-volume="0.75" data-trilha="1"></audio>
+  <audio id="trilha-22" src="assets/sfx/brilho-cine-longo.wav" data-start="16.602" data-duration="2.298" data-track-index="12" data-volume="0.45" data-trilha="1"></audio>
+  <audio id="trilha-23" src="assets/sfx/pop-cine-redondo.wav" data-start="16.902" data-duration="0.351" data-track-index="13" data-volume="0.4" data-trilha="1"></audio>
+  <section id="s-fundo" class="clip" data-start="0" data-duration="18.92" data-track-index="0">
+    <div id="fundo"></div>
+    <div id="fundo-m" style="background-image:url('assets/fundo.webp')"></div>
+    <div class="halo" id="h1"></div>
+    <div class="halo" id="h2"></div>
+  </section>
+  <section id="s-b1" class="clip" data-start="0" data-duration="4.154" data-track-index="2">
+    <div class="ab-m" id="b1-m" style="background-image:url('assets/fundo.webp');background-position:50% 45%;transform-origin:50% 45%"></div>
+    <div class="ab-veu" id="b1-veu"></div>
+    <div class="tit tt" id="b1-tit" style="top:250px;font-size:70px;line-height:1.06"><span class="ln">DO ROTEIRO</span><br><span class="ln"><em>AO VÍDEO</em></span></div>
+    <div class="apo" id="b1-apo" style="top:432px">sem <em>nenhum tempo</em> digitado</div>
+  </section>
+  <section id="s-b2" class="clip" data-start="4.154" data-duration="5.077" data-track-index="1">
+    <div class="cx pedido" id="b2-cx" style="top:250px;height:202px"><div class="lb">A FALA DA BATIDA</div><div class="tx"><span id="b2-q"></span><i class="cur" id="b2-k"></i></div></div>
+    <div class="cartao" id="b2-esp" style="left:258px;top:492px;width:564px;height:738px"><div class="im" id="b2-pi" style="background-image:url('assets/fundo.webp')"></div><div class="gr" id="b2-gr"></div></div>
+    <div class="cartao" id="b2-res" style="left:258px;top:492px;width:564px;height:738px"><div class="im" id="b2-ri" style="background-image:url('assets/cartao.png')"></div></div>
+  </section>
+  <section id="s-b3" class="clip" data-start="9.231" data-duration="5.077" data-track-index="2">
+    <div class="imp tt" id="b3-l1" style="top:600px;font-size:104px"><span class="ln">VOZ</span></div>
+    <div class="imp tt" id="b3-l2" style="top:710px;font-size:104px"><span class="ln">LEGENDA</span></div>
+    <div class="imp tt" id="b3-l3" style="top:820px;font-size:104px"><span class="ln"><em>TRILHA</em></span></div>
+    <div class="apo" id="b3-apo" style="top:970px">cada corte <em>no compasso</em></div>
+  </section>
+  <section id="s-cortina" class="clip" data-start="13.608" data-duration="1.6" data-track-index="4">
+    <div class="fx" id="fx1" style="background:#2EC4B6"></div>
+    <div class="fx" id="fx2" style="background:#2F6FED"></div>
+    <div class="fx" id="fx3" style="background:#FFB703"></div>
+  </section>
+  <section id="s-fim" class="clip" data-start="14.308" data-duration="4.612" data-track-index="2">
+    <div class="imp tt" id="f1" style="top:420px;font-size:104px"><span class="ln">MONTE</span></div>
+    <div class="imp tt" id="f2" style="top:530px;font-size:104px"><span class="ln"><em>O SEU</em></span></div>
+    <div class="apo" id="b4-apo" style="top:692px">com <em>um comando</em></div>
+    <div id="f-glow" style="top:920px"></div>
+    <img id="f-logo" src="assets/logo.svg" alt="Marca Exemplo" style="top:960px;height:300px">
+    <div class="pilula" id="f-site" style="left:308px;top:1284px;width:463px">marca-exemplo.example</div>
+  </section>
+  <section id="s-legenda" class="clip" data-start="0" data-duration="18.92" data-track-index="5">
+    <div id="leg-fundo"></div>
+    <div id="legenda"></div>
+  </section>
+</div>
+<script>
+  const ACENTO = "#2EC4B6";
+  const ACENTO2 = "#FFB703";
+  gsap.registerPlugin(TextPlugin);
+  const tl = gsap.timeline({ paused: true });
+  const K = MotionKit.criar(tl);
+  const E = K.EASE;
+  const rola = (sel, escala, de, para, t, d, ease) =>
+    tl.fromTo(sel, { y: -de * escala }, { y: -para * escala, duration: d, ease: ease || E.rolagem, immediateRender: false }, t);
+  const pisca = (sel, de, ate) =>
+    tl.fromTo(sel, { opacity: 1 }, { opacity: 0, duration: 0.25, ease: "steps(1)", yoyo: true, repeat: Math.max(1, Math.floor((ate - de) / 0.25)), immediateRender: false }, de);
+  const selo = (n, linha, tEntra, tVira, tDigita) => {
+    K.bate("#st" + n + " .in", tEntra, { de: 1.35, d: 0.34 });
+    tl.set("#st" + n, { opacity: 1 }, tEntra);
+    tl.to("#st" + n, { x: 44, y: linha - 20 - 760, scale: 0.4545, duration: 0.45, ease: E.troca }, tVira);
+    tl.to("#st" + n, { opacity: 0, duration: 0.12 }, tVira + 0.36);
+    tl.to("#l" + n, { color: ACENTO, duration: 0.15 }, tVira + 0.36);
+    if (tDigita - 0.05 > tVira + 0.45) pisca("#k" + n, tVira + 0.45, tDigita - 0.05);
+  };
+  const confirma = (n, total, t) => {
+    K.bate("#o" + n, t, { de: 1.8, d: 0.3 });
+    tl.to("#l" + n, { color: ACENTO2, duration: 0.2 }, t);
+    tl.set("#cnt", { text: n + "/" + total }, t);
+    tl.fromTo("#cnt", { scale: 1.5 }, { scale: 1, duration: 0.3, ease: E.snap, immediateRender: false }, t);
+  };
+  gsap.set("#b1-veu", { opacity: 0 });
+  gsap.set("#b2-k", { opacity: 0 });
+  gsap.set(".fx", { skewX: -12 });
+  gsap.set(["#f-glow", "#f-logo"], { opacity: 0 });
+
+  tl.fromTo("#fundo-m", { scale: 1 }, { scale: 1.08, duration: 18.92, ease: "none" }, 0);
+  K.respira("#h1", 0, 18.92, { x: 70, y: 50, periodo: 4.7 });
+  K.respira("#h2", 0, 18.92, { x: 50, y: 70, periodo: 5.6 });
+  tl.fromTo("#b1-m", { scale: 1 }, { scale: 1.14, duration: 4.154, ease: "none" }, 0);
+  K.bate("#b1-tit .ln", 1.25, { de: 1.7, d: 0.4, stagger: 0.14 });
+  K.sobe(K.palavras("#b1-apo"), 2.21, { stagger: 0.08, y: 30, d: 0.34 });
+  tl.to("#b1-apo em", { backgroundSize: "100% 8px", duration: 0.3, stagger: 0.12, ease: E.casa }, 2.57);
+  K.sai(["#b1-tit", "#b1-apo"], 3.744, { stagger: 0.05 });
+  tl.to("#b1-veu", { opacity: 1, duration: 0.4, ease: E.casa }, 1.05);
+  tl.fromTo("#b2-pi", { scale: 1 }, { scale: 1.08, duration: 3.366, ease: "none", immediateRender: false }, 4.154);
+  tl.fromTo("#b2-ri", { scale: 1.12 }, { scale: 1, duration: 2.111, ease: E.casa, immediateRender: false }, 7.12);
+  K.sobe("#b2-cx", 4.154, { y: -60, d: 0.5 });
+  K.sobe("#b2-esp", 4.154, { y: 90, d: 0.6 });
+  K.digita("#b2-q", "#b2-k", "Você escreve a fala de cada batida", 4.62, 1.19);
+  tl.fromTo("#b2-gr", { x: -564 }, { x: 1128, duration: 1.1, ease: "none", repeat: 3 }, 4.154);
+  K.bate("#b2-res", 7.12, { de: 1.14, d: 0.45 });
+  tl.to("#b2-esp", { opacity: 0, duration: 0.2 }, 7.32);
+  K.sai(["#b2-cx", "#b2-res"], 8.931, { y: -60, stagger: 0.05 });
+  K.bate("#b3-l1", 10.42, { de: 1.7, d: 0.38 });
+  K.bate("#b3-l2", 10.9, { de: 1.9, d: 0.38 });
+  tl.fromTo("#b3-l1", { y: 0 }, { y: -10, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 10.9);
+  K.bate("#b3-l3", 11.54, { de: 1.7, d: 0.38 });
+  tl.fromTo("#b3-l2", { y: 0 }, { y: -10, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 11.54);
+  K.sobe(K.palavras("#b3-apo"), 12.28, { stagger: 0.08, y: 30, d: 0.34 });
+  tl.to("#b3-apo em", { backgroundSize: "100% 8px", duration: 0.3, stagger: 0.12, ease: E.casa }, 12.64);
+  K.sai(["#b3-l1", "#b3-l2", "#b3-l3", "#b3-apo"], 13.958, { stagger: 0.05 });
+  K.cortina(".fx", 13.768, { d: 0.4, passo: 0.07 });
+  K.bate("#f1", 14.56, { de: 1.7, d: 0.38 });
+  K.bate("#f2", 15.02, { de: 1.9, d: 0.38 });
+  tl.fromTo("#f1", { y: 0 }, { y: -10, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 15.02);
+  K.sobe(K.palavras("#b4-apo"), 15.62, { stagger: 0.08, y: 30, d: 0.34 });
+  tl.to("#b4-apo em", { backgroundSize: "100% 8px", duration: 0.3, stagger: 0.12, ease: E.casa }, 15.98);
+  tl.to("#f-glow", { opacity: 1, duration: 0.6, ease: E.casa }, 16.462);
+  K.bate("#f-logo", 16.602, { de: 1.3, d: 0.42 });
+  tl.to("#f-logo", { scale: 1.04, duration: 1.818, ease: E.respira }, 17.062);
+  K.sobe("#f-site", 16.902, { y: 40, d: 0.4 });
+  tl.fromTo("#f-site", { scale: 1 }, { scale: 1.05, duration: 0.5, ease: E.respira, yoyo: true, repeat: 3, immediateRender: false }, 17.352);
+  tl.fromTo("#leg-fundo", { opacity: 0 }, { opacity: 1, duration: 0.3, immediateRender: true }, 0.1);
+  tl.to("#leg-fundo", { opacity: 0, duration: 0.3 }, 13.708);
+  K.legenda("#legenda", window.__legenda, { ativa: "#2EC4B6", acento: "#FFB703" });
+
+  window.__timelines["reel"] = tl;
+</script>
+</body>
+</html>

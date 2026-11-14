@@ -1,0 +1,88 @@
+{
+  "provedor": "voicestudio",
+  "local": true,
+  "voz": "narradora",
+  "modelo": "VoiceStudio d819ff54 / OmniVoice (local, CPU, seed por fala, 32 passos, variante qualidade)",
+  "idioma": "pt-BR",
+  "velocidade": 1.0,
+  "opcoes": {},
+  "entrada": "examples/reel-from-script/vozes/voz.txt",
+  "gerado_em": "2026-11-14T01:08:28",
+  "total_caracteres": 245,
+  "duracao_total_s": 13.812,
+  "carga_modelo_s": 7.68,
+  "sintese_s": 92.951,
+  "processo_total_s": 116.809,
+  "fator_tempo_real": 6.7297,
+  "alvo_lufs": -16.0,
+  "linhas": [
+    {
+      "batida": 1,
+      "texto": "Este vídeo nasceu de um roteiro em texto, sem nenhum tempo digitado.",
+      "caracteres": 68,
+      "arquivo": "voz-01.wav",
+      "duracao_s": 3.66,
+      "lufs": -16.0,
+      "pico_dbtp": -4.0,
+      "ganho_db": 8.4,
+      "semente": 7,
+      "pronuncia": {
+        "ok": true,
+        "ouvido": "Este vídeo nasceu de um roteiro em texto sem nenhum tempo digitado.",
+        "divergencias": [],
+        "tentativas": 1
+      }
+    },
+    {
+      "batida": 2,
+      "texto": "Você escreve a fala de cada batida e escolhe a cena que aparece com ela.",
+      "caracteres": 72,
+      "arquivo": "voz-02.wav",
+      "duracao_s": 4.168,
+      "lufs": -16.0,
+      "pico_dbtp": -4.1,
+      "ganho_db": 8.9,
+      "semente": 7,
+      "pronuncia": {
+        "ok": true,
+        "ouvido": "Você escreve a fala de cada batida e escolhe a cena que aparece com ela.",
+        "divergencias": [],
+        "tentativas": 1
+      }
+    },
+    {
+      "batida": 3,
+      "texto": "O motor gera a voz, a legenda e a trilha, com os cortes no compasso da música.",
+      "caracteres": 78,
+      "arquivo": "voz-03.wav",
+      "duracao_s": 4.302,
+      "lufs": -16.0,
+      "pico_dbtp": -4.1,
+      "ganho_db": 8.4,
+      "semente": 7,
+      "pronuncia": {
+        "ok": true,
+        "ouvido": "O motor gera a voz, a legenda e a trilha com os cortes no compasso da música.",
+        "divergencias": [],
+        "tentativas": 1
+      }
+    },
+    {
+      "batida": 4,
+      "texto": "Monte o seu com um comando.",
+      "caracteres": 27,
+      "arquivo": "voz-04.wav",
+      "duracao_s": 1.682,
+      "lufs": -16.0,
+      "pico_dbtp": -5.4,
+      "ganho_db": 8.0,
+      "semente": 7,
+      "pronuncia": {
+        "ok": true,
+        "ouvido": "Monte o seu com um comando.",
+        "divergencias": [],
+        "tentativas": 1
+      }
+    }
+  ]
+}

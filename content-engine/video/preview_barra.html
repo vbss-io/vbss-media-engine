@@ -46,6 +46,7 @@
 
   const cenas = Array.from(raiz.querySelectorAll("[data-start]")).filter((el) => el !== raiz && !/^(AUDIO|VIDEO)$/.test(el.tagName));
   const audios = Array.from(raiz.querySelectorAll("audio[data-start]"));
+  const videos = Array.from(raiz.querySelectorAll("video[data-start]"));
 
   let t = Math.max(0, parseFloat(new URLSearchParams(location.search).get("t")) || cfg.t || 0);
   let tocando = false;
@@ -78,6 +79,34 @@
     });
   }
 
+  function sincronizarVideo() {
+    videos.forEach((v) => {
+      const inicio = parseFloat(v.dataset.start) || 0;
+      const dura = parseFloat(v.dataset.duration);
+      const local = t - inicio;
+      const dentro = local >= 0 && (isNaN(dura) || local < dura);
+      v.style.visibility = dentro ? "" : "hidden";
+      if (!dentro) {
+        if (!v.paused) v.pause();
+        return;
+      }
+      const alvo = local + (parseFloat(v.dataset.mediaStart) || 0);
+      v.muted = true;
+      v.playbackRate = taxa;
+      if (!tocando) {
+        if (!v.paused) v.pause();
+        if (Math.abs(v.currentTime - alvo) > 0.03) {
+          try { v.currentTime = alvo; } catch (erro) { return; }
+        }
+        return;
+      }
+      if (v.paused || Math.abs(v.currentTime - alvo) > 0.25) {
+        try { v.currentTime = alvo; } catch (erro) { return; }
+      }
+      if (v.paused) v.play().catch(() => {});
+    });
+  }
+
   function aplicar() {
     const total = duracao();
     t = Math.max(0, Math.min(t, total));
@@ -97,6 +126,7 @@
     tempo.textContent = t.toFixed(2) + " / " + total.toFixed(2) + " s";
     botao.textContent = tocando ? "Pausar" : "Tocar";
     sincronizarAudio();
+    sincronizarVideo();
   }
 
   function alternar() {

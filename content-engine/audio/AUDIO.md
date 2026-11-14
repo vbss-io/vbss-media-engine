@@ -18,7 +18,8 @@ python content-engine/audio/sfx_setup.py [--offline]
 python content-engine/audio/musica_setup.py [--offline]
 python content-engine/audio/catalogo_audio.py [--lista lista.json --pasta <composicao> --saida <video.mp4>]
 python content-engine/audio/voz_setup.py [--modelo fp32|fp16|int8]
-python content-engine/audio/voz.py <voz.txt | roteiro.md> --saida <pasta> [--provedor voicestudio|kokoro|azure|azure_openai|google] [--voz <id>] [--estilo excited] [--tom "animado, de locutor"] [--altura +2st] [--velocidade 1.1]
+python content-engine/audio/voz.py <voz.txt | roteiro.md> --saida <pasta> [--provedor voicestudio|kokoro|azure|azure_openai|google] [--voz <id>] [--estilo excited] [--tom "animado, de locutor"] [--altura +2st] [--velocidade 1.1] [--batidas 4] [--semente 11] [--tentativas 3] [--sem-conferencia]
+python content-engine/audio/pronuncia.py <pasta-da-composicao | pasta com voz.json>
 python content-engine/audio/voz.py --listar-vozes
 python content-engine/audio/comparar_vozes.py [--frase "..."] [--vozes comparacao_vozes.json] [--saida <pasta>] [--verificar]
 python content-engine/audio/voz.py --benchmark [--modelo fp16]
@@ -32,6 +33,7 @@ python content-engine/audio/legenda.py <pasta-da-composicao> [--trilha trilha.js
 - `catalogo_audio.py`: vídeo de audição pelo motor de vídeo local. Sem argumentos, toca cada efeito da biblioteca com categoria, nome do arquivo, duração, uso e a forma de onda na tela (`sfx/catalogo.mp4`). Com `--lista`, faz o mesmo com qualquer lista de áudios (comparação de vozes).
 - `voz_setup.py`: cria `content-engine/audio/.venv`, instala os pacotes do `kokoro/requirements.txt` com `pip --require-hashes` (cache em `.cache/pip`, sem tocar no Python do sistema nem na pasta do usuário) e baixa o modelo com SHA-256 fixado em `kokoro/modelo.json` para `.models/`. `--gerar-lock` é manutenção: refaz o lock, recusando versão publicada há menos de 14 dias.
 - `voz.py`: uma fala por batida. Entrada: `voz.txt` (uma fala por linha; `#` é comentário) ou um `roteiro.md` com tabela que tenha a coluna `Voz`. Saída na pasta pedida: `voz-01.wav`, `voz-02.wav`... numerados pela batida (coluna `#` da tabela ou ordem da linha no `.txt`; batida com `Voz` vazia ou `-` fica sem arquivo) (48 kHz mono, -16 LUFS, pico até -1,5 dBTP, silêncio das pontas cortado) e `voz.json` com duração de cada fala, provedor, voz, modelo, total de caracteres e fator de tempo real. Interpretação por batida (só nos provedores que aceitam; nos outros a opção é recusada e a coluna é avisada e ignorada): coluna `Estilo` na tabela do roteiro, ou prefixo `[estilo] fala` no `.txt`; `--estilo` é o padrão das batidas sem estilo próprio. No Azure Speech o estilo vira `<mstts:express-as>` (ex.: `excited`) e `--altura` vira `<prosody pitch>`; no `azure_openai` o estilo (ou `--tom`) vira a instrução de tom em texto livre. Com `azure_openai`, o `voz.json` guarda também a transcrição devolvida, os tokens de cada fala (`tokens`, `tokens_total`) e quantas tentativas foram necessárias.
+- `pronuncia.py`: confere se a voz disse o texto como está escrito (seção "Conferência de pronúncia"). `PASS`/`FAIL` por fala; código 1 se houver divergência.
 - `comparar_vozes.py`: gera a mesma frase (padrão: a primeira fala de `examples/narration/voz.txt`, ou `--frase`) em cada voz de `comparacao_vozes.json`, todas a -16 LUFS, pula e lista as entradas cujo provedor está sem chave, e monta a composição do vídeo de comparação (um cartão por voz com o rótulo grande) mais `manifesto.json` (ordem, voz, provedor, duração, caracteres, tokens e nota de custo). Não renderiza: o render é `python content-engine/video/render.py <saida>/composicao <saida>/vozes-comparacao.mp4`. Uma entrada que falha não derruba as outras. `--verificar` só mostra quais entradas estão prontas. Saída padrão: `content-engine/.work/vozes-comparacao/` (fora do git). A nota de custo usa valores de tabela fixos no código, que envelhecem: confira o preço atual na página do provedor.
 - `trilha.py`: lê um `trilha.json` (`{"volume_efeitos": 0.8, "deixas": [{"t": 0.75, "efeito": "pop/pop-gota"}, {"t": 0.25, "arquivo": "assets/voz/voz-01.wav", "volume": 1.0}]}`), copia os efeitos usados para `assets/sfx/` da composição e escreve os `<audio>` na raiz do `index.html` (marcados com `data-trilha="1"`; rodar de novo substitui). Voz na trilha 10, efeitos de 11 em diante sem sobrepor na mesma trilha. Uma deixa aceita `volume` e `duracao` (corta o efeito). Com a chave opcional `musica`, gera também `assets/musica/base.wav` e o `<audio>` dela na trilha 9 (seção "Música de fundo").
 - `legenda.py`: mede o tempo de cada palavra das falas e grava `legenda.json` e `legenda.js` na composição (seção "Legenda sincronizada").
@@ -50,6 +52,7 @@ Biblioteca em `sfx/` (catálogo completo e combinações em `sfx/CATALOGO.md`, l
 - Fecho com logo: `riser/reverso-cine-longo` terminando na entrada do logo com `shine/brilho-cine-longo`, ou `success/sucesso-cine-acorde`; `jingle/*` só em peça retrô. Sempre depois da última fala (nunca por baixo dela).
 - Nível do conjunto cine: nivelado por família (impacto acima de whoosh, whoosh acima de tique), então `volume` 1.0 serve sem voz; com voz, de 0.4 a 0.7. O subgrave (`impact/impacto-cine-sub` e a cauda dos impactos) quase não toca no alto-falante do celular: lá o que se ouve é a pancada e o estalo.
 - Menos é mais: um efeito por movimento importante, não um por elemento. Sem efeito em cima de palavra-chave da voz.
+- No montador de Reel (`content-engine/video/montar_reel.py`) essa escolha é automática: um efeito cine por tipo de movimento, já com o nível de peça com voz e a âncora aplicada (tabela `EFEITOS` em `content-engine/video/reel_tempos.py`).
 
 ## Música de fundo
 
@@ -87,6 +90,25 @@ Biblioteca em `music/` (catálogo em `music/CATALOGO.md`, licenças em `music/LI
 - **Blocos:** até 4 palavras e 32 caracteres; quebra em pontuação forte (`. ! ? : ;`) e em pausa maior que 0,35 s; palavra de 1 ou 2 letras nunca fica sozinha nem pendurada no fim de um bloco no meio da frase, e palavra sozinha no fim da frase puxa a anterior.
 - **Destaque:** `--destaque "preço,versão"` ou `*palavra*` no texto (o asterisco não vai para a tela; use um arquivo de texto próprio para a legenda, não o que vai para a voz).
 - Rodar de novo depois de mudar a voz, o texto ou o `t` das deixas. Testes: `python -m unittest tests.test_legenda` em `content-engine/audio/` (alinhamento e blocos com tempos sintéticos, sem Whisper).
+
+## Conferência de pronúncia
+
+A voz gerada pode trocar, pular ou repetir um pedaço de palavra (por exemplo, "anunciciado" no lugar de "anunciado"), e isso costuma passar despercebido até depois do render. Por isso a fala é conferida em três pontos, sempre com o Whisper local e sem nada sair da máquina:
+
+```bash
+python content-engine/audio/pronuncia.py <pasta-da-composicao | pasta com voz.json>
+python content-engine/audio/voz.py <voz.txt> --saida <pasta> [--batidas 4] [--semente 11] [--tentativas 3] [--sem-conferencia] [--conferir]
+```
+
+- **O que é comparado.** Duas conferências por fala:
+  - **Texto.** O que o Whisper ouviu contra o texto do roteiro, palavra a palavra. Não contam: pontuação, maiúscula e acento; número em algarismo ou por extenso ("115" e "cento e quinze"); formas faladas ("pra" e "para"); e nome próprio (palavra com maiúscula no meio da frase ou no meio da palavra, como "FotoMural"), que passa com grafia parecida ou separada ("Foto Mural"). Palavra comum trocada, pulada ou a mais é divergência.
+  - **Chiado a mais.** O Whisper corrige sozinho a sílaba repetida e escreve a palavra certa (ouve "anunciado" num áudio que diz "anunciciado"). Por isso há uma segunda medida, no próprio som: os trechos de chiado (s, ss, ç, c antes de e ou i, x, z, ch, j, g antes de e ou i, e o t e o d que viram "tchi" e "dji") aparecem como energia aguda acima de 4,5 kHz maior que a grave, por 60 ms ou mais. Palavra com mais trechos do que a grafia pede é apontada como "pode ter sílaba repetida". Chiado na beira da palavra (até 0,12 s) é atribuído à vizinha quando falta um nela, porque o limite entre palavras do Whisper é aproximado. O f e o v também sopram no agudo: cada f ou v da palavra tolera um trecho a mais sem acusar.
+- **Na geração (`voz.py`).** Com o `voicestudio` (a voz padrão) a conferência roda sozinha depois de gerar. Fala com divergência é gerada de novo, só ela, com a semente seguinte da lista do provedor (7, 11, 23, 42, 101), até `--tentativas` (padrão 3). Fica a tentativa com menos divergências. O `voz.json` guarda, por fala, a `semente` que ficou e `pronuncia` (`ok`, `ouvido`, `divergencias`, `tentativas`). Se sobrar divergência, a saída termina com um `AVISO` que cita os arquivos e manda OUVIR. `--batidas 4` gera só a batida 4 e mantém as outras; `--semente` escolhe a primeira semente; `--sem-conferencia` desliga; `--conferir` liga nos outros provedores (sem semente, só avisa). Fila do motor de voz cheia (resposta 429) é esperada e tentada de novo sozinha.
+- **Na legenda (`legenda.py`).** A mesma transcrição que alinha a legenda é conferida, sem rodar o Whisper outra vez. Cada fala do `legenda.json` ganha `pronuncia: {ok, divergencias}` e a saída mostra `AVISO PRONUNCIA` por divergência. É o que cobre voz antiga, voz de nuvem e arquivo trazido de fora.
+- **No montador e na checagem.** O `montar_reel.py` repete o aviso no resultado, com o comando para gerar a fala de novo, e o `checar_reel.py` dá `FAIL` em "pronúncia da voz" enquanto houver divergência.
+- **Aviso falso, depois de uma pessoa ouvir.** Se a fala apontada foi ouvida e está certa, `python content-engine/video/montar_reel.py <pasta> --ouvida 2,4 --por "nome de quem ouviu"` registra a liberação em `vozes/ouvidas.json` (quem, quando e o SHA-256 daquele áudio). A checagem passa a dar `AVISO` no lugar de `FAIL` para essas falas. A liberação vale só para aquele arquivo: fala gerada de novo volta a ser conferida. Nunca é automática: um agente não ouve áudio e não deve liberar fala por conta própria.
+- **Limites.** A medida de chiado só enxerga sílaba repetida que tem chiado; repetição de outra sílaba ("bababa") só aparece se o Whisper a escrever. Ela não julga entonação, ritmo nem sotaque. Nome próprio e palavra estrangeira podem acusar divergência falsa de texto: ouvir e seguir. A mesma semente não devolve sempre o mesmo áudio, então a conferência roda em toda geração, não só na primeira. Nada disso substitui ouvir a peça inteira antes de entregar.
+- Testes: `python -m unittest tests.test_pronuncia` em `content-engine/audio/` (comparação de texto, números, nomes próprios, contagem de chiado e nova tentativa com outra semente, sem Whisper e sem motor de voz).
 
 ## Provedores de voz
 
@@ -156,7 +178,8 @@ content-engine/audio/
   musica_fontes.json  fontes CC0 (URL, pagina, autor, SHA-256) e a curadoria das faixas
   musica_bpm.py       mede o BPM (roda no .venv, com numpy)
   catalogo_audio.py   video de audicao (catalogo e comparacao de vozes)
-  voz.py              narracao: um WAV por batida + voz.json
+  voz.py              narracao: um WAV por batida + voz.json; confere a pronuncia e tenta outra semente
+  pronuncia.py        conferencia de pronuncia (texto ouvido contra o roteiro e chiado a mais)
   voz_config.json     provedor e voz padrao
   comparar_vozes.py   mesma frase em varias vozes + composicao do video de comparacao + manifesto.json
   comparacao_vozes.json  lista de vozes comparadas (editavel)
@@ -165,7 +188,7 @@ content-engine/audio/
   legenda.py          tempos por palavra da narracao: legenda.json e legenda.js (+ legenda_worker.py, Whisper local)
   _comum.py           caminhos, FFmpeg local, medicao de loudness, download conferido
   providers/         voicestudio.py (usa voicestudio/voicestudio.py), kokoro.py (+ kokoro_worker.py, roda no venv), azure.py, azure_openai.py, google.py
-  tests/             test_vozes_nuvem.py (SSML, estilo, escape, conferencia literal, voz.json; sem rede), test_trilha_musica.py (trechos de ducking, base.wav, idempotencia, erros), test_legenda.py (alinhamento e blocos)
+  tests/             test_vozes_nuvem.py (SSML, estilo, escape, conferencia literal, voz.json; sem rede), test_trilha_musica.py (trechos de ducking, base.wav, idempotencia, erros), test_legenda.py (alinhamento e blocos), test_pronuncia.py (texto, numeros, nomes, chiado, nova tentativa com outra semente)
   kokoro/             requirements.txt (lock com SHA-256) e modelo.json (arquivos e SHA-256)
   sfx/                efeitos curados (no git), sfx.json, CATALOGO.md, LICENCAS.md, catalogo.mp4
   music/              faixas de fundo curadas (no git), musica.json, CATALOGO.md, LICENCAS.md

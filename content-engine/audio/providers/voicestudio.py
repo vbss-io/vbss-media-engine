@@ -11,6 +11,10 @@ VOZES_JSON = SCRIPT.parent / "voices" / "vozes.json"
 MODELO_TTS = "k2-fsa/OmniVoice"
 PASSOS = {"qualidade": 32, "rapido": 16}
 VARIANTE_PADRAO = "qualidade"
+ACEITA_SEMENTE = True
+FILA_TENTATIVAS = 30
+FILA_ESPERA = 10
+SEMENTES = (7, 11, 23, 42, 101)
 _modulo = None
 
 
@@ -57,7 +61,18 @@ def disponivel(variante=None):
     return True, "instalado, pinado e com modelo; a API sobe sozinha na geracao e desce no fim"
 
 
-def sintetizar(linhas, voz, pasta, velocidade=1.0, variante=None):
+def _gerar_esperando(vs, texto, voz, destino, semente, velocidade, passos):
+    for tentativa in range(1, FILA_TENTATIVAS + 1):
+        try:
+            return vs.gerar(texto, voz, destino, seed=semente, velocidade=velocidade, passos=passos)
+        except SystemExit as err:
+            if "-> 429" not in str(err) or tentativa == FILA_TENTATIVAS:
+                raise
+            print(f"motor de voz ocupado (fila cheia), esperando {FILA_ESPERA} s ({tentativa} de {FILA_TENTATIVAS - 1})...", flush=True)
+            time.sleep(FILA_ESPERA)
+
+
+def sintetizar(linhas, voz, pasta, velocidade=1.0, variante=None, sementes=None):
     ok, motivo = disponivel()
     if not ok:
         raise RuntimeError(motivo)
@@ -74,8 +89,9 @@ def sintetizar(linhas, voz, pasta, velocidade=1.0, variante=None):
             for i, texto in enumerate(linhas, 1):
                 destino = Path(pasta) / f"bruto-{i:02d}.wav"
                 t = time.perf_counter()
-                vs.gerar(texto, voz, destino, velocidade=velocidade, passos=passos)
-                itens.append({"arquivo": str(destino), "sintese_s": round(time.perf_counter() - t, 3), "audio_s": None})
+                semente = sementes[i - 1] if sementes and sementes[i - 1] is not None else vs.SEED
+                _gerar_esperando(vs, texto, voz, destino, semente, velocidade, passos)
+                itens.append({"arquivo": str(destino), "sintese_s": round(time.perf_counter() - t, 3), "audio_s": None, "semente": semente})
     except SystemExit as err:
         raise RuntimeError(f"VoiceStudio: {err}") from None
-    return {"modelo": f"VoiceStudio {vs.PIN['commit'][:8]} / OmniVoice (local, CPU, seed {vs.SEED}, {passos} passos, variante {variante})", "carga_s": round(carga, 3), "itens": itens}
+    return {"modelo": f"VoiceStudio {vs.PIN['commit'][:8]} / OmniVoice (local, CPU, seed {'por fala' if sementes else vs.SEED}, {passos} passos, variante {variante})", "carga_s": round(carga, 3), "itens": itens}

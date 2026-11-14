@@ -1,0 +1,41 @@
+{
+ "marca": "exemplo",
+ "nome_da_marca": "Marca Exemplo",
+ "titulo": "Reel a partir de um roteiro - Marca Exemplo",
+ "fundo": {"midia": "assets/fundo.webp"},
+ "legenda": {"destaque": ["roteiro", "comando"]},
+ "batidas": [
+  {
+   "fala": "Este vídeo nasceu de um roteiro em texto, sem nenhum tempo digitado.",
+   "cena": {
+    "tipo": "abertura", "midia": "assets/fundo.webp",
+    "titulo": "DO ROTEIRO|*AO VÍDEO*", "titulo_na": "roteiro",
+    "apoio": "sem *nenhum tempo* digitado", "apoio_na": "sem"
+   }
+  },
+  {
+   "fala": "Você escreve a fala de cada batida e escolhe a cena que aparece com ela.",
+   "cena": {
+    "tipo": "passos", "rotulo": "A FALA DA BATIDA",
+    "pedido": "Você escreve a fala de cada batida", "digita_na": "escreve",
+    "partida": "assets/fundo.webp", "resultado": "assets/cartao.png", "resultado_na": "cena"
+   }
+  },
+  {
+   "fala": "O motor gera a voz, a legenda e a trilha, com os cortes no compasso da música.",
+   "cena": {
+    "tipo": "impacto",
+    "linhas": [{"texto": "VOZ", "na": "voz"}, {"texto": "LEGENDA", "na": "legenda"}, {"texto": "*TRILHA*", "na": "trilha"}],
+    "apoio": "cada corte *no compasso*", "apoio_na": "cortes"
+   }
+  },
+  {
+   "fala": "Monte o seu com um comando.",
+   "cena": {
+    "tipo": "fecho",
+    "linhas": [{"texto": "MONTE", "na": "Monte"}, {"texto": "*O SEU*", "na": "seu"}],
+    "apoio": "com *um comando*", "apoio_na": "comando"
+   }
+  }
+ ]
+}

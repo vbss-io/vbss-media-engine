@@ -44,7 +44,9 @@ def filtrar_opcoes(prov, opcoes):
     return {k: v for k, v in pedidas.items() if k in aceitas}, rejeitadas
 
 
-def sintetizar(prov, linhas, voz, pasta, velocidade=1.0, variante=None, opcoes=None):
+def sintetizar(prov, linhas, voz, pasta, velocidade=1.0, variante=None, opcoes=None, sementes=None):
     validas, _ = filtrar_opcoes(prov, opcoes)
     extra = {"opcoes": validas} if getattr(prov, "OPCOES_ACEITAS", ()) else {}
+    if sementes and getattr(prov, "ACEITA_SEMENTE", False):
+        extra["sementes"] = list(sementes)
     return prov.sintetizar(linhas, voz, pasta, velocidade=velocidade, variante=variante, **extra)

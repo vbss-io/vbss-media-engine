@@ -1,0 +1,210 @@
+{
+ "versao": 1,
+ "roteiro_sha256": "30539347ba8ed6826e4ac769ac0e082e2a67d642f839306403ec5ecec1111dac",
+ "marca": "exemplo",
+ "estilo": "suave",
+ "duracao": 18.92,
+ "musica": {
+  "faixa": "eletronica-otimista",
+  "bpm": 130.0,
+  "cortes": "compasso"
+ },
+ "batidas": [
+  {
+   "batida": 1,
+   "tipo": "abertura",
+   "inicio": 0.0,
+   "fala": 0.15,
+   "fim_fala": 3.81,
+   "fim": 4.154
+  },
+  {
+   "batida": 2,
+   "tipo": "passos",
+   "inicio": 4.154,
+   "fala": 4.4,
+   "fim_fala": 8.568,
+   "fim": 9.231
+  },
+  {
+   "batida": 3,
+   "tipo": "impacto",
+   "inicio": 9.231,
+   "fala": 9.48,
+   "fim_fala": 13.782,
+   "fim": 14.308
+  },
+  {
+   "batida": 4,
+   "tipo": "fecho",
+   "inicio": 14.308,
+   "fala": 14.56,
+   "fim_fala": 16.242,
+   "fim": 18.92
+  }
+ ],
+ "primeiro_texto": 1.25,
+ "textos": [
+  {
+   "nome": "b1-tit",
+   "x": 330,
+   "y": 250,
+   "w": 420,
+   "h": 148,
+   "de": 1.25,
+   "ate": 4.154
+  },
+  {
+   "nome": "b1-apo",
+   "x": 218,
+   "y": 432,
+   "w": 644,
+   "h": 60,
+   "de": 2.21,
+   "ate": 4.154
+  },
+  {
+   "nome": "pedido",
+   "x": 60,
+   "y": 250,
+   "w": 880,
+   "h": 202,
+   "de": 4.154,
+   "ate": 9.231
+  },
+  {
+   "nome": "b3-l1",
+   "x": 446,
+   "y": 600,
+   "w": 187,
+   "h": 104,
+   "de": 10.42,
+   "ate": 14.308
+  },
+  {
+   "nome": "b3-l2",
+   "x": 322,
+   "y": 710,
+   "w": 437,
+   "h": 104,
+   "de": 10.9,
+   "ate": 14.308
+  },
+  {
+   "nome": "b3-l3",
+   "x": 353,
+   "y": 820,
+   "w": 374,
+   "h": 104,
+   "de": 11.54,
+   "ate": 14.308
+  },
+  {
+   "nome": "b3-apo",
+   "x": 257,
+   "y": 970,
+   "w": 567,
+   "h": 60,
+   "de": 12.28,
+   "ate": 14.308
+  },
+  {
+   "nome": "f1",
+   "x": 384,
+   "y": 420,
+   "w": 312,
+   "h": 104,
+   "de": 14.56,
+   "ate": 18.92
+  },
+  {
+   "nome": "f2",
+   "x": 384,
+   "y": 530,
+   "w": 312,
+   "h": 104,
+   "de": 15.02,
+   "ate": 18.92
+  },
+  {
+   "nome": "b4-apo",
+   "x": 360,
+   "y": 692,
+   "w": 361,
+   "h": 60,
+   "de": 15.62,
+   "ate": 18.92
+  },
+  {
+   "nome": "logo",
+   "x": 280,
+   "y": 960,
+   "w": 520,
+   "h": 300,
+   "de": 16.602,
+   "ate": 18.92
+  },
+  {
+   "nome": "chamada para o site",
+   "x": 308,
+   "y": 1284,
+   "w": 463,
+   "h": 60,
+   "de": 16.902,
+   "ate": 18.92
+  }
+ ],
+ "legenda": {
+  "base": 0.24,
+  "largura": 800,
+  "linhas": 2,
+  "tamanho": 68
+ },
+ "legenda_chave": "239244d1a461bededfe9a55fd92614a50f2aa6ec486cc5b8f54faa226dfc3bb3",
+ "animacoes": 40,
+ "quiques": 0,
+ "efeitos": 19,
+ "pronuncia": [
+  {
+   "batida": 1,
+   "arquivo": "voz-01.wav",
+   "conferida": true,
+   "ok": true,
+   "divergencias": [],
+   "semente": 7,
+   "ouvida": null
+  },
+  {
+   "batida": 2,
+   "arquivo": "voz-02.wav",
+   "conferida": true,
+   "ok": true,
+   "divergencias": [],
+   "semente": 7,
+   "ouvida": null
+  },
+  {
+   "batida": 3,
+   "arquivo": "voz-03.wav",
+   "conferida": true,
+   "ok": true,
+   "divergencias": [],
+   "semente": 7,
+   "ouvida": null
+  },
+  {
+   "batida": 4,
+   "arquivo": "voz-04.wav",
+   "conferida": true,
+   "ok": true,
+   "divergencias": [],
+   "semente": 7,
+   "ouvida": null
+  }
+ ],
+ "avisos": [],
+ "gerados": {
+  "index.html": "ea9c3b8166c0871f8f8b14f14c22e9587b0a290166e50ce8ce900ecaff87aacc",
+  "trilha.json": "079e49362c400c20af3dce75197b762eca93240bd4b2a270e1413e9c07229348"
+ }
+}

@@ -1,0 +1,128 @@
+{
+ "volume_efeitos": 1.0,
+ "musica": {
+  "volume": 0.55,
+  "sob_voz": 0.2,
+  "entrada": 0.3,
+  "saida": 1.4,
+  "faixa": "eletronica-otimista"
+ },
+ "deixas": [
+  {
+   "t": 0.15,
+   "arquivo": "assets/voz/voz-01.wav",
+   "volume": 1.0
+  },
+  {
+   "t": 4.4,
+   "arquivo": "assets/voz/voz-02.wav",
+   "volume": 1.0
+  },
+  {
+   "t": 9.48,
+   "arquivo": "assets/voz/voz-03.wav",
+   "volume": 1.0
+  },
+  {
+   "t": 14.56,
+   "arquivo": "assets/voz/voz-04.wav",
+   "volume": 1.0
+  },
+  {
+   "t": 1.25,
+   "efeito": "impact/impacto-cine-medio",
+   "volume": 0.7
+  },
+  {
+   "t": 2.21,
+   "efeito": "pop/pop-cine-redondo",
+   "volume": 0.4
+  },
+  {
+   "t": 3.404,
+   "efeito": "transition/transicao-cine",
+   "volume": 0.6
+  },
+  {
+   "t": 4.62,
+   "efeito": "typing/digitacao-cine-suave",
+   "volume": 0.6,
+   "duracao": 1.19
+  },
+  {
+   "t": 7.1,
+   "efeito": "whoosh/whoosh-cine-curto",
+   "volume": 0.45
+  },
+  {
+   "t": 7.12,
+   "efeito": "shine/brilho-cine-curto",
+   "volume": 0.5
+  },
+  {
+   "t": 8.971,
+   "efeito": "transition/transicao-cine-suave",
+   "volume": 0.6
+  },
+  {
+   "t": 10.42,
+   "efeito": "impact/impacto-cine-macio",
+   "volume": 0.6
+  },
+  {
+   "t": 10.9,
+   "efeito": "impact/impacto-cine-medio",
+   "volume": 0.7
+  },
+  {
+   "t": 11.54,
+   "efeito": "impact/impacto-cine-medio",
+   "volume": 0.7
+  },
+  {
+   "t": 12.28,
+   "efeito": "pop/pop-cine-redondo",
+   "volume": 0.4
+  },
+  {
+   "t": 13.108,
+   "efeito": "transition/transicao-cine-forte",
+   "volume": 0.65
+  },
+  {
+   "t": 14.56,
+   "efeito": "impact/impacto-cine-macio",
+   "volume": 0.6
+  },
+  {
+   "t": 15.02,
+   "efeito": "impact/impacto-cine-medio",
+   "volume": 0.7
+  },
+  {
+   "t": 15.402,
+   "efeito": "riser/reverso-cine-longo",
+   "volume": 0.5
+  },
+  {
+   "t": 15.62,
+   "efeito": "pop/pop-cine-redondo",
+   "volume": 0.4
+  },
+  {
+   "t": 16.602,
+   "efeito": "impact/impacto-cine-medio",
+   "volume": 0.75
+  },
+  {
+   "t": 16.602,
+   "efeito": "shine/brilho-cine-longo",
+   "volume": 0.45
+  },
+  {
+   "t": 16.902,
+   "efeito": "pop/pop-cine-redondo",
+   "volume": 0.4
+  }
+ ]
+}

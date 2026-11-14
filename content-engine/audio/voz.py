@@ -252,32 +252,111 @@ def gerar(a, cfg):
     c.exigir_ffmpeg()
     saida = Path(a.saida).resolve()
     saida.mkdir(parents=True, exist_ok=True)
-    for antigo in saida.glob("voz-*.wav"):
-        antigo.unlink()
+    mantidas = []
+    if a.batidas:
+        pedidas = {int(x) for x in a.batidas.split(",") if x.strip()}
+        fora = sorted(pedidas - {b for b, _, _ in falas})
+        if fora:
+            c.falhar(f"--batidas: a entrada nao tem a(s) batida(s) {', '.join(map(str, fora))}")
+        anteriores = c.ler_json(saida / "voz.json").get("linhas", []) if (saida / "voz.json").is_file() else []
+        textos = {b: t for b, t, _ in falas}
+        mantidas = [x for x in anteriores if x.get("batida") not in pedidas and x.get("batida") in textos and (saida / x["arquivo"]).is_file()]
+        for x in mantidas:
+            if x["texto"] != textos[x["batida"]]:
+                c.linha("AVISO", f"{x['arquivo']} foi gerado com outro texto", "inclua a batida em --batidas para refazer")
+        falas = [f for f in falas if f[0] in pedidas]
+    else:
+        for antigo in saida.glob("voz-*.wav"):
+            antigo.unlink()
     bruto = c.WORK_DIR / "voz-bruto" / datetime.now().strftime("%Y%m%d-%H%M%S-%f")
     bruto.mkdir(parents=True, exist_ok=True)
+    aceita_semente = bool(getattr(prov, "ACEITA_SEMENTE", False))
+    conferir = not a.sem_conferencia and (a.conferir or aceita_semente)
+    if conferir:
+        import legenda
+        import pronuncia
+
+        achado, motivo = legenda.whisper_disponivel()
+        if not achado:
+            c.linha("AVISO", "conferencia de pronuncia desligada", motivo)
+            conferir = False
+    sementes = list(getattr(prov, "SEMENTES", ())) if aceita_semente else []
+    if a.semente is not None:
+        if not aceita_semente:
+            c.falhar(f"o provedor {nome} nao aceita --semente")
+        sementes = [a.semente] + [s for s in sementes if s != a.semente]
+    rodadas = max(1, min(a.tentativas, len(sementes))) if conferir and aceita_semente else 1
 
     c.titulo(f"Voz: {nome} ({'local' if prov.LOCAL else 'nuvem'}), voz {voz}, velocidade {vel}, {len(falas)} fala(s)")
     t0 = time.perf_counter()
-    try:
-        res = providers.sintetizar(prov, [t for _, t, _ in falas], voz, bruto, velocidade=vel, variante=a.modelo, opcoes=opcoes)
-    except RuntimeError as err:
-        c.falhar(str(err))
+    feitas = {}
+    pendentes = list(falas)
+    sintese = 0.0
+    res = None
+    for rodada in range(rodadas):
+        semente = sementes[rodada] if sementes else None
+        pasta_rodada = bruto / f"rodada-{rodada + 1}"
+        pasta_rodada.mkdir(parents=True, exist_ok=True)
+        if rodada:
+            c.linha("INFO", f"tentativa {rodada + 1} de {rodadas} com a semente {semente}", ", ".join(f"voz-{b:02d}.wav" for b, _, _ in pendentes))
+        da_rodada = dict(opcoes)
+        if da_rodada.get("estilos"):
+            da_rodada["estilos"] = [e for _, _, e in pendentes]
+        try:
+            res = providers.sintetizar(prov, [t for _, t, _ in pendentes], voz, pasta_rodada, velocidade=vel, variante=a.modelo, opcoes=da_rodada,
+                                        sementes=[semente] * len(pendentes) if semente is not None else None)
+        except RuntimeError as err:
+            c.falhar(str(err))
+        candidatos = []
+        for (batida, fala, _), it in zip(pendentes, res["itens"]):
+            destino = pasta_rodada / f"voz-{batida:02d}.wav"
+            ganho, m = pos_processar(Path(it["arquivo"]), destino, cfg)
+            sintese += it["sintese_s"]
+            linha = {"batida": batida, "texto": fala, "caracteres": len(fala), "arquivo": f"voz-{batida:02d}.wav", "duracao_s": m["duracao"],
+                     "lufs": m["lufs_integrado"], "pico_dbtp": m["pico_dbtp"], "ganho_db": ganho}
+            for extra in ("estilo", "tom", "transcricao", "tokens", "tentativas", "semente"):
+                if it.get(extra) is not None:
+                    linha[extra] = it[extra]
+            candidatos.append((batida, fala, destino, linha, m))
+        resultados = [None] * len(candidatos)
+        if conferir:
+            try:
+                resultados = pronuncia.conferir_arquivos([{"arquivo": d, "texto": f} for _, f, d, _, _ in candidatos])
+            except (RuntimeError, OSError) as err:
+                c.linha("AVISO", "conferencia de pronuncia falhou nesta rodada", str(err).strip().splitlines()[-1] if str(err).strip() else type(err).__name__)
+        ruins = []
+        for (batida, fala, destino, linha, m), r in zip(candidatos, resultados):
+            if r is not None:
+                linha["pronuncia"] = {"ok": r["ok"], "ouvido": r["ouvido"], "divergencias": [pronuncia.descrever(d) for d in r["divergencias"]], "tentativas": rodada + 1}
+            anterior = feitas.get(batida)
+            melhor = anterior is None or r is None or len(r["divergencias"]) < len(anterior[0].get("pronuncia", {}).get("divergencias", []))
+            if melhor:
+                shutil.copyfile(destino, saida / linha["arquivo"])
+                feitas[batida] = (linha, m)
+            elif anterior[0].get("pronuncia"):
+                anterior[0]["pronuncia"]["tentativas"] = rodada + 1
+            if r is not None and not r["ok"]:
+                ruins.append(batida)
+                c.linha("AVISO", f"voz-{batida:02d}.wav (semente {linha.get('semente', '-')}) nao disse o texto como esta escrito", "; ".join(linha["pronuncia"]["divergencias"]))
+        pendentes = [f for f in pendentes if f[0] in ruins]
+        if not pendentes:
+            break
     gasto = time.perf_counter() - t0
     linhas = []
-    for (batida, fala, _), it in zip(falas, res["itens"]):
-        destino = saida / f"voz-{batida:02d}.wav"
-        ganho, m = pos_processar(Path(it["arquivo"]), destino, cfg)
-        linha = {"batida": batida, "texto": fala, "caracteres": len(fala), "arquivo": destino.name, "duracao_s": m["duracao"],
-                 "lufs": m["lufs_integrado"], "pico_dbtp": m["pico_dbtp"], "ganho_db": ganho}
-        for extra in ("estilo", "tom", "transcricao", "tokens", "tentativas"):
-            if it.get(extra) is not None:
-                linha[extra] = it[extra]
+    for batida, fala, _ in falas:
+        linha, m = feitas[batida]
         linhas.append(linha)
-        c.linha("OK", destino.name, f"{m['duracao']:.2f} s  {m['lufs_integrado']} LUFS  pico {m['pico_dbtp']} dBTP  \"{fala[:60]}\"")
+        conf = linha.get("pronuncia")
+        nota = ""
+        if conf:
+            nota = "  pronuncia conferida" if conf["ok"] else "  PRONUNCIA DIVERGENTE"
+            if linha.get("semente") is not None:
+                nota += f" (semente {linha['semente']}, {conf['tentativas']} tentativa(s))"
+        c.linha("OK" if not conf or conf["ok"] else "AVISO", linha["arquivo"], f"{m['duracao']:.2f} s  {m['lufs_integrado']} LUFS  pico {m['pico_dbtp']} dBTP{nota}  \"{fala[:60]}\"")
+    divergentes = [x for x in linhas if x.get("pronuncia") and not x["pronuncia"]["ok"]]
+    linhas = sorted(mantidas + linhas, key=lambda x: x["batida"])
     shutil.rmtree(bruto, ignore_errors=True)
     dur = round(sum(x["duracao_s"] for x in linhas), 3)
-    sintese = sum(it["sintese_s"] for it in res["itens"])
     dados = {
         "provedor": nome,
         "local": prov.LOCAL,
@@ -302,6 +381,12 @@ def gerar(a, cfg):
     c.escrever_json(saida / "voz.json", dados)
     c.titulo("Resultado")
     c.linha("OK", f"{len(linhas)} arquivo(s) em {c.rel(saida)}", f"{dur:.2f} s de fala, {dados['total_caracteres']} caracteres, RTF {dados['fator_tempo_real']}")
+    if divergentes:
+        c.linha("AVISO", f"{len(divergentes)} fala(s) ficaram com pronuncia diferente do texto depois de {rodadas} tentativa(s)",
+                "OUCA antes de usar: " + ", ".join(x["arquivo"] for x in divergentes) + ". Reescreva a frase (palavra mais simples) ou rode de novo com --semente <outro numero> --batidas "
+                + ",".join(str(x["batida"]) for x in divergentes))
+    elif conferir:
+        c.linha("OK", "pronuncia conferida em todas as falas geradas", "o Whisper local ouviu o texto do roteiro e nao ha chiado a mais")
 
 
 def main():
@@ -317,6 +402,11 @@ def main():
     p.add_argument("--estilo", help="estilo da fala, so nos provedores que aceitam (ex.: excited, happy, calm); uma coluna Estilo na batida vale so para ela")
     p.add_argument("--tom", help="instrucao de tom em texto livre, so nos provedores que aceitam (ex.: \"animado, de locutor de Reels\")")
     p.add_argument("--altura", help="altura da voz, so nos provedores que aceitam (ex.: +2st, -5%%, high)")
+    p.add_argument("--batidas", help="gera so estas batidas (ex.: 4 ou 2,5) e mantem as outras falas ja gravadas na pasta de saida")
+    p.add_argument("--semente", type=int, help="semente da primeira tentativa, so no provedor que aceita (voicestudio); cada numero da uma leitura diferente")
+    p.add_argument("--tentativas", type=int, default=3, help="quantas sementes tentar quando a conferencia de pronuncia acha divergencia (padrao 3)")
+    p.add_argument("--conferir", action="store_true", help="confere a pronuncia com o Whisper local (ja e o padrao no voicestudio)")
+    p.add_argument("--sem-conferencia", action="store_true", help="nao confere a pronuncia")
     p.add_argument("--listar-vozes", action="store_true", help="lista provedores, vozes e o que esta pronto nesta maquina")
     p.add_argument("--benchmark", action="store_true", help="mede carga do modelo e fator de tempo real nesta maquina")
     a = p.parse_args()

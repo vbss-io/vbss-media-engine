@@ -1,0 +1,4 @@
+Este vídeo nasceu de um roteiro em texto, sem nenhum tempo digitado.
+Você escreve a fala de cada batida e escolhe a cena que aparece com ela.
+O motor gera a voz, a legenda e a trilha, com os cortes no compasso da música.
+Monte o seu com um comando.
